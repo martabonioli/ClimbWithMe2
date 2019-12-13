@@ -3,28 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_bacheca">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="android.example.climbwithme.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_bacheca"
+        android:name="android.example.climbwithme.ui.bacheca.BachecaFragment"
+        android:label="@string/title_bacheca"
+        tools:layout="@layout/fragment_bacheca" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="android.example.climbwithme.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_proponi"
+        android:name="android.example.climbwithme.ui.proponi.ProponiFragment"
+        android:label="@string/title_proponi"
+        tools:layout="@layout/fragment_proponi" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="android.example.climbwithme.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_cerca"
+        android:name="android.example.climbwithme.ui.cerca.CercaFragment"
+        android:label="@string/title_cerca"
+        tools:layout="@layout/fragment_cerca" />
     <fragment
         android:id="@+id/navigation_profile"
         android:name="android.example.climbwithme.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_proponi" />
 </navigation>

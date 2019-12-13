@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">ClimbWithMe</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_bacheca">Bacheca</string>
+    <string name="title_proponi">Proponi</string>
+    <string name="title_cerca">Cerca</string>
     <string name="title_profile">Profile</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textview">TextView</string>
 </resources>

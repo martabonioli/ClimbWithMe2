@@ -1,4 +1,4 @@
-package android.example.climbwithme.ui.home;
+package android.example.climbwithme.ui.bacheca;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.example.climbwithme.R;
 
-public class HomeFragment extends Fragment {
+public class BachecaFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private BachecaViewModel bachecaViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
+        bachecaViewModel =
+                ViewModelProviders.of(this).get(BachecaViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_bacheca, container, false);
+        final TextView textView = root.findViewById(R.id.text_bacheca);
+        bachecaViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

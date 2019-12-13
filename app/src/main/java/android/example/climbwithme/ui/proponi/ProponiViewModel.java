@@ -1,16 +1,16 @@
-package android.example.climbwithme.ui.home;
+package android.example.climbwithme.ui.proponi;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class ProponiViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public ProponiViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is proponi uscita fragment");
     }
 
     public LiveData<String> getText() {

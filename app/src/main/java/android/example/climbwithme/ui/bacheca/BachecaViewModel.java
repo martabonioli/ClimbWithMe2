@@ -1,16 +1,16 @@
-package android.example.climbwithme.ui.dashboard;
+package android.example.climbwithme.ui.bacheca;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DashboardViewModel extends ViewModel {
+public class BachecaViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public DashboardViewModel() {
+    public BachecaViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("This is bacheca fragment");
     }
 
     public LiveData<String> getText() {
