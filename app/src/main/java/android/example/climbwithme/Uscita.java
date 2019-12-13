@@ -1,6 +1,6 @@
 package android.example.climbwithme;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Uscita {
     private Date data;
@@ -12,6 +12,20 @@ public class Uscita {
     private String tipoArrampicata;
     private String mezzoTrasporto;
     private String attrezzatura;
+
+    public Uscita(Date data, String codiceSessione, Double latLuogoPartenza,
+                  Double lonLuogoPartenza, Double latLuogoArrivo, Double lonLuogoArrivo,
+                  String tipoArrampicata, String mezzoTrasporto, String attrezzatura ) {
+        this.data =data;
+        this.codiceSessione = codiceSessione;
+        this.latLuogoPartenza = latLuogoPartenza;
+        this.lonLuogoPartenza = lonLuogoPartenza;
+        this.latLuogoArrivo = latLuogoArrivo;
+        this.lonLuogoArrivo = lonLuogoArrivo;
+        this.tipoArrampicata = tipoArrampicata;
+        this.mezzoTrasporto = mezzoTrasporto;
+        this.attrezzatura = attrezzatura;
+    }
 
     public Date getData() {
         return data;
@@ -84,6 +98,8 @@ public class Uscita {
     public void setAttrezzatura(String attrezzatura) {
         this.attrezzatura = attrezzatura;
     }
+
+
 
 
 }
