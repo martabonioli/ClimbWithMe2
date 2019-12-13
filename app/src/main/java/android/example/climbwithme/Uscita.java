@@ -1,9 +1,10 @@
 package android.example.climbwithme;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Uscita {
-    private Date dataUscita;
+    private SimpleDateFormat dataUscita;
     private String codiceSessione;
     private Double latLuogoPartenza;
     private Double lonLuogoPartenza;
@@ -13,7 +14,7 @@ public class Uscita {
     private String mezzoTrasporto;
     private String attrezzatura;
 
-    public Uscita(Date dataUscita, String codiceSessione, Double latLuogoPartenza,
+    public Uscita(SimpleDateFormat dataUscita, String codiceSessione, Double latLuogoPartenza,
                   Double lonLuogoPartenza, Double latLuogoArrivo, Double lonLuogoArrivo,
                   String tipoArrampicata, String mezzoTrasporto, String attrezzatura ) {
         this.dataUscita = dataUscita;
@@ -27,11 +28,11 @@ public class Uscita {
         this.attrezzatura = attrezzatura;
     }
 
-    public Date getData() {
+    public SimpleDateFormat getData() {
         return dataUscita;
     }
 
-    public void setData(Date data) {
+    public void setData(SimpleDateFormat data) {
         this.dataUscita = data;
     }
 

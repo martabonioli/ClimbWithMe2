@@ -1,5 +1,6 @@
 package android.example.climbwithme;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 class MyModel {
@@ -15,8 +16,9 @@ class MyModel {
 
 
     public void addFakeUscite() {
-        uscite.add(new Uscita(() ,"cdjskcd",23.4,54.5,34.0,2.89,"falesia","auto","tutto"));
-        uscite.add(new Uscita(2019-10-23 ,"aaaaaaa",23.4,54.5,34.0,2.89,"falesia","auto","tutto")));
+        SimpleDateFormat format = new SimpleDateFormat("11/23/1998");
+        uscite.add(new Uscita(format ,"cdjskcd",23.4,54.5,34.0,2.89,"falesia","auto","tutto"));
+        uscite.add(new Uscita(format,"aaaaaaa",23.4,54.5,34.0,2.89,"falesia","auto","tutto"));
     }
 
 
