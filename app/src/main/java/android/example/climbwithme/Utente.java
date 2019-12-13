@@ -11,6 +11,18 @@ public class Utente {
     private Integer minLiv;
     private Integer maxLiv;
 
+    public  Utente(String codiceSessione, String nome, String cognome, Date dataDiNascita, Integer livelloMaxLead,
+                   Integer minLiv, Integer maxLiv){
+
+        this.codiceSessione = codiceSessione;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.dataDiNascita = dataDiNascita;
+        this.livelloMaxLead = livelloMaxLead;
+        this.minLiv = minLiv;
+        this.maxLiv = maxLiv;
+    }
+
     public String getCodiceSessione() {
         return codiceSessione;
     }
