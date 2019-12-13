@@ -2,12 +2,14 @@ package android.example.climbwithme.ui.bacheca;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.example.climbwithme.R;
+import android.example.climbwithme.Uscita;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class SingolaUscita extends RecyclerView.ViewHolder  {
 
     private TextView fotoutente;
     private TextView nomeUtente;
@@ -23,12 +25,12 @@ public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnCli
         nomeUtente = itemView.findViewById(R.id.nomeUtente);
         datauscita = itemView.findViewById(R.id.datauscita);
         luogoarrivo = itemView.findViewById(R.id.luogoarrivo);
-        itemView.setOnClickListener(this);
+        //itemView.setOnClickListener(this);
     }
 
     public void setUscita(Uscita uscita) {
         this.uscita = uscita.getCodiceSessione();
-       fotoutente.setText(uscita.getFotoUtente());
+        nomeUtente.setText(uscita.getCodiceSessione());
 
     }
 
