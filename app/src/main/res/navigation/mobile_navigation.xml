@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="android.example.climbwithme.profile"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:name="android.example.climbwithme.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_dashboard" />
 </navigation>
