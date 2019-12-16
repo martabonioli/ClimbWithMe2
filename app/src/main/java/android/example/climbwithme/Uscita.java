@@ -132,8 +132,8 @@ public class Uscita {
     }
 
 
-    public SimpleDateFormat getDataUscita() {
-        return dataUscita;
+    public String getDataUscita() {
+        return dataUscita.toString();
     }
 
     public void setDataUscita(SimpleDateFormat dataUscita) {
