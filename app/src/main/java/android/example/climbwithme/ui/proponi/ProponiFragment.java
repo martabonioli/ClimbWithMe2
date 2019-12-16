@@ -16,20 +16,22 @@ import android.example.climbwithme.R;
 
 public class ProponiFragment extends Fragment {
 
-    private ProponiViewModel dashboardViewModel;
+    private TextView textView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(ProponiViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_proponi, container, false);
-        final TextView textView = root.findViewById(R.id.text_proponi);
-        dashboardViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        TextView textView = view.findViewById(R.id.text_proponi);
+        textView.setText("Questo è il proponi");
+
     }
 }
