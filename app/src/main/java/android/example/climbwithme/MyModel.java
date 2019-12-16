@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 class MyModel {
     private static final MyModel ourInstance = new MyModel();
+    private static MyModel instance = null;
 
     //Creo arrayList per le uscite
     private ArrayList<Uscita> uscite = null;
@@ -23,8 +24,11 @@ class MyModel {
 
 
 
-    static MyModel getInstance() {
-        return ourInstance;
+    public static synchronized MyModel getInstance() {
+        if (instance == null) {
+            instance = new MyModel();
+        }
+        return instance;
     }
 
 
