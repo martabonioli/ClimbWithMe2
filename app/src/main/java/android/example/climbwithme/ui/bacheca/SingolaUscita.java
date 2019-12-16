@@ -9,12 +9,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
+
 public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private TextView fotoUtente;
     private TextView nomeUtente;
     private TextView maxLead;
-    private TextView dataUscita;
+    private SimpleDateFormat dataUscita;
     private TextView partenza;
     private TextView arrivo;
 
@@ -34,12 +36,12 @@ public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnCli
 
     public void setUscita(Uscita uscita) {
         this.uscita = uscita.getId();
-        fotoUtente.setText(uscita.getFotoUtente());
-        nomeUtente.setText (nomeUtente.getText());
-        maxLead.setText (maxLead.getText());
-        dataUscita.setText(dataUscita.getText());
-        partenza.setText(partenza.getText());
-        arrivo.setText(arrivo.getText());
+        fotoUtente.setText(uscita.getFoto());
+        nomeUtente.setText (uscita.getNome());
+        maxLead.setText (uscita.getLivelloMaxLead());
+        dataUscita.setText(uscita.getDataUscita().toString());
+        partenza.setText(uscita.getLatLuogoPartenza().toString());
+        arrivo.setText(uscita.getLatLuogoArrivo().toString());
     }
 
 

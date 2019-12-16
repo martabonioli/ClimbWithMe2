@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 
 public class Uscita {
     private SimpleDateFormat dataUscita;
-    private String codiceSessione;
     private Double latLuogoPartenza;
     private Double lonLuogoPartenza;
     private Double latLuogoArrivo;
@@ -13,27 +12,16 @@ public class Uscita {
     private String tipoArrampicata;
     private String mezzoTrasporto;
     private String attrezzatura;
+    private String codiceSessione;
     private String fotoUtente;
+    private String nome;
+    private Integer livelloMaxLead;
 
-    public String getFotoUtente() {
-        return fotoUtente;
-    }
 
-    public void setFotoUtente(String fotoUtente) {
-        this.fotoUtente = fotoUtente;
-    }
-
-    public SimpleDateFormat getDataUscita() {
-        return dataUscita;
-    }
-
-    public void setDataUscita(SimpleDateFormat dataUscita) {
-        this.dataUscita = dataUscita;
-    }
 
     public Uscita(SimpleDateFormat dataUscita, String codiceSessione, Double latLuogoPartenza,
                   Double lonLuogoPartenza, Double latLuogoArrivo, Double lonLuogoArrivo,
-                  String tipoArrampicata, String mezzoTrasporto, String attrezzatura, String fotoUtente ) {
+                  String tipoArrampicata, String mezzoTrasporto, String attrezzatura, String fotoUtente, String nome, Integer livelloMaxLead ) {
         this.dataUscita = dataUscita;
         this.codiceSessione = codiceSessione;
         this.latLuogoPartenza = latLuogoPartenza;
@@ -44,6 +32,8 @@ public class Uscita {
         this.mezzoTrasporto = mezzoTrasporto;
         this.attrezzatura = attrezzatura;
         this.fotoUtente =fotoUtente;
+        this.nome = nome;
+        this.livelloMaxLead = livelloMaxLead;
     }
 
 
@@ -113,6 +103,41 @@ public class Uscita {
 
     public  String getId() {
         return "" + getDataUscita() + "" + getCodiceSessione();
+    }
+
+
+    public String getFoto() {
+        return fotoUtente;
+    }
+
+    public void setFoto(String foto) {
+        this.fotoUtente = foto;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+
+    public Integer getLivelloMaxLead() {
+        return livelloMaxLead;
+    }
+
+    public void setLivelloMaxLead(Integer livelloMaxLead) {
+        this.livelloMaxLead = livelloMaxLead;
+    }
+
+
+    public SimpleDateFormat getDataUscita() {
+        return dataUscita;
+    }
+
+    public void setDataUscita(SimpleDateFormat dataUscita) {
+        this.dataUscita = dataUscita;
     }
 
 
