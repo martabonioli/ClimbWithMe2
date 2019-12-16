@@ -13,10 +13,27 @@ public class Uscita {
     private String tipoArrampicata;
     private String mezzoTrasporto;
     private String attrezzatura;
+    private String fotoUtente;
+
+    public String getFotoUtente() {
+        return fotoUtente;
+    }
+
+    public void setFotoUtente(String fotoUtente) {
+        this.fotoUtente = fotoUtente;
+    }
+
+    public SimpleDateFormat getDataUscita() {
+        return dataUscita;
+    }
+
+    public void setDataUscita(SimpleDateFormat dataUscita) {
+        this.dataUscita = dataUscita;
+    }
 
     public Uscita(SimpleDateFormat dataUscita, String codiceSessione, Double latLuogoPartenza,
                   Double lonLuogoPartenza, Double latLuogoArrivo, Double lonLuogoArrivo,
-                  String tipoArrampicata, String mezzoTrasporto, String attrezzatura ) {
+                  String tipoArrampicata, String mezzoTrasporto, String attrezzatura, String fotoUtente ) {
         this.dataUscita = dataUscita;
         this.codiceSessione = codiceSessione;
         this.latLuogoPartenza = latLuogoPartenza;
@@ -26,15 +43,9 @@ public class Uscita {
         this.tipoArrampicata = tipoArrampicata;
         this.mezzoTrasporto = mezzoTrasporto;
         this.attrezzatura = attrezzatura;
+        this.fotoUtente =fotoUtente;
     }
 
-    public SimpleDateFormat getData() {
-        return dataUscita;
-    }
-
-    public void setData(SimpleDateFormat data) {
-        this.dataUscita = data;
-    }
 
     public String getCodiceSessione() {
         return codiceSessione;
@@ -103,8 +114,6 @@ public class Uscita {
     public  String getId() {
         return "" + getData() + "" + getCodiceSessione();
     }
-
-
 
 
 }
