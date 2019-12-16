@@ -3,8 +3,9 @@ package android.example.climbwithme;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class MyModel {
+class MyModel {
     private static final MyModel ourInstance = new MyModel();
+    private static MyModel instance = null;
 
     //Creo arrayList per le uscite
     private ArrayList<Uscita> uscite = null;
@@ -21,19 +22,14 @@ public class MyModel {
         uscite.add(new Uscita(format,"aaaaaaa",23.4,54.5,34.0,2.89,"falesia","auto","tutto"));
     }
 
-    public Uscita getUscitaByIndex(int index) {
-        return uscite.get(index);
+
+
+    public static synchronized MyModel getInstance() {
+        if (instance == null) {
+            instance = new MyModel();
+        }
+        return instance;
     }
-
-
-   public static MyModel getInstance() {
-        return ourInstance;
-    }
-
-    public int getSize() {
-        return uscite.size();
-    }
-
 
 
 }
