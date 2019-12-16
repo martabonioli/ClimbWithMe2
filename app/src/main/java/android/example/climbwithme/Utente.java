@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Utente {
     private String codiceSessione;
+    private String foto;
     private String nome;
     private String cognome;
     private Date dataDiNascita;
@@ -11,10 +12,13 @@ public class Utente {
     private Integer minLiv;
     private Integer maxLiv;
 
-    public  Utente(String codiceSessione, String nome, String cognome, Date dataDiNascita, Integer livelloMaxLead,
+
+
+    public  Utente(String codiceSessione, String foto, String nome, String cognome, Date dataDiNascita, Integer livelloMaxLead,
                    Integer minLiv, Integer maxLiv){
 
         this.codiceSessione = codiceSessione;
+        this.foto =foto;
         this.nome = nome;
         this.cognome = cognome;
         this.dataDiNascita = dataDiNascita;
@@ -29,6 +33,13 @@ public class Utente {
 
     public void setCodiceSessione(String codiceSessione) {
         this.codiceSessione = codiceSessione;
+    }
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public String getNome() {
