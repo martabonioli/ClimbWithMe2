@@ -35,7 +35,7 @@ public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnCli
 
     public void setUscita(Uscita uscita) {
         this.uscita = uscita.getId();
-        fotoUtente = 
+        fotoUtente =
     }
 
 
