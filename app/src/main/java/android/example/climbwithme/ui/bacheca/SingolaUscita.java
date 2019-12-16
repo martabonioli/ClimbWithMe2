@@ -19,7 +19,6 @@ public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnCli
     private TextView arrivo;
 
     private String uscita;
-    private Activity parentActivity;
 
 
     public SingolaUscita(@NonNull View itemView) {

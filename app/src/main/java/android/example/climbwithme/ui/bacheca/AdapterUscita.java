@@ -15,11 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 public class AdapterUscita  extends RecyclerView.Adapter<SingolaUscita> {
 
     private LayoutInflater inflater;
-    private Activity parentActivity;
 
-    public AdapterUscita (Context context, Activity parentActivity) {
+    public AdapterUscita (Context context) {
         this.inflater = LayoutInflater.from(context);
-        this.parentActivity = parentActivity;
+
     }
 
     @Override
