@@ -1,12 +1,16 @@
 package android.example.climbwithme.ui.bacheca;
 
+import android.example.climbwithme.R;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class BachecaViewModel extends ViewModel {
+public class BachecaViewModel extends RecyclerView.ViewHolder  {
 
     private MutableLiveData<String> mText;
+
 
     public BachecaViewModel() {
         mText = new MutableLiveData<>();

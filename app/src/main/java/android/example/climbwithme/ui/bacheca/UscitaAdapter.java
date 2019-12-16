@@ -5,6 +5,7 @@ import android.content.Context;
 import android.example.climbwithme.MyModel;
 import android.example.climbwithme.R;
 import android.example.climbwithme.Uscita;
+import android.graphics.ColorSpace;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,13 +30,13 @@ public class UscitaAdapter extends RecyclerView.Adapter<SingolaUscita> {
 
     @Override
     public void onBindViewHolder(SingolaUscita holder, int position) {
-        Uscita uscita = MyModel.getInstance().getStudentByIndex(position);
+        Uscita uscita = MyModel.getInstance().getUscitaByIndex(position);
         holder.setUscita(uscita);
     }
 
     @Override
     public int getItemCount() {
-        return Model.getInstance().getSize();
+        return MyModel.getInstance().getSize();
     }
 }
 
