@@ -66,3 +66,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+
+//TODO LIST -->     RISOLVERE ROBE DATA- SISTEMARE DB (AGGIUNGERE FOTO) E SISTEMARE CHIAMATE PHP - FARE PROTOTIPO DI UI - COME PRENDERE I DATI
