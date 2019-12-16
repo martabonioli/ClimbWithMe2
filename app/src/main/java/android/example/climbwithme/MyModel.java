@@ -18,8 +18,8 @@ public class MyModel {
 
     public void addFakeUscite() {
         SimpleDateFormat format = new SimpleDateFormat("11/23/1998");
-        uscite.add(new Uscita(format ,"cdjskcd",23.4,54.5,34.0,2.89,"falesia","auto","tutto","foto"));
-        uscite.add(new Uscita(format,"aaaaaaa",23.4,54.5,34.0,2.89,"falesia","auto","tutto", "foto"));
+        uscite.add(new Uscita(format ,23.4, 23.9,45.2,32.3,"falesia","macchina","tutto", "nvjvfhdj","foto","marta",8));
+        uscite.add(new Uscita(format ,23.4, 23.9,45.2,32.3,"falesia","macchina","tutto", "nvjvfhdj","foto","luca",9));
     }
 
     public Uscita get(int index) {

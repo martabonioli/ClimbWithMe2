@@ -19,11 +19,10 @@ public class Uscita {
 
 
 
-    public Uscita(SimpleDateFormat dataUscita, String codiceSessione, Double latLuogoPartenza,
+    public Uscita(SimpleDateFormat dataUscita, Double latLuogoPartenza,
                   Double lonLuogoPartenza, Double latLuogoArrivo, Double lonLuogoArrivo,
-                  String tipoArrampicata, String mezzoTrasporto, String attrezzatura, String fotoUtente, String nome, Integer livelloMaxLead ) {
+                  String tipoArrampicata, String mezzoTrasporto, String attrezzatura,String codiceSessione, String fotoUtente, String nome, Integer livelloMaxLead ) {
         this.dataUscita = dataUscita;
-        this.codiceSessione = codiceSessione;
         this.latLuogoPartenza = latLuogoPartenza;
         this.lonLuogoPartenza = lonLuogoPartenza;
         this.latLuogoArrivo = latLuogoArrivo;
@@ -31,6 +30,7 @@ public class Uscita {
         this.tipoArrampicata = tipoArrampicata;
         this.mezzoTrasporto = mezzoTrasporto;
         this.attrezzatura = attrezzatura;
+        this.codiceSessione = codiceSessione;
         this.fotoUtente =fotoUtente;
         this.nome = nome;
         this.livelloMaxLead = livelloMaxLead;
