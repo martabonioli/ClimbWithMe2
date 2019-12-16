@@ -100,6 +100,10 @@ public class Uscita {
         this.attrezzatura = attrezzatura;
     }
 
+    public  String getId() {
+        return "" + getData() + "" + getCodiceSessione();
+    }
+
 
 
 

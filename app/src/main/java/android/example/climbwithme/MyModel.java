@@ -22,6 +22,13 @@ class MyModel {
         uscite.add(new Uscita(format,"aaaaaaa",23.4,54.5,34.0,2.89,"falesia","auto","tutto"));
     }
 
+    public Uscita get(int index) {
+        return uscite.get(index);
+    }
+
+    public int getSize() {
+        return uscite.size();
+    }
 
 
     public static synchronized MyModel getInstance() {

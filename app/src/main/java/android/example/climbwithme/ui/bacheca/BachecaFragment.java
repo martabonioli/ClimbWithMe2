@@ -31,8 +31,7 @@ public class BachecaFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView textView = view.findViewById(R.id.text_bacheca);
-        textView.setText("Bacheca fragment");
+
 
     }
 }
