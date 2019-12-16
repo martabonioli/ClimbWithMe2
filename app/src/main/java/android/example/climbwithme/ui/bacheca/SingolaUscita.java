@@ -38,7 +38,7 @@ public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnCli
         this.uscita = uscita.getId();
         fotoUtente.setText(uscita.getFoto());
         nomeUtente.setText (uscita.getNome());
-        maxLead.setText (uscita.getLivelloMaxLead());
+        maxLead.setText (uscita.getLivelloMaxLead().toString());
         dataUscita.setText(uscita.getDataUscita());
         partenza.setText(uscita.getLatLuogoPartenza().toString());
         arrivo.setText(uscita.getLatLuogoArrivo().toString());
