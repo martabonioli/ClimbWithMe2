@@ -112,7 +112,7 @@ public class Uscita {
     }
 
     public  String getId() {
-        return "" + getData() + "" + getCodiceSessione();
+        return "" + getDataUscita() + "" + getCodiceSessione();
     }
 
 

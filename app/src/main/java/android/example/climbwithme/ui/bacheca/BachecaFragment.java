@@ -33,5 +33,6 @@ public class BachecaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
+
     }
 }
