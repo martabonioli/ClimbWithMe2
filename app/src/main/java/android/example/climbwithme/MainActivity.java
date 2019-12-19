@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -25,6 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
+    RequestQueue mRequestQueue =null;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -32,12 +34,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
 
         //richiesta sessionId
         mRequestQueue = Volley.newRequestQueue(this);
-
-        String url = "https://ewserver.di.unimi.it/mobicomp/esercizi/getstudents.php";
+        String url = "https://climbwithme.herokuapp.com/sessionID.php";
         JsonObjectRequest request = new JsonObjectRequest(
                 url,
                 null,
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("Volley", "Correct: " + response.toString());
-                        MyModel.getInstance().populate(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         });
         Log.d("Volley", "Sending request");
         mRequestQueue.add(request);
+
+
 
 
 
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+
     }
 
 }
