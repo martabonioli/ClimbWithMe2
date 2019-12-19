@@ -27,11 +27,11 @@ public class Utente {
         this.maxLiv = maxLiv;
     }
 
-    public static String getCodiceSessione() {
+    public String getCodiceSessione() {
         return codiceSessione;
     }
 
-    public static void setCodiceSessione(String codiceSessione) {
+    public void setCodiceSessione(String codiceSessione) {
         this.codiceSessione = codiceSessione;
     }
     public String getFoto() {
