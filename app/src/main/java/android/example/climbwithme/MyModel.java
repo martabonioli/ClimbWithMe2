@@ -1,18 +1,12 @@
 package android.example.climbwithme;
 
-import android.util.Log;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MyModel {
     private static final MyModel ourInstance = new MyModel();
     private static MyModel instance = null;
+    private static Utente utente;
 
     //Creo arrayList per le uscite
     private ArrayList<Uscita> uscite = null;
@@ -67,6 +61,16 @@ public class MyModel {
         }
         return instance;
 
+    }
+
+    public  static void setSessionId(String sessionId) {
+
+        utente = new Utente(sessionId,"","","","", 0,0,0);
+
+    }
+
+    public static String getSessionId() {
+        return utente.getCodiceSessione();
     }
 
 

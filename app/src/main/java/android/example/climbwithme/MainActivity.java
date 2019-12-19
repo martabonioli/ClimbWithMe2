@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         if (getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null) == null) {
             richiediSessionId();
         } else {
-            Utente.setCodiceSessione(getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null));
+            MyModel.setSessionId(getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null));
 
         }
     }
@@ -105,12 +105,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.d("Volley", "Correct: " + response.toString());
                         try {
-                            Utente.setCodiceSessione(response.get("session_id").toString());
+                            MyModel.setSessionId(response.get("codiceSessione").toString());
+                            Log.d("daje","TOP" );
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-                        getSharedPreferences(PREFS_NAME, 0).edit().putString(SESSION_ID_PREF_NAME, Utente.getCodiceSessione()).apply();
+//LNcwkVSFV3X88V1o
+                        getSharedPreferences(PREFS_NAME, 0).edit().putString(SESSION_ID_PREF_NAME, MyModel.getSessionId()).apply();
 
                     }
                 }, new Response.ErrorListener() {
