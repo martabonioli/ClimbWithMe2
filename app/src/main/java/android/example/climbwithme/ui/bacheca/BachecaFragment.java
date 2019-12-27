@@ -1,5 +1,6 @@
 package android.example.climbwithme.ui.bacheca;
 
+import android.content.SharedPreferences;
 import android.example.climbwithme.MyModel;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,47 +27,31 @@ import com.android.volley.toolbox.Volley;
 
 public class BachecaFragment extends Fragment {
 
-
-    private TextView textView;
-    private AdapterUscita adapter;
+    RecyclerView list;
+    SharedPreferences settings;
+    AdapterUscita adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_bacheca, container, false);
+
         return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        MyModel.getInstance().addFakeUscite();
+        if(MyModel.getI()==0) {
+            MyModel.getInstance().addFakeUscite();
+            MyModel.updateI();
 
+
+        }
         RecyclerView recyclerView = getActivity().findViewById(R.id.text_bacheca);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new AdapterUscita(getActivity());
         recyclerView.setAdapter(adapter);
 
-        /* Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://climbwithme.herokuapp.com/ricercaUscita.php";
-
-// Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        textView.setText("Response is: "+ response.substring(0,500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                textView.setText("That didn't work!");
-            }
-        });
-
-// Add the request to the RequestQueue.
-        queue.add(stringRequest);*/
 
 
     }

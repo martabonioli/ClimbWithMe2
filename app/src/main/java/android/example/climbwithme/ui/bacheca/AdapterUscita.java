@@ -16,6 +16,7 @@ public class AdapterUscita  extends RecyclerView.Adapter<SingolaUscita> {
 
     private LayoutInflater inflater;
 
+
     public AdapterUscita (Context context) {
         this.inflater = LayoutInflater.from(context);
 
@@ -23,8 +24,15 @@ public class AdapterUscita  extends RecyclerView.Adapter<SingolaUscita> {
 
     @Override
     public SingolaUscita onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.singola_uscita, parent, false);
-        return new SingolaUscita(view);
+
+            View view = inflater.inflate(R.layout.singola_uscita, parent, false);
+
+            return new SingolaUscita(view);
+
+
+
+
+
     }
 
     @Override
