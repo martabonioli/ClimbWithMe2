@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 public class Uscita {
-    private SimpleDateFormat dataUscita;
+    private String dataUscita;
     private Double latLuogoPartenza;
     private Double lonLuogoPartenza;
     private Double latLuogoArrivo;
@@ -19,7 +19,7 @@ public class Uscita {
 
 
 
-    public Uscita(SimpleDateFormat dataUscita, Double latLuogoPartenza,
+    public Uscita(String dataUscita, Double latLuogoPartenza,
                   Double lonLuogoPartenza, Double latLuogoArrivo, Double lonLuogoArrivo,
                   String tipoArrampicata, String mezzoTrasporto, String attrezzatura,String codiceSessione, String fotoUtente, String nome, Integer livelloMaxLead ) {
         this.dataUscita = dataUscita;
@@ -133,10 +133,10 @@ public class Uscita {
 
 
     public String getDataUscita() {
-        return dataUscita.toString();
+        return dataUscita;
     }
 
-    public void setDataUscita(SimpleDateFormat dataUscita) {
+    public void setDataUscita(String dataUscita) {
         this.dataUscita = dataUscita;
     }
 

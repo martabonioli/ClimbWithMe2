@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     }
 
     private void checkPrimoAvvio() {
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             richiediSessionId();
         } else {
             MyModel.setSessionId(getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null));
-
+            Log.d("qwerty", MyModel.getSessionId());
         }
     }
 

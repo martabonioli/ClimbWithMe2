@@ -7,6 +7,7 @@ public class MyModel {
     private static final MyModel ourInstance = new MyModel();
     private static MyModel instance = null;
     private static Utente utente;
+    private static int i = 0;
 
     //Creo arrayList per le uscite
     private ArrayList<Uscita> uscite = null;
@@ -42,9 +43,9 @@ public class MyModel {
 
 
     public void addFakeUscite() {
-        SimpleDateFormat format = new SimpleDateFormat("11/23/1998");
-        uscite.add(new Uscita(format ,23.4, 23.9,45.2,32.3,"falesia","macchina","tutto", "nvjvfhdj","foto","marta",8));
-        uscite.add(new Uscita(format ,23.4, 23.9,45.2,32.3,"falesia","macchina","tutto", "nvjvfhdj","foto","luca",9));
+
+        uscite.add(new Uscita("19/12/2019" ,23.4, 23.9,45.2,32.3,"falesia","macchina","tutto", "nvjvfhdj","foto","Marta",8));
+        uscite.add(new Uscita("20/12/2019" ,23.4, 23.9,45.2,32.3,"falesia","macchina","tutto", "nvjvfhdj","foto","Luca",9));
     }
 
     public Uscita get(int index) {
@@ -71,6 +72,14 @@ public class MyModel {
 
     public static String getSessionId() {
         return utente.getCodiceSessione();
+    }
+
+    public static int getI(){
+        return i;
+    }
+
+    public static void updateI(){
+        i = i+1;
     }
 
 
