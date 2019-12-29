@@ -29,6 +29,7 @@ public class BachecaFragment extends Fragment {
 
     private TextView textView;
     private AdapterUscita adapter;
+    RecyclerView recyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,10 +42,12 @@ public class BachecaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         MyModel.getInstance().addFakeUscite();
 
-        RecyclerView recyclerView = getActivity().findViewById(R.id.text_bacheca);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new AdapterUscita(getActivity());
-        recyclerView.setAdapter(adapter);
+
+            recyclerView = getActivity().findViewById(R.id.text_bacheca);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            adapter = new AdapterUscita(getActivity());
+            recyclerView.setAdapter(adapter);
+
 
         /* Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -67,6 +70,8 @@ public class BachecaFragment extends Fragment {
 
 // Add the request to the RequestQueue.
         queue.add(stringRequest);*/
+
+
 
 
     }

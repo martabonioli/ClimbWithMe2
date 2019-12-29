@@ -7,14 +7,14 @@ public class Utente {
     private String foto;
     private String nome;
     private String cognome;
-    private Date dataDiNascita;
+    private String dataDiNascita;
     private Integer livelloMaxLead;
     private Integer minLiv;
     private Integer maxLiv;
 
 
 
-    public  Utente(String codiceSessione, String foto, String nome, String cognome, Date dataDiNascita, Integer livelloMaxLead,
+    public  Utente(String codiceSessione, String foto, String nome, String cognome, String dataDiNascita, Integer livelloMaxLead,
                    Integer minLiv, Integer maxLiv){
 
         this.codiceSessione = codiceSessione;
@@ -27,11 +27,11 @@ public class Utente {
         this.maxLiv = maxLiv;
     }
 
-    public static String getCodiceSessione() {
+    public String getCodiceSessione() {
         return codiceSessione;
     }
 
-    public static void setCodiceSessione(String codiceSessione) {
+    public void setCodiceSessione(String codiceSessione) {
         this.codiceSessione = codiceSessione;
     }
     public String getFoto() {
@@ -58,11 +58,11 @@ public class Utente {
         this.cognome = cognome;
     }
 
-    public Date getDataDiNascita() {
+    public String getDataDiNascita() {
         return dataDiNascita;
     }
 
-    public void setDataDiNascita(Date dataDiNascita) {
+    public void setDataDiNascita(String dataDiNascita) {
         this.dataDiNascita = dataDiNascita;
     }
 

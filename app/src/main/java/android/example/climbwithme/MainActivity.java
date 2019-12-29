@@ -1,6 +1,7 @@
 package android.example.climbwithme;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -22,39 +24,20 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
+    private final String PREFS_NAME = "registrazioneImplicita";
+    private final String SESSION_ID_PREF_NAME = "sessionId";
     private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
 
-        //richiesta sessionId
-        mRequestQueue = Volley.newRequestQueue(this);
-
-        String url = "https://ewserver.di.unimi.it/mobicomp/esercizi/getstudents.php";
-        JsonObjectRequest request = new JsonObjectRequest(
-                url,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("Volley", "Correct: " + response.toString());
-                        MyModel.getInstance().populate(response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Volley", "Error: " + error.toString());
-            }
-        });
-        Log.d("Volley", "Sending request");
-        mRequestQueue.add(request);
 
 
 
@@ -93,7 +76,54 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    checkPrimoAvvio();
+
+
+
+
     }
+
+    private void checkPrimoAvvio() {
+        if (getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null) == null) {
+            richiediSessionId();
+        } else {
+            MyModel.setSessionId(getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null));
+
+        }
+    }
+
+    private void richiediSessionId() {
+        //richiesta sessionId
+        RequestQueue mRequestQueue = Volley.newRequestQueue(this);
+
+        String url = "https://climbwithme.herokuapp.com/sessionID.php";
+        JsonObjectRequest request = new JsonObjectRequest(
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("Volley", "Correct: " + response.toString());
+                        try {
+                            MyModel.setSessionId(response.get("codiceSessione").toString());
+                            Log.d("daje","TOP" );
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+//LNcwkVSFV3X88V1o
+                        getSharedPreferences(PREFS_NAME, 0).edit().putString(SESSION_ID_PREF_NAME, MyModel.getSessionId()).apply();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Volley", "Error: " + error.toString());
+            }
+        });
+        Log.d("Volley", "Sending request");
+        mRequestQueue.add(request);
+    }
+
 
 }
 
