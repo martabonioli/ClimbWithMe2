@@ -27,11 +27,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
     private final String PREFS_NAME = "registrazioneImplicita";
     private final String SESSION_ID_PREF_NAME = "sessionId";
     private FusedLocationProviderClient fusedLocationClient;
+    private Location ultimapos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,13 +74,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(Location location) {
                         // Got last known location. In some rare situations this can be null.
                         if (location != null) {
+                            ultimapos =location;
                             Log.d("Location", "Last Known location AVAILABLE");
+                            Log.d("Location", String.valueOf(ultimapos));
                         } else {
                             Log.d("Location", "Last Known location NOT available");
                         }
                     }
                 });
     checkPrimoAvvio();
+    downloadBacheca();
 
 
 
@@ -113,6 +120,53 @@ public class MainActivity extends AppCompatActivity {
                         }
 //LNcwkVSFV3X88V1o
                         getSharedPreferences(PREFS_NAME, 0).edit().putString(SESSION_ID_PREF_NAME, MyModel.getSessionId()).apply();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Volley", "Error: " + error.toString());
+            }
+        });
+        Log.d("Volley", "Sending request");
+        mRequestQueue.add(request);
+    }
+
+
+    private void downloadBacheca() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDateandTime = '"' + sdf.format(new Date()) + '"';
+
+        RequestQueue mRequestQueue = Volley.newRequestQueue(this);
+
+        String url = "https://climbwithme.herokuapp.com/ricercaUscita.php";
+
+        Log.d("posizione", String.valueOf(ultimapos));
+        Log.d("posizione", String.valueOf(ultimapos.getLatitude()));
+
+        JSONObject datiDaPassare = new JSONObject();
+        try {
+            datiDaPassare.put("datauscita", currentDateandTime );
+            datiDaPassare.put("codiceSessione",MyModel.getSessionId());
+            datiDaPassare.put("lauultimapos", ultimapos.getLatitude());
+            datiDaPassare.put("lonultimapos", ultimapos.getLongitude());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("VolleyBacheca", "Correct: " + response.toString());
+                        /*try {
+                           // MyModel.popola();
+                            Log.d("daje","TOP" );
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }*/
 
                     }
                 }, new Response.ErrorListener() {
