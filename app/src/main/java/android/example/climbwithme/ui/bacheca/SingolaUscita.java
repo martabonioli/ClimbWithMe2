@@ -15,7 +15,6 @@ public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnCli
 
     private TextView fotoUtente;
     private TextView nomeUtente;
-    private TextView maxLead;
     private TextView dataUscita;
     private TextView partenza;
     private TextView arrivo;
@@ -27,7 +26,6 @@ public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnCli
         super(itemView);
         fotoUtente = itemView.findViewById(R.id.fotoUtente);
         nomeUtente = itemView.findViewById(R.id.nomeUtente);
-        maxLead = itemView.findViewById(R.id.maxLead);
         dataUscita = itemView.findViewById(R.id.dataUscita);
         partenza = itemView.findViewById(R.id.partenza);
         arrivo = itemView.findViewById(R.id.arrivo);
@@ -38,7 +36,6 @@ public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnCli
         this.uscita = uscita.getId();
         fotoUtente.setText(uscita.getFoto());
         nomeUtente.setText (uscita.getNome());
-        maxLead.setText (uscita.getLivelloMaxLead().toString());
         dataUscita.setText(uscita.getDataUscita());
         partenza.setText(uscita.getLatLuogoPartenza().toString());
         arrivo.setText(uscita.getLatLuogoArrivo().toString());

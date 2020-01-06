@@ -1,5 +1,8 @@
 package android.example.climbwithme;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -34,6 +37,37 @@ public class Uscita {
         this.fotoUtente =fotoUtente;
         this.nome = nome;
         this.livelloMaxLead = livelloMaxLead;
+    }
+
+    public Uscita(JSONObject uscitaJSON) {
+        try {
+            this.nome = uscitaJSON.getString("nome");
+            this.fotoUtente = uscitaJSON.getString("foto");
+            this.dataUscita = uscitaJSON.getString("dataUscita");
+            if (uscitaJSON.has("latLuogoArrivo")) {
+                latLuogoArrivo = uscitaJSON.getDouble("latLuogoArrivo");
+            } else {
+                latLuogoArrivo = 0.0;
+            }
+            if (uscitaJSON.has("lonLuogoArrivo")) {
+                lonLuogoArrivo = uscitaJSON.getDouble("lonLuogoArrivo");
+            } else {
+                lonLuogoArrivo = 0.0;
+            }
+            if (uscitaJSON.has("latLuogoArrivo")) {
+                latLuogoArrivo = uscitaJSON.getDouble("latLuogoArrivo");
+            } else {
+                latLuogoArrivo = 0.0;
+            }
+            if (uscitaJSON.has("lonLuogoPartenza")) {
+                lonLuogoPartenza = uscitaJSON.getDouble("lonLuogoPartenza");
+            } else {
+                lonLuogoPartenza = 0.0;
+            }
+
+    } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 

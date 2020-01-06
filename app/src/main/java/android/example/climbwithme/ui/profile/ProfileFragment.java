@@ -29,7 +29,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView textView = view.findViewById(R.id.text_profile);
-        textView.setText("Siamo nel profile fragment");
+        //TextView textView = view.findViewById(R.id.text_profile);
+        //textView.setText("Siamo nel profile fragment");
     }
 }
