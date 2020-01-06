@@ -12,13 +12,18 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class AdapterUscita  extends RecyclerView.Adapter<SingolaUscita> {
 
     private LayoutInflater inflater;
+    private ArrayList<Uscita> uscite;
 
 
-    public AdapterUscita (Context context) {
+    public AdapterUscita (Context context, ArrayList<Uscita> uscite) {
         this.inflater = LayoutInflater.from(context);
+        this.uscite = uscite;
+
 
     }
 
@@ -26,24 +31,19 @@ public class AdapterUscita  extends RecyclerView.Adapter<SingolaUscita> {
     public SingolaUscita onCreateViewHolder(ViewGroup parent, int viewType) {
 
             View view = inflater.inflate(R.layout.singola_uscita, parent, false);
-
             return new SingolaUscita(view);
-
-
-
-
 
     }
 
     @Override
     public void onBindViewHolder(SingolaUscita holder, int position) {
-        Uscita uscita = MyModel.getInstance().get(position);
+        Uscita uscita = uscite.get(position);
         holder.setUscita(uscita);
     }
 
     @Override
     public int getItemCount() {
-        return MyModel.getInstance().getSize();
+        return uscite.size();
     }
 }
 

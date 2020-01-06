@@ -32,6 +32,7 @@ public class MyModel {
 
     public ArrayList<Uscita> getUscite(){return uscite; }
 
+
    
 
 
@@ -44,7 +45,7 @@ public class MyModel {
     public Uscita get(int index) {
         return uscite.get(index);
     }
-    public int getSize() {
+    public static int getSize() {
         return uscite.size();
     }
 
@@ -76,6 +77,24 @@ public class MyModel {
         i = i+1;
     }
 
+
+
+
+    public static List<Uscita> deserialize(JSONObject serverResponse) {
+        Log.d("Android6","Deserializzando");
+        List<Uscita> list = new ArrayList<>();
+        try {
+            JSONArray usciteJSON = serverResponse.getJSONArray("uscite");
+            for (int i = 0; i < usciteJSON.length(); i++) {
+                JSONObject uscitaJSON = usciteJSON.getJSONObject(i);
+                Uscita uscita = new Uscita (uscitaJSON);
+                list.add(uscita);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
 
 

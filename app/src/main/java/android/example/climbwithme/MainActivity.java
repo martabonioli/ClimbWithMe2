@@ -3,8 +3,11 @@ package android.example.climbwithme;
 import android.Manifest;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.example.climbwithme.ui.bacheca.AdapterUscita;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -13,6 +16,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,6 +34,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
@@ -37,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private double latultimapos;
     private double lonultimapos;
+    RecyclerView list;
+    private AdapterUscita adapterUscita;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
     }
 
     private void checkPrimoAvvio() {
@@ -99,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             MyModel.setSessionId(getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null));
             Log.d("qwerty", MyModel.getSessionId());
         }
+
     }
 
     private void richiediSessionId() {
@@ -119,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-//LNcwkVSFV3X88V1o
+
                         getSharedPreferences(PREFS_NAME, 0).edit().putString(SESSION_ID_PREF_NAME, MyModel.getSessionId()).apply();
 
                     }
@@ -131,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
         });
         Log.d("Volley", "Sending request");
         mRequestQueue.add(request);
+
     }
 
 
@@ -145,27 +153,37 @@ public class MainActivity extends AppCompatActivity {
 
         JSONObject datiDaPassare = new JSONObject();
         try {
-            datiDaPassare.put("datauscita", currentDateandTime );
-            datiDaPassare.put("codiceSessione",MyModel.getSessionId());
-            datiDaPassare.put("lauultimapos", latultimapos);
-            datiDaPassare.put("lonultimapos", lonultimapos);
+            datiDaPassare.put("datauscita", "2020-01-03" );
+            datiDaPassare.put("codiceSessione","LpYRKlbnBhJ60xQp");
+            datiDaPassare.put("lauultimapos", 15.6);
+            datiDaPassare.put("lonultimapos", 16.7);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         JsonObjectRequest request = new JsonObjectRequest(
                 url,
-                null,
+                datiDaPassare,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("VolleyBacheca", "Correct: " + response.toString());
-                        /*try {
-                           // MyModel.popola();
-                            Log.d("daje","TOP" );
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }*/
+                        final List<Uscita> uscite = MyModel.deserialize(response);
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                super.run();
+                                MyModel.popola(uscite);
+                                Log.d("usciteNelModel", String.valueOf((MyModel.getSize())));
+                                // Devo aggiornare l'adapter, non posso farlo in questo Thread secondario, uso Handler per eseguire nel Main thread da uno secondario
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        notifyAdapter();
+                                    }
+                                });
+                            }
+                        }.start();
 
                     }
                 }, new Response.ErrorListener() {
@@ -178,6 +196,17 @@ public class MainActivity extends AppCompatActivity {
         mRequestQueue.add(request);
     }
 
+
+
+
+   public void notifyAdapter() {
+        Log.d("Android6","Aggiorno adapter");
+        // Aggiorno l'adapter
+        list = findViewById(R.id.text_bacheca);
+        list.setLayoutManager(new LinearLayoutManager(this));
+        adapterUscita = new AdapterUscita(this, MyModel.getInstance().getUscite());
+        list.setAdapter(adapterUscita);
+    }
 
 }
 

@@ -39,13 +39,12 @@ import java.util.List;
 
 public class BachecaFragment extends Fragment {
 
-    RecyclerView list;
+
     SharedPreferences settings;
     AdapterUscita adapter;
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_bacheca, container, false);
 
         return root;
@@ -54,17 +53,11 @@ public class BachecaFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(MyModel.getI()==0) {
-            MyModel.getInstance().addFakeUscite();
-            MyModel.updateI();
 
-
-        }
         RecyclerView recyclerView = getActivity().findViewById(R.id.text_bacheca);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new AdapterUscita(getActivity());
+        adapter = new AdapterUscita(getActivity(), MyModel.getInstance().getUscite());
         recyclerView.setAdapter(adapter);
-
 
 
     }

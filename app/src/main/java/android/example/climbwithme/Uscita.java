@@ -43,27 +43,11 @@ public class Uscita {
         try {
             this.nome = uscitaJSON.getString("nome");
             this.fotoUtente = uscitaJSON.getString("foto");
-            this.dataUscita = uscitaJSON.getString("dataUscita");
-            if (uscitaJSON.has("latLuogoArrivo")) {
-                latLuogoArrivo = uscitaJSON.getDouble("latLuogoArrivo");
-            } else {
-                latLuogoArrivo = 0.0;
-            }
-            if (uscitaJSON.has("lonLuogoArrivo")) {
-                lonLuogoArrivo = uscitaJSON.getDouble("lonLuogoArrivo");
-            } else {
-                lonLuogoArrivo = 0.0;
-            }
-            if (uscitaJSON.has("latLuogoArrivo")) {
-                latLuogoArrivo = uscitaJSON.getDouble("latLuogoArrivo");
-            } else {
-                latLuogoArrivo = 0.0;
-            }
-            if (uscitaJSON.has("lonLuogoPartenza")) {
-                lonLuogoPartenza = uscitaJSON.getDouble("lonLuogoPartenza");
-            } else {
-                lonLuogoPartenza = 0.0;
-            }
+            this.dataUscita = uscitaJSON.getString("datauscita");
+            this.latLuogoArrivo = uscitaJSON.getDouble("latluogoarrivo");
+            this.lonLuogoArrivo = uscitaJSON.getDouble("lonluogoarrivo");
+            this.lonLuogoPartenza = uscitaJSON.getDouble("lonluogopartenza");
+            this.latLuogoPartenza = uscitaJSON.getDouble("latluogopartenza");
 
     } catch (JSONException e) {
             e.printStackTrace();
