@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private final String PREFS_NAME = "registrazioneImplicita";
     private final String SESSION_ID_PREF_NAME = "sessionId";
     private FusedLocationProviderClient fusedLocationClient;
-    private Location ultimapos;
+    private double latultimapos;
+    private double lonultimapos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(Location location) {
                         // Got last known location. In some rare situations this can be null.
                         if (location != null) {
-                            ultimapos =location;
-                            Log.d("Location", "Last Known location AVAILABLE");
-                            Log.d("Location", String.valueOf(ultimapos));
+                            latultimapos = location.getLatitude();
+                            lonultimapos = location.getLongitude();
                         } else {
+
                             Log.d("Location", "Last Known location NOT available");
                         }
                     }
@@ -141,15 +142,13 @@ public class MainActivity extends AppCompatActivity {
 
         String url = "https://climbwithme.herokuapp.com/ricercaUscita.php";
 
-        Log.d("posizione", String.valueOf(ultimapos));
-        Log.d("posizione", String.valueOf(ultimapos.getLatitude()));
 
         JSONObject datiDaPassare = new JSONObject();
         try {
             datiDaPassare.put("datauscita", currentDateandTime );
             datiDaPassare.put("codiceSessione",MyModel.getSessionId());
-            datiDaPassare.put("lauultimapos", ultimapos.getLatitude());
-            datiDaPassare.put("lonultimapos", ultimapos.getLongitude());
+            datiDaPassare.put("lauultimapos", latultimapos);
+            datiDaPassare.put("lonultimapos", lonultimapos);
         } catch (JSONException e) {
             e.printStackTrace();
         }
