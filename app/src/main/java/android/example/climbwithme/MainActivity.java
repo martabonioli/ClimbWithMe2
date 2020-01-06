@@ -24,12 +24,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
@@ -81,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     checkPrimoAvvio();
-    downloadData();
 
 
 
@@ -131,60 +126,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void downloadData() {
-        //dati per la bacheca
-        Log.d("entra", "Si");
-        RequestQueue mRequestQueue = Volley.newRequestQueue(this);
-
-        String urlRicercaUscita = "https://climbwithme.herokuapp.com/ricercaUscita.php";
-        final JSONObject dataDiOggi = new JSONObject();
-        try {
-            //aggiungere anche ultima posizione
-            dataDiOggi.put("datauscita", "2020-01-03");
-            dataDiOggi.put("codiceSessione","LpYRKlbnBhJ60xQp" );
-            dataDiOggi.put("lauultimapos", 15.6);
-            dataDiOggi.put("lonultimapos", 16.7);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JsonObjectRequest request2 = new JsonObjectRequest(
-                urlRicercaUscita,
-                dataDiOggi,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("VolleyBacheca", "Correct: " + response.toString());
-                        List<Uscita> list = new ArrayList<>();
-                        try {
-                            JSONArray usciteJSON = response.getJSONArray("uscite");
-                            for (int i = 0; i < usciteJSON.length(); i++) {
-                                JSONObject uscitaJSON = usciteJSON.getJSONObject(i);
-                                Uscita uscita = new Uscita(uscitaJSON);
-                                list.add(uscita);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        MyModel.popola(list);
-
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Volley", "Error: " + error.toString());
-            }
-        });
-        Log.d("Volley", "Sending request");
-        mRequestQueue.add(request2);
-    }
-
-
 }
 
 
-//TODO LIST -->     RISOLVERE ROBE DATA-
-// ESISTEMARE CHIAMATE PHP, set e get foto
-// FARE PROTOTIPO DI UI daFareSubito
-// COME PRENDERE I DATI 
+//TODO LIST -->     RISOLVERE ROBE DATA- SISTEMARE DB (AGGIUNGERE FOTO) E SISTEMARE CHIAMATE PHP - FARE PROTOTIPO DI UI - COME PRENDERE I DATI
