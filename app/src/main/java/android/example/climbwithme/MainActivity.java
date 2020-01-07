@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
             datiDaPassare.put("codiceSessione",MyModel.getSessionId());
             datiDaPassare.put("lauultimapos", latultimapos);
             datiDaPassare.put("lonultimapos", lonultimapos);
-            Log.d("Posizioo", "BBB" + String.valueOf(latultimapos));
+            Log.d("Posizioo", "BBB" + String.valueOf(lonultimapos));
         } catch (JSONException e) {
             e.printStackTrace();
         }
