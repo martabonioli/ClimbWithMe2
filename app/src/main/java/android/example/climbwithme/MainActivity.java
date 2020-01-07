@@ -85,14 +85,23 @@ public class MainActivity extends AppCompatActivity {
                         if (location != null) {
                             latultimapos = location.getLatitude();
                             lonultimapos = location.getLongitude();
+                            if (getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null) == null) {
+                                richiediSessionId();
+                            } else {
+                                MyModel.setSessionId(getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null));
+                                Log.d("qwerty", MyModel.getSessionId());
+                                downloadBacheca();
+                            }
+                            Log.d("Posizioo", String.valueOf(location.getLatitude()));
+                            Log.d("Posizioo", "AAA2" + String.valueOf(latultimapos));
                         } else {
 
                             Log.d("Location", "Last Known location NOT available");
                         }
                     }
                 });
-    checkPrimoAvvio();
-    downloadBacheca();
+
+
 
 
 
@@ -104,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             MyModel.setSessionId(getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null));
             Log.d("qwerty", MyModel.getSessionId());
+
         }
 
     }
@@ -123,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             MyModel.setSessionId(response.get("codiceSessione").toString());
                             Log.d("daje","TOP" );
+                            downloadBacheca();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -143,20 +154,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void downloadBacheca() {
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String currentDateandTime = '"' + sdf.format(new Date()) + '"';
 
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
 
         String url = "https://climbwithme.herokuapp.com/ricercaUscita.php";
-
+        String sessId = '"' + MyModel.getSessionId() + '"';
 
         JSONObject datiDaPassare = new JSONObject();
         try {
-            datiDaPassare.put("datauscita", "2020-01-03" );
-            datiDaPassare.put("codiceSessione","LpYRKlbnBhJ60xQp");
-            datiDaPassare.put("lauultimapos", 15.6);
-            datiDaPassare.put("lonultimapos", 16.7);
+            datiDaPassare.put("datauscita", currentDateandTime );
+            datiDaPassare.put("codiceSessione",MyModel.getSessionId());
+            datiDaPassare.put("lauultimapos", latultimapos);
+            datiDaPassare.put("lonultimapos", lonultimapos);
+            Log.d("Posizioo", "BBB" + String.valueOf(latultimapos));
         } catch (JSONException e) {
             e.printStackTrace();
         }
