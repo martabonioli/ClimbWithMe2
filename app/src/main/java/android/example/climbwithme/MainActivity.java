@@ -1,6 +1,7 @@
 package android.example.climbwithme;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.example.climbwithme.ui.bacheca.AdapterUscita;
@@ -87,10 +88,14 @@ public class MainActivity extends AppCompatActivity {
                             lonultimapos = location.getLongitude();
                             if (getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null) == null) {
                                 richiediSessionId();
+                                Intent intent = new Intent(getApplicationContext(), ImpostaDati.class);
+                                startActivity(intent);
+
                             } else {
                                 MyModel.setSessionId(getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null));
                                 Log.d("qwerty", MyModel.getSessionId());
                                 downloadBacheca();
+                                
                             }
                             Log.d("Posizioo", String.valueOf(location.getLatitude()));
                             Log.d("Posizioo", "AAA2" + String.valueOf(latultimapos));
@@ -165,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
         JSONObject datiDaPassare = new JSONObject();
         try {
-            datiDaPassare.put("datauscita", currentDateandTime );
+            datiDaPassare.put("datauscita", "2020-01-07" );
             datiDaPassare.put("codiceSessione",MyModel.getSessionId());
             datiDaPassare.put("lauultimapos", latultimapos);
             datiDaPassare.put("lonultimapos", lonultimapos);
