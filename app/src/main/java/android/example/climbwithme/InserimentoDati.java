@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ImpostaDati extends AppCompatActivity {
+public class InserimentoDati extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_imposta_dati);
+        setContentView(R.layout.activity_inserimento_dati);
     }
 }

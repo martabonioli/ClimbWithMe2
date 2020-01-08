@@ -39,8 +39,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
-    private final String PREFS_NAME = "registrazioneImplicita";
-    private final String SESSION_ID_PREF_NAME = "sessionId";
+
     private FusedLocationProviderClient fusedLocationClient;
     private double latultimapos;
     private double lonultimapos;
@@ -86,17 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         if (location != null) {
                             latultimapos = location.getLatitude();
                             lonultimapos = location.getLongitude();
-                            if (getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null) == null) {
-                                richiediSessionId();
-                                Intent intent = new Intent(getApplicationContext(), ImpostaDati.class);
-                                startActivity(intent);
 
-                            } else {
-                                MyModel.setSessionId(getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null));
-                                Log.d("qwerty", MyModel.getSessionId());
-                                downloadBacheca();
-                                
-                            }
                             Log.d("Posizioo", String.valueOf(location.getLatitude()));
                             Log.d("Posizioo", "AAA2" + String.valueOf(latultimapos));
                         } else {
@@ -112,53 +101,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void checkPrimoAvvio() {
-        if (getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null) == null) {
-            richiediSessionId();
-        } else {
-            MyModel.setSessionId(getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null));
-            Log.d("qwerty", MyModel.getSessionId());
-
-        }
-
-    }
-
-    private void richiediSessionId() {
-        //richiesta sessionId
-        RequestQueue mRequestQueue = Volley.newRequestQueue(this);
-
-        String url = "https://climbwithme.herokuapp.com/sessionID.php";
-        JsonObjectRequest request = new JsonObjectRequest(
-                url,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("Volley", "Correct: " + response.toString());
-                        try {
-                            MyModel.setSessionId(response.get("codiceSessione").toString());
-                            Log.d("daje","TOP" );
-                            downloadBacheca();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        getSharedPreferences(PREFS_NAME, 0).edit().putString(SESSION_ID_PREF_NAME, MyModel.getSessionId()).apply();
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Volley", "Error: " + error.toString());
-            }
-        });
-        Log.d("Volley", "Sending request");
-        mRequestQueue.add(request);
-
-    }
 
 
-    private void downloadBacheca() {
+
+
+   /* private void downloadBacheca() {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String currentDateandTime = '"' + sdf.format(new Date()) + '"';
@@ -212,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         });
         Log.d("Volley", "Sending request");
         mRequestQueue.add(request);
-    }
+    }*/
 
 
 
