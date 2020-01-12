@@ -5,12 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/text_bacheca"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="149dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="226dp"
+        android:layout_marginEnd="131dp"
+        android:layout_marginBottom="101dp"
+        android:onClick="onClickSearch"
+        android:text="Search"
+        app:layout_constraintBottom_toTopOf="@+id/proponiButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/proponiButton"
+        android:layout_width="149dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="101dp"
+        android:layout_marginEnd="131dp"
+        android:layout_marginBottom="264dp"
+        android:onClick="onClickProponi"
+        android:text="Proponi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

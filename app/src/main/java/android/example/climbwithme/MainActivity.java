@@ -1,7 +1,9 @@
 package android.example.climbwithme;
 
 import android.Manifest;
-import android.content.Intent;
+import android.example.climbwithme.ui.cerca.CercaFragment;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.example.climbwithme.ui.bacheca.AdapterUscita;
@@ -10,6 +12,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -37,6 +41,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static androidx.navigation.ui.NavigationUI.navigateUp;
+import static androidx.navigation.ui.NavigationUI.onNavDestinationSelected;
+
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
 
@@ -45,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
     private double lonultimapos;
     RecyclerView list;
     private AdapterUscita adapterUscita;
+    public NavController navController;
+    public AppBarConfiguration appBarConfiguration;
+    public BottomNavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,17 +62,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+        appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_bacheca, R.id.navigation_proponi, R.id.navigation_cerca, R.id.navigation_profile)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+
 
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -96,10 +107,8 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
-
-
-
     }
+
 
 
 
@@ -164,16 +173,27 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-   public void notifyAdapter() {
+   /*public void notifyAdapter() {
         Log.d("Android6","Aggiorno adapter");
         // Aggiorno l'adapter
         list = findViewById(R.id.text_bacheca);
         list.setLayoutManager(new LinearLayoutManager(this));
         adapterUscita = new AdapterUscita(this, MyModel.getInstance().getUscite());
         list.setAdapter(adapterUscita);
+    }*/
+
+   public void onClickSearch(View v){
+       MenuItem cerca = navView.getMenu().findItem(R.id.navigation_cerca);
+       NavigationUI.onNavDestinationSelected(cerca, navController);
+
+   }
+
+    public void onClickProponi(View v){
+        MenuItem proponi = navView.getMenu().findItem(R.id.navigation_proponi);
+        NavigationUI.onNavDestinationSelected(proponi, navController);
+
     }
 
 }
-
 
 //TODO LIST -->     RISOLVERE ROBE DATA- SISTEMARE DB (AGGIUNGERE FOTO) E SISTEMARE CHIAMATE PHP - FARE PROTOTIPO DI UI - COME PRENDERE I DATI
