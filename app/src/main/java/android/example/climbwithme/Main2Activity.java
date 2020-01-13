@@ -31,19 +31,21 @@ public class Main2Activity extends AppCompatActivity {
             public void run() {
                 if (getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null) == null) {
                     richiediSessionId();
+                    Intent intent = new Intent(getApplicationContext(), InserimentoDati.class);
+                    startActivity(intent);
 
 
                 } else {
                     MyModel.setSessionId(getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null));
                     Log.d("qwerty", MyModel.getSessionId());
                     //downloadBacheca();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), InserimentoDati.class);
                     startActivity(intent);
 
 
                 }
                 //Do any action here. Now we are moving to next page
-                Intent mySuperIntent = new Intent(Main2Activity.this, MainActivity.class);
+                Intent mySuperIntent = new Intent(Main2Activity.this, InserimentoDati.class);
                 startActivity(mySuperIntent);
 
                 //This 'finish()' is for exiting the app when back button pressed from Home page which is ActivityHome
