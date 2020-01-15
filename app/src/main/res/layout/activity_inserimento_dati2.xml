@@ -8,21 +8,21 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="322dp"
-        android:layout_height="105dp"
+        android:layout_width="367dp"
+        android:layout_height="206dp"
         android:text="Dicci di più di te... ci aiuterà a trovare il TUO partner ideale"
         android:textColor="#3F51B5"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.14"
-        tools:textSize="40sp" />
+        app:layout_constraintVertical_bias="0.14" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="318dp"
-        android:layout_height="264dp"
+        android:layout_width="333dp"
+        android:layout_height="338dp"
         android:layout_marginEnd="3dp"
         android:layout_marginBottom="6dp"
         android:orientation="vertical"
@@ -35,52 +35,64 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="59dp"
+            android:layout_height="108dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="241dp"
-                android:layout_height="wrap_content"
+                android:layout_width="188dp"
+                android:layout_height="108dp"
                 android:text="Qual'è il livello di arrampicata da cui vuoi iniziare?"
                 android:textSize="18sp" />
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_weight="1" />
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="49dp"
+                android:layout_height="wrap_content"
+                android:textSize="20dp" />
+
+            <NumberPicker
+                android:id="@+id/np"
+                android:layout_width="96dp"
+                android:layout_height="match_parent"
+                android:layout_below="@id/tv" />
 
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="24dp" />
+            android:layout_height="36dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="59dp"
+            android:layout_height="92dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="241dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="e il tuo livello massimo?"
-                tools:textSize="18sp" />
+                android:textSize="18sp" />
 
-            <MultiAutoCompleteTextView
-                android:id="@+id/multiAutoCompleteTextView2"
-                android:layout_width="69dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="7a" />
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="49dp"
+                android:layout_height="wrap_content"
+                android:textSize="20dp" />
+
+            <NumberPicker
+                android:id="@+id/np2"
+                android:layout_width="96dp"
+                android:layout_height="89dp"
+                android:layout_below="@id/tv" />
+
         </LinearLayout>
 
         <Space
             android:id="@+id/spazio"
             android:layout_width="match_parent"
-            android:layout_height="85dp" />
+            android:layout_height="31dp" />
 
     </LinearLayout>
 
