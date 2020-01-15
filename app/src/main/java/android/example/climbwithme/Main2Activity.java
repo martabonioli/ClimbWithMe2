@@ -13,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,14 +39,15 @@ public class Main2Activity extends AppCompatActivity {
                 } else {
                     MyModel.setSessionId(getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null));
                     Log.d("qwerty", MyModel.getSessionId());
-                    //downloadBacheca();
-                    Intent intent = new Intent(getApplicationContext(), InserimentoDati.class);
+                    //prendoTuttiIdatidell'utente e li inserisco nel model
+                    downloadDatiUtente();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
 
 
                 }
                 //Do any action here. Now we are moving to next page
-                Intent mySuperIntent = new Intent(Main2Activity.this, InserimentoDati.class);
+                Intent mySuperIntent = new Intent(Main2Activity.this, MainActivity.class);
                 startActivity(mySuperIntent);
 
                 //This 'finish()' is for exiting the app when back button pressed from Home page which is ActivityHome
@@ -70,7 +72,7 @@ public class Main2Activity extends AppCompatActivity {
                         try {
                             MyModel.setSessionId(response.get("codiceSessione").toString());
                             Log.d("daje","TOP" );
-                            //downloadBacheca();
+
                             //VADO ALL'INSERIMENTO DATI
                             Intent intent = new Intent(getApplicationContext(), InserimentoDati.class);
                             startActivity(intent);
@@ -91,5 +93,38 @@ public class Main2Activity extends AppCompatActivity {
         mRequestQueue.add(request);
 
     }
+    private void downloadDatiUtente() {
+        RequestQueue mRequestQueue = Volley.newRequestQueue(this);
+        String url = "https://climbwithme.herokuapp.com/getutente.php";
+        JSONObject datiDaPassare = new JSONObject();
+        try {
+            datiDaPassare.put("codiceSessione",MyModel.getSessionId());
+            Log.d("codicesessioneVolley",MyModel.getSessionId());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest request = new JsonObjectRequest(
+                url,
+                datiDaPassare,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("VolleyBacheca", "Correct: " + response.toString());
+
+                       //prendi i dati e mettili nel model
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Volley", "Error: " + error.toString());
+            }
+        });
+        Log.d("Volley", "Sending request");
+        mRequestQueue.add(request);
+    }
+
 
 }

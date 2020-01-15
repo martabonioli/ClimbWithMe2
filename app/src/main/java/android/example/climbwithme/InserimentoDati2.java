@@ -15,14 +15,22 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 
 public class InserimentoDati2 extends AppCompatActivity implements View.OnClickListener{
 
@@ -95,46 +103,40 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
         MyModel.utente.setMinLiv(livmin);
         MyModel.utente.setMaxLiv(livmax);
 
-        Log.d("datadinascita", MyModel.utente.getDataDiNascita() );
+
 
         //chiamata volley per inserire l'utente nel DB
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
-
         String url = "https://climbwithme.herokuapp.com/iserisciutente.php";
-        String sessId = '"' + MyModel.getSessionId() + '"';
-
         JSONObject datiDaPassare = new JSONObject();
         try {
-            datiDaPassare.put("datadinascita",  MyModel.utente.getDataDiNascita());
+            datiDaPassare.put("datadinascita", MyModel.utente.getDataDiNascita());
             datiDaPassare.put("codiceSessione",MyModel.utente.getCodiceSessione());
             Log.d("codicesess", MyModel.utente.getCodiceSessione() );
             datiDaPassare.put("nome", MyModel.utente.getNome());
             Log.d("nome", MyModel.utente.getNome() );
             datiDaPassare.put("cognome", MyModel.utente.getCognome());
-
+            datiDaPassare.put("numerotelefono", MyModel.utente.getNumeroTelefono());
+            datiDaPassare.put("minliv", MyModel.utente.getMinLiv());
+            datiDaPassare.put("maxliv",MyModel.utente.getMaxLiv());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        JsonObjectRequest request = new JsonObjectRequest(
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
                 url,
                 datiDaPassare,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("VolleyBacheca", "Correct: " + response.toString());
-                        new Thread() {
-                            @Override
-                            public void run() {
-                                super.run();
-                            }
-                        }.start();
 
                     }
                 }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Volley", "Error: " + error.toString());
+                    @Override
+                     public void onErrorResponse(VolleyError error) {
+                        Log.d("Volley", "Error: " + error.toString());
             }
         });
         Log.d("Volley", "Sending request");
@@ -143,9 +145,13 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
 
 
 
+
+
+
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
     }
+
 
 
 

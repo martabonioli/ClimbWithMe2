@@ -1,9 +1,12 @@
 package android.example.climbwithme.ui.profile;
 
+import android.example.climbwithme.MyModel;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -31,5 +34,20 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //TextView textView = view.findViewById(R.id.text_profile);
         //textView.setText("Siamo nel profile fragment");
+
+        String nomecognome = MyModel.utente.getNome() +" "+ MyModel.utente.getCognome();
+        String dataDiNascita = MyModel.utente.getDataDiNascita();
+            Log.d("nomecognoeModel",nomecognome);
+
+
+
+        TextView textView1 = view.findViewById(R.id.addnome);
+        textView1.setText(nomecognome);
+        TextView textView2 = view.findViewById(R.id.adddataNascita);
+        textView2.setText(dataDiNascita);
+        TextView textView3 = view.findViewById(R.id.addtelefono);
+        textView3.setText(MyModel.utente.getNumeroTelefono());
+
+
     }
 }

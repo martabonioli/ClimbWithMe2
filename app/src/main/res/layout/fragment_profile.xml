@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/dataNascita"
+        android:id="@+id/adddataNascita"
         android:layout_width="61dp"
         android:layout_height="21dp"
         android:text="dataNascita"
@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dataNascita"
+        app:layout_constraintTop_toBottomOf="@id/adddataNascita"
         app:layout_constraintVertical_bias="0.0"
         tools:textSize="38sp" />
 

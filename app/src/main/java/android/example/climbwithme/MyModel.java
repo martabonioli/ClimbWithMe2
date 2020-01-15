@@ -50,7 +50,7 @@ public class MyModel {
     }
 
     public  static void setSessionId(String sessionId) {
-        utente = new Utente(sessionId,"","","","", 0,0,0);
+        utente = new Utente(sessionId,"","","","", 0,0,0,"");
 
     }
 

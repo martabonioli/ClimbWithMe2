@@ -7,6 +7,7 @@ public class Utente {
     private String foto;
     private String nome;
     private String cognome;
+    private String numeroTelefono;
     private String dataDiNascita;
     private Integer livelloMaxLead;
     private Integer minLiv;
@@ -14,8 +15,9 @@ public class Utente {
 
 
 
+
     public  Utente(String codiceSessione, String foto, String nome, String cognome, String dataDiNascita, Integer livelloMaxLead,
-                   Integer minLiv, Integer maxLiv){
+                   Integer minLiv, Integer maxLiv, String numeroTelefono){
 
         this.codiceSessione = codiceSessione;
         this.foto =foto;
@@ -25,6 +27,7 @@ public class Utente {
         this.livelloMaxLead = livelloMaxLead;
         this.minLiv = minLiv;
         this.maxLiv = maxLiv;
+        this.numeroTelefono = numeroTelefono;
     }
 
     public String getCodiceSessione() {
@@ -98,5 +101,5 @@ public class Utente {
         this.numeroTelefono = numeroTelefono;
     }
 
-    private String numeroTelefono;
+
 }
