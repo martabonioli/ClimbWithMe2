@@ -17,6 +17,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -193,6 +194,15 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.onNavDestinationSelected(proponi, navController);
 
     }
+
+    /*public void onClickDatePick(View v ){
+        View view = inflater.inflate(R.layout.fragment_cerca, null);
+        FragmentManager fm = getSupportFragmentManager();
+
+//if you added fragment via layout xml
+        CercaFragment fragment = (CercaFragment) fm.findFragmentById(R.id.navigation_cerca);
+        fragment.onClickDP();
+    }*/
 
 }
 
