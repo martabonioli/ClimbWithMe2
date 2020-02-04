@@ -47,7 +47,52 @@ public class ProfileFragment extends Fragment {
         textView2.setText(dataDiNascita);
         TextView textView3 = view.findViewById(R.id.addtelefono);
         textView3.setText(MyModel.utente.getNumeroTelefono());
+        TextView textView4 = view.findViewById(R.id.addminliv);
+        textView4.setText(""+ matchLivello(MyModel.utente.getMinLiv())+"   ----   "+ matchLivello(MyModel.utente.getMaxLiv()));
 
 
+
+    }
+
+
+    public String matchLivello(int s){
+        String livello="";
+        if (s==1){ livello="4a"; }
+        if (s==2){ livello="4a+"; }
+        if (s==3){ livello="4b"; }
+        if (s==4){ livello="4b+"; }
+        if (s==5){ livello="4c"; }
+        if (s==6){ livello="4c+"; }
+        if (s==7){ livello="5a"; }
+        if (s==8){ livello="5a+"; }
+        if (s==9){ livello="5b"; }
+        if (s==10){ livello="5b+"; }
+        if (s==11){ livello="5c"; }
+        if (s==12){ livello="5c+"; }
+        if (s==13){ livello="6a"; }
+        if (s==14){ livello="6a+"; }
+        if (s==15){ livello="6b"; }
+        if (s==16){ livello="6b+"; }
+        if (s==17){ livello="6c"; }
+        if (s==18){ livello="6c+"; }
+        if (s==19){ livello="7a"; }
+        if (s==20){ livello="7a+"; }
+        if (s==21){ livello="7b"; }
+        if (s==22){ livello="7b+"; }
+        if (s==23){ livello="7c"; }
+        if (s==24){ livello="7c+"; }
+        if (s==25){ livello="8a"; }
+        if (s==26){ livello="8a+"; }
+        if (s==27){ livello="8b"; }
+        if (s==28){ livello="8b+"; }
+        if (s==29){ livello="8c"; }
+        if (s==30){ livello="8c+"; }
+        if (s==31){ livello="9a"; }
+        if (s==32){ livello="9a+"; }
+        if (s==33){ livello="9b"; }
+        if (s==34){ livello="9b+"; }
+        if (s==35){ livello="9c"; }
+        if (s==36){ livello="9c+"; }
+        return livello;
     }
 }

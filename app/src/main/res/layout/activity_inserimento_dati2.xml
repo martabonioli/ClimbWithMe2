@@ -36,26 +36,42 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="108dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="188dp"
-                android:layout_height="108dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Qual'è il livello di arrampicata da cui vuoi iniziare?"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/tv"
-                android:layout_width="49dp"
-                android:layout_height="wrap_content"
-                android:textSize="20dp" />
-
-            <NumberPicker
-                android:id="@+id/np"
-                android:layout_width="96dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/tv" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="73dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/bordismussati"
+                    android:textSize="23dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="38dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/ic_menu_edit" />
+
+                <NumberPicker
+                    android:id="@+id/np"
+                    android:layout_width="216dp"
+                    android:layout_height="81dp"
+                    android:layout_below="@id/tv"
+                    android:visibility="invisible"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -63,29 +79,38 @@
             android:layout_width="match_parent"
             android:layout_height="36dp" />
 
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="e il tuo livello massimo?"
+            android:textSize="18sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="92dp"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="e il tuo livello massimo?"
-                android:textSize="18sp" />
-
-            <TextView
                 android:id="@+id/tv2"
-                android:layout_width="49dp"
-                android:layout_height="wrap_content"
-                android:textSize="20dp" />
+                android:layout_width="73dp"
+                android:layout_height="45dp"
+                android:background="@drawable/bordismussati"
+                android:textSize="23dp" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="38dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/ic_menu_edit" />
 
             <NumberPicker
                 android:id="@+id/np2"
-                android:layout_width="96dp"
-                android:layout_height="89dp"
-                android:layout_below="@id/tv" />
+                android:layout_width="217dp"
+                android:layout_height="77dp"
+                android:layout_below="@id/tv"
+                android:visibility="invisible" />
 
         </LinearLayout>
 

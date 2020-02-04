@@ -44,7 +44,6 @@ public class Main2Activity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
 
-
                 }
                 //Do any action here. Now we are moving to next page
                 Intent mySuperIntent = new Intent(Main2Activity.this, MainActivity.class);

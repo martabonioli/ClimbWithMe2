@@ -50,13 +50,17 @@
             android:text="Cognome"
             android:textSize="20sp" />
 
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Data di Nascita"
             android:textSize="20sp" />
-
 
         <EditText
             android:id="@+id/addtelefono"

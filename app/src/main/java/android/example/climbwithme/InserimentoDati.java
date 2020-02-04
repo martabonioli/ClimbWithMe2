@@ -25,6 +25,7 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
     private static final String TAG = "InserimentoDati";
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+    private String dataDB="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,8 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
                 month = month + 1;
                 Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
 
-                String date = year + "-" + month + "-" + day;
+                String date = day + "-" + month + "-" + year;
+                dataDB = year + "-" + month + "-" + day;
                 mDisplayDate.setText(date);
             }
         };
