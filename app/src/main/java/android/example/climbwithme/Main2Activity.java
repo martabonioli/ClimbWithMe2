@@ -67,7 +67,7 @@ public class Main2Activity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("Volley", "Correct: " + response.toString());
+                        Log.d("Volley1", "Correct: " + response.toString());
                         try {
                             MyModel.setSessionId(response.get("codiceSessione").toString());
                             Log.d("daje","TOP" );
@@ -85,10 +85,10 @@ public class Main2Activity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Volley", "Error: " + error.toString());
+                Log.d("Volley1", "Error: " + error.toString());
             }
         });
-        Log.d("Volley", "Sending request");
+        Log.d("Volley1", "Sending request");
         mRequestQueue.add(request);
 
     }
@@ -110,8 +110,8 @@ public class Main2Activity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("VolleyBacheca", "Correct: " + response.toString());
-
                        //prendi i dati e mettili nel model
+                        MyModel.getInstance().insertUtente(response);
 
 
                     }
@@ -121,9 +121,11 @@ public class Main2Activity extends AppCompatActivity {
                 Log.d("Volley", "Error: " + error.toString());
             }
         });
-        Log.d("Volley", "Sending request");
+        Log.d("Volley2", "Sending request");
         mRequestQueue.add(request);
     }
+
+
 
 
 }

@@ -78,6 +78,28 @@ public class MyModel {
         return list;
     }
 
+    public void insertUtente (JSONObject response) {
+        try {
+            JSONArray utentiJSON = response.getJSONArray("utente");
+            Log.d("jsonObj", String.valueOf(utentiJSON));
+            JSONObject utenteJSON = utentiJSON.getJSONObject(0);
+            Log.d("jsonObj", String.valueOf(utenteJSON));
+            Utente u = new Utente(utenteJSON);
+            Log.d ("utente", u.getMinLiv().toString());
+            MyModel.utente.setCodiceSessione(u.getCodiceSessione());
+            MyModel.utente.setNome(u.getNome());
+            MyModel.utente.setMinLiv(u.getMinLiv());
+            MyModel.utente.setMaxLiv(u.getMaxLiv());
+            MyModel.utente.setCognome(u.getCognome());
+            MyModel.utente.setNumeroTelefono(u.getNumeroTelefono());
+            MyModel.utente.setDataDiNascita(u.getDataDiNascita());
+            MyModel.utente.setFoto(u.getFoto());
+            MyModel.utente.setLivelloMaxLead(u.getLivelloMaxLead());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

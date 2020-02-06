@@ -1,5 +1,8 @@
 package android.example.climbwithme;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.Date;
 
 public class Utente {
@@ -29,6 +32,33 @@ public class Utente {
         this.maxLiv = maxLiv;
         this.numeroTelefono = numeroTelefono;
     }
+
+    public Utente(JSONObject utenteJSON) {
+
+        try {
+            this.codiceSessione = utenteJSON.getString("codicesessione");
+            this.nome = utenteJSON.getString("nome");
+            this.cognome = utenteJSON.getString("cognome");
+            this.dataDiNascita = utenteJSON.getString("datadinascita");
+            this.numeroTelefono = utenteJSON.getString("numerotelefono");
+            this.minLiv = utenteJSON.getInt("minliv");
+            this.maxLiv = utenteJSON.getInt("maxliv");
+            if (utenteJSON.has("livellomaxlead")) {
+                livelloMaxLead = utenteJSON.getInt("livellomaxlead");
+            }else{
+                livelloMaxLead= 0;
+            }
+            if (utenteJSON.has("foto")) {
+                foto = utenteJSON.getString("foto");
+            }else{
+                foto= "";
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public String getCodiceSessione() {
         return codiceSessione;
@@ -100,6 +130,8 @@ public class Utente {
     public void setNumeroTelefono(String numeroTelefono) {
         this.numeroTelefono = numeroTelefono;
     }
+
+
 
 
 }
