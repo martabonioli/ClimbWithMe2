@@ -1,49 +1,31 @@
 package android.example.climbwithme;
 
 import android.Manifest;
-import android.example.climbwithme.ui.cerca.CercaFragment;
-import android.view.Menu;
+import android.content.Intent;
+import android.example.climbwithme.ui.cerca.LuogoPartenza;
 import android.view.MenuItem;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.example.climbwithme.ui.bacheca.AdapterUscita;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
 import static androidx.navigation.ui.NavigationUI.navigateUp;
-import static androidx.navigation.ui.NavigationUI.onNavDestinationSelected;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
@@ -56,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     public NavController navController;
     public AppBarConfiguration appBarConfiguration;
     public BottomNavigationView navView;
+
+    public static final String BUNDLE_KEY_TEXT = "text";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,6 +177,11 @@ public class MainActivity extends AppCompatActivity {
         MenuItem proponi = navView.getMenu().findItem(R.id.navigation_proponi);
         NavigationUI.onNavDestinationSelected(proponi, navController);
 
+    }
+
+    public void onClickAvanti (View v){
+        Intent intent = new Intent(getApplicationContext(), LuogoPartenza.class);
+        startActivity(intent);
     }
 
     /*public void onClickDatePick(View v ){

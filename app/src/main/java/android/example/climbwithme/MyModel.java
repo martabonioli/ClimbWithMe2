@@ -14,6 +14,7 @@ public class MyModel {
     private static final MyModel ourInstance = new MyModel();
     private static MyModel instance = null;
     public static Utente utente;
+    public static Uscita cercaUscita;
     private static int i = 0;
 
 
