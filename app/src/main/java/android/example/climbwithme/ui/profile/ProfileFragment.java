@@ -258,6 +258,7 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
         String url = "https://climbwithme.herokuapp.com/iserisciutente.php";
         JSONObject datiDaPassare = new JSONObject();
         try {
+            datiDaPassare.put("codiceSessione",  MyModel.getSessionId());
             datiDaPassare.put("Foto", encodedImage);
         } catch (JSONException e) {
             e.printStackTrace();

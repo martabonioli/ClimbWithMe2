@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
             //I permessi sono stati concessi
-
+            Log.d("sess1", MyModel.getSessionId().toString() );
         }
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
