@@ -3,6 +3,8 @@ package android.example.climbwithme;
 import android.Manifest;
 import android.content.Intent;
 import android.example.climbwithme.ui.cerca.LuogoPartenza;
+import android.example.climbwithme.ui.profile.NumberPickerDialog;
+import android.example.climbwithme.ui.profile.ProfileFragment;
 import android.view.MenuItem;
 import android.content.pm.PackageManager;
 import android.example.climbwithme.ui.bacheca.AdapterUscita;
@@ -183,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), LuogoPartenza.class);
         startActivity(intent);
     }
+
 
     /*public void onClickDatePick(View v ){
         View view = inflater.inflate(R.layout.fragment_cerca, null);

@@ -8,9 +8,9 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="367dp"
-        android:layout_height="206dp"
-        android:text="Dicci di più di te... ci aiuterà a trovare il TUO PARTNER IDEALE"
+        android:layout_width="333dp"
+        android:layout_height="197dp"
+        android:text="Dicci di più di te... ci aiuterà a trovare il tuo partner ideale"
         android:textColor="#3F51B5"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,8 +42,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Qual'è il livello di arrampicata da cui vuoi iniziare?"
-                android:textSize="18sp" />
+                android:text="Qual è il tuo livello di riscaldamento ?" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,7 +54,8 @@
                     android:layout_width="73dp"
                     android:layout_height="45dp"
                     android:background="@drawable/bordismussati"
-                    android:textSize="23dp" />
+                    android:textSize="23dp"
+                    android:textColor="#FFFFFF"/>
 
                 <ImageButton
                     android:id="@+id/imageButton"
@@ -83,7 +83,7 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="e il tuo livello massimo?"
+            android:text="e il tuo livello massimo raggiunto?"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -96,7 +96,8 @@
                 android:layout_width="73dp"
                 android:layout_height="45dp"
                 android:background="@drawable/bordismussati"
-                android:textSize="23dp" />
+                android:textSize="23dp"
+                android:textColor="#FFFFFF"/>
 
             <ImageButton
                 android:id="@+id/imageButton2"

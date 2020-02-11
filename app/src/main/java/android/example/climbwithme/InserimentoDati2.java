@@ -59,7 +59,7 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
         switch(v.getId()) {
             case R.id.imageButton:
                 final TextView tv = (TextView) findViewById(R.id.tv);
-               NumberPicker np = (NumberPicker) findViewById(R.id.np);
+                NumberPicker np = (NumberPicker) findViewById(R.id.np);
                 np.setVisibility(View.VISIBLE);
 
                 //Set TextView text color
@@ -143,6 +143,7 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
                 //inserisco nel Model dati utente
                 MyModel.utente.setMinLiv(livmin);
                 MyModel.utente.setMaxLiv(livmax);
+                MyModel.utente.setLivelloMaxLead(livmax);
                 Log.d("modelLivMin", String.valueOf(MyModel.utente.getMinLiv()));
 
 

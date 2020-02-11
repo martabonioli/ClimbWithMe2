@@ -5,25 +5,23 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.MediaScannerConnection;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Calendar;
 
 import android.example.climbwithme.MyModel;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -33,15 +31,25 @@ import androidx.fragment.app.Fragment;
 import android.example.climbwithme.R;
 import android.widget.Toast;
 
-public class ProfileFragment extends Fragment {
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class ProfileFragment extends Fragment implements NumberPicker.OnValueChangeListener{
     private TextView textView;
     private ImageView imageview;
+    private String foto;
     private static final String IMAGE_DIRECTORY = "/encoded_image";
     private static final int GALLERY = 1, CAMERA = 2;
     private Context context;
     Uri myPicture = null;
     ImageButton selectImage;
-
     View view;
 
 
@@ -51,10 +59,8 @@ public class ProfileFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_profile, container, false);
-
         selectImage = (ImageButton) view.findViewById(R.id.selectphoto);
         imageview =  (ImageView)view.findViewById(R.id.foto);
-
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,8 +68,27 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+       ImageButton button = (ImageButton) view.findViewById(R.id.imageButton3);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NumberPickerDialog newFragment = new NumberPickerDialog();
+                newFragment.setValueChangeListener(ProfileFragment.this);
+                newFragment.show(getFragmentManager(), "time picker");
+
+            }
+        });
         return view;
     }
+
+    @Override
+    public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+        TextView maxlead = (TextView) view.findViewById(R.id.addpb);
+        maxlead.setText(matchLivello(numberPicker.getValue()+1));
+        MyModel.utente.setLivelloMaxLead(numberPicker.getValue());
+
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -73,19 +98,26 @@ public class ProfileFragment extends Fragment {
 
         String nomecognome = MyModel.utente.getNome().trim()+" "+ MyModel.utente.getCognome().trim();
         String dataDiNascita = MyModel.utente.getDataDiNascita();
-            Log.d("nomecognoeModel",nomecognome);
-
-
-
         TextView textView1 = view.findViewById(R.id.addnome);
         textView1.setText(nomecognome);
         TextView textView2 = view.findViewById(R.id.adddataNascita);
         textView2.setText(dataDiNascita);
         TextView textView3 = view.findViewById(R.id.addtelefono);
-        textView3.setText(MyModel.utente.getNumeroTelefono());
+        textView3.setText("+39 "+ MyModel.utente.getNumeroTelefono());
         TextView textView4 = view.findViewById(R.id.addminliv);
-        textView4.setText(""+ matchLivello(MyModel.utente.getMinLiv())+"   ----   "+ matchLivello(MyModel.utente.getMaxLiv()));
+        textView4.setText(""+ matchLivello(MyModel.utente.getMinLiv())+"   /   "+ matchLivello(MyModel.utente.getMaxLiv()));
+        TextView textView5 = view.findViewById(R.id.addpb);
+        textView5.setText( matchLivello(MyModel.utente.getMaxLiv()));
 
+        if (MyModel.utente.getFoto() != null){
+            ImageView addfoto= view.findViewById(R.id.foto);
+            String b64img =MyModel.utente.getFoto();
+            byte[] decodedString = Base64.decode(b64img, Base64.DEFAULT); //la converto in bytestream
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); //converto il bytestream in Bitmap
+            imageview.setImageBitmap(decodedByte);
+        }else{
+            imageview.setImageResource(R.drawable.ic_profile_black_24dp);
+        }
 
     }
 
@@ -147,10 +179,10 @@ public class ProfileFragment extends Fragment {
 
     private void showPictureDialog(){
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(context);
-        pictureDialog.setTitle("Select Action");
+        pictureDialog.setTitle("AGGIUNGI IMMAGINE PROFILO ");
         String[] pictureDialogItems = {
-                "Select photo from gallery",
-                "Capture photo from camera" };
+                "Seleziona dalla galleria",
+                "Scatta una foto" };
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -171,7 +203,6 @@ public class ProfileFragment extends Fragment {
     public void choosePhotoFromGallary() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
         startActivityForResult(galleryIntent, GALLERY);
     }
 
@@ -181,10 +212,8 @@ public class ProfileFragment extends Fragment {
     }
 
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == getActivity().RESULT_CANCELED) {
             return;
@@ -194,9 +223,9 @@ public class ProfileFragment extends Fragment {
                 Uri contentURI = data.getData();
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), contentURI);
-                    String path = saveImage(bitmap);
-                    Toast.makeText(context, "Image Saved!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Immagine salvata!", Toast.LENGTH_SHORT).show();
                     imageview.setImageBitmap(bitmap);
+                    saveImage(bitmap);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -208,37 +237,49 @@ public class ProfileFragment extends Fragment {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
             imageview.setImageBitmap(thumbnail);
             saveImage(thumbnail);
-            Toast.makeText(context, "Image Saved!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Immagine salvata!", Toast.LENGTH_SHORT).show();
         }
     }
 
 
-    public String saveImage(Bitmap myBitmap) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-        File wallpaperDirectory = new File(
-                Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
-        // have the object build the directory structure, if needed.
-        if (!wallpaperDirectory.exists()) {
-            wallpaperDirectory.mkdirs();
-        }
+    public void saveImage(Bitmap myBitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        myBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream .toByteArray();
+        // converto la bitmap in un byteArray
+        String encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        //codifico il bytearray in una stringa in formato base64, per essere caricato sul server
+        MyModel.utente.setFoto(encodedImage);
+        Log.d("encoded",encodedImage.toString());
+        Log.d("fotonelmodel", MyModel.utente.getFoto());
 
+        //chiamata volley per inserire la foto nel DB
+        RequestQueue mRequestQueue = Volley.newRequestQueue(context);
+        String url = "https://climbwithme.herokuapp.com/iserisciutente.php";
+        JSONObject datiDaPassare = new JSONObject();
         try {
-            File f = new File(wallpaperDirectory, Calendar.getInstance()
-                    .getTimeInMillis() + ".jpg");
-            f.createNewFile();
-            FileOutputStream fo = new FileOutputStream(f);
-            fo.write(bytes.toByteArray());
-            MediaScannerConnection.scanFile(context,
-                    new String[]{f.getPath()},
-                    new String[]{"image/jpeg"}, null);
-            fo.close();
-
-            return f.getAbsolutePath();
-        } catch (IOException e1) {
-            e1.printStackTrace();
+            datiDaPassare.put("Foto", encodedImage);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        return "";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
+                url,
+                datiDaPassare,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("VolleySaveFoto", "Correct: " + response.toString());
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Volley", "Error: " + error.toString());
+            }
+        });
+        Log.d("Volley", "Sending request");
+        mRequestQueue.add(request);
+
     }
 
 }

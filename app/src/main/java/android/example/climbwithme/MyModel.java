@@ -86,7 +86,6 @@ public class MyModel {
             JSONObject utenteJSON = utentiJSON.getJSONObject(0);
             Log.d("jsonObj", String.valueOf(utenteJSON));
             Utente u = new Utente(utenteJSON);
-            Log.d ("utente", u.getMinLiv().toString());
             MyModel.utente.setCodiceSessione(u.getCodiceSessione());
             MyModel.utente.setNome(u.getNome());
             MyModel.utente.setMinLiv(u.getMinLiv());
