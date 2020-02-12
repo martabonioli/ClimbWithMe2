@@ -326,7 +326,7 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
         JSONObject datiDaPassare = new JSONObject();
         try {
             datiDaPassare.put("codiceSessione",  MyModel.getSessionId());
-            datiDaPassare.put("Foto", encodedImage);
+            datiDaPassare.put("foto", encodedImage);
         } catch (JSONException e) {
             e.printStackTrace();
         }

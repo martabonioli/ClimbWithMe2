@@ -92,6 +92,8 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
             Intent intent = new Intent(getApplicationContext(), InserimentoDati2.class);
             if (verifica == true){
                 intent.putExtra("modifica",true);
+            }else{
+                intent.putExtra("modifica",false);
             }
             startActivity(intent);
 

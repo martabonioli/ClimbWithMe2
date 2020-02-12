@@ -207,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Fragment newFragment = new VisualizzaUscite();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            // transaction.remove(getSupportFragmentManager().findFragmentById(R.id.))
             transaction.replace(R.id.nav_host_fragment, newFragment, "visualizzaUscite");
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
             transaction.commit();
