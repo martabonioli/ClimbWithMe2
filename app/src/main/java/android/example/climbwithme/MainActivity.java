@@ -6,6 +6,7 @@ import android.example.climbwithme.ui.cerca.LuogoPartenza;
 import android.example.climbwithme.ui.profile.NumberPickerDialog;
 import android.example.climbwithme.ui.profile.ProfileFragment;
 import android.example.climbwithme.ui.profile.VisualizzaUscite;
+import android.example.climbwithme.ui.proponi.LuogoPartenzaProponi;
 import android.view.MenuItem;
 import android.content.pm.PackageManager;
 import android.example.climbwithme.ui.bacheca.AdapterUscita;
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
             //I permessi sono stati concessi
-            Log.d("sess1", MyModel.getSessionId().toString() );
+
         }
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -196,8 +197,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onClickAvanti (View v){
-        Intent intent = new Intent(getApplicationContext(), LuogoPartenza.class);
+    public void onClickAvantiProponi1 (View v){
+        Intent intent = new Intent(getApplicationContext(), LuogoPartenzaProponi.class);
         startActivity(intent);
     }
 
@@ -207,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Fragment newFragment = new VisualizzaUscite();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // transaction.remove(getSupportFragmentManager().findFragmentById(R.id.))
             transaction.replace(R.id.nav_host_fragment, newFragment, "visualizzaUscite");
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
             transaction.commit();

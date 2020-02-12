@@ -42,7 +42,7 @@
         android:id="@+id/conferma"
         android:layout_width="69dp"
         android:layout_height="68dp"
-        android:onClick="onClickAvanti"
+        android:onClick="onClickAvantiCerca"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.928"
