@@ -64,7 +64,6 @@ public class MyModel {
 
 
     public static List<Uscita> deserialize(JSONObject serverResponse) {
-        Log.d("Android6","Deserializzando");
         List<Uscita> list = new ArrayList<>();
         try {
             JSONArray usciteJSON = serverResponse.getJSONArray("uscite");

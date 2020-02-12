@@ -13,6 +13,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -23,12 +24,23 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
 
 import static androidx.navigation.ui.NavigationUI.navigateUp;
 
@@ -190,13 +202,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickVisualizzaUscite(View v){
+
        Fragment newFragment = new VisualizzaUscite();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.nav_host_fragment, newFragment);
+       // transaction.remove(getSupportFragmentManager().findFragmentById(R.id.))
+        transaction.replace(R.id.nav_host_fragment, newFragment,"visualizzaUscite");
         transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
         transaction.commit();
         Log.d("clicvisualizza", "hai cliccato");
     }
+
+
+
 
     /*public void onClickDatePick(View v ){
         View view = inflater.inflate(R.layout.fragment_cerca, null);

@@ -39,6 +39,7 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
 
     private static final String[] paths = { "4a","4a+","4b","4b+","4c","4c+","5a","5a+","5b","5b+","5c","5c+","6a","6a+","6b","6b+","6c","6c+","7a","7a+","7b","7b+","7c","7c+","8a","8a+","8b","8b+","8c","8c+","9a","9a+","9b","9b+","9c","9c+"};
     private int livello;
+    private Boolean verifica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,16 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
         modify.setOnClickListener(this);
         ImageButton modify2 = findViewById(R.id.imageButton2);
         modify2.setOnClickListener(this);
+
+        Bundle datipassati = getIntent().getExtras();
+        verifica = datipassati.getBoolean("modifica");
+
+        if (verifica==true){
+            TextView newTitle= findViewById(R.id.textView3);
+            newTitle.setText("MODIFICA IL TUO LIVELLO ");
+            addConfirm.setText("APPLICA MODIFICHE");
+        }
+
     }
 
 

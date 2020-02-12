@@ -26,6 +26,7 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private String dataDB="";
+    private Boolean verifica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,11 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
 
         ImageButton addConfirm = findViewById(R.id.conferma);
         addConfirm.setOnClickListener(this);
+
+        Bundle datipassati = getIntent().getExtras();
+        verifica = datipassati.getBoolean("modifica");
+        Log.d("modificato?", verifica.toString());
+
 
         mDisplayDate = (TextView) findViewById(R.id.tvDate);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +90,9 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
             MyModel.utente.setNumeroTelefono(telefono);
 
             Intent intent = new Intent(getApplicationContext(), InserimentoDati2.class);
+            if (verifica == true){
+                intent.putExtra("modifica",true);
+            }
             startActivity(intent);
 
 

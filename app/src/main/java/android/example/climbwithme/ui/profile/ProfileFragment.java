@@ -4,8 +4,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.example.climbwithme.InserimentoDati;
 import android.example.climbwithme.Main2Activity;
 import android.example.climbwithme.MainActivity;
+import android.example.climbwithme.Uscita;
 import android.example.climbwithme.ui.cerca.LuogoPartenza;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,6 +21,7 @@ import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import android.example.climbwithme.MyModel;
 import android.view.LayoutInflater;
@@ -79,14 +82,24 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(getActivity(), InserimentoDati.class);
+                i.putExtra("modifica",true);
+                startActivity(i);
+            }
+        });
+        TextView pb =(TextView) view.findViewById(R.id.addpb);
+        pb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 NumberPickerDialog newFragment = new NumberPickerDialog();
                 newFragment.setValueChangeListener(ProfileFragment.this);
                 newFragment.show(getFragmentManager(), "time picker");
             }
         });
         return view;
-    }
 
+
+    }
     @Override
     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
         TextView maxlead = (TextView) view.findViewById(R.id.addpb);
@@ -124,10 +137,59 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
             imageview.setImageResource(R.drawable.ic_profile_black_24dp);
         }
 
+        downloadUscite();
+
     }
 
 
+    private void downloadUscite() {
+        RequestQueue mRequestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        String url = "https://climbwithme.herokuapp.com/uscitePubblicate.php";
+        String sessId = '"' + MyModel.getSessionId() + '"';
 
+        JSONObject datiDaPassare = new JSONObject();
+        try {
+            datiDaPassare.put("codiceSessione",MyModel.getSessionId());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                url,
+                datiDaPassare,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("VolleyTueUscite", "Correct: " + response.toString());
+                        final List<Uscita> uscite = MyModel.deserialize(response);
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                super.run();
+                                MyModel.popola(uscite);
+                                Log.d("usciteNelModel", String.valueOf((MyModel.getSize())));
+                                /* Devo aggiornare l'adapter, non posso farlo in questo Thread secondario, uso Handler per eseguire nel Main thread da uno secondario
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        notifyAdapter();
+                                    }
+                                });*/
+                            }
+                        }.start();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Volley", "Error: " + error.toString());
+            }
+        });
+        Log.d("Volley", "Sending request");
+        mRequestQueue.add(request);
+
+    }
 
     @Override
     public void onAttach(Activity activity) {
