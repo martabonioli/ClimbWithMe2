@@ -53,14 +53,14 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
         ImageButton modify2 = findViewById(R.id.imageButton2);
         modify2.setOnClickListener(this);
 
-        Bundle datipassati = getIntent().getExtras();
+        /*Bundle datipassati = getIntent().getExtras();
         verifica = datipassati.getBoolean("modifica");
 
         if (verifica==true){
             TextView newTitle= findViewById(R.id.textView3);
             newTitle.setText("MODIFICA IL TUO LIVELLO ");
             addConfirm.setText("APPLICA MODIFICHE");
-        }
+        }*/
 
     }
 

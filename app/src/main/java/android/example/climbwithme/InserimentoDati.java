@@ -36,9 +36,11 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
         ImageButton addConfirm = findViewById(R.id.conferma);
         addConfirm.setOnClickListener(this);
 
-        Bundle datipassati = getIntent().getExtras();
-        verifica = datipassati.getBoolean("modifica");
-        Log.d("modificato?", verifica.toString());
+        /*Bundle datipassati = getIntent().getExtras();
+        if (datipassati != null){
+            verifica = datipassati.getBoolean("modifica");
+        }
+        Log.d("modificato?", verifica.toString());*/
 
 
         mDisplayDate = (TextView) findViewById(R.id.tvDate);
@@ -90,11 +92,11 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
             MyModel.utente.setNumeroTelefono(telefono);
 
             Intent intent = new Intent(getApplicationContext(), InserimentoDati2.class);
-            if (verifica == true){
+            /*if (verifica == true){
                 intent.putExtra("modifica",true);
             }else{
                 intent.putExtra("modifica",false);
-            }
+            }*/
             startActivity(intent);
 
 

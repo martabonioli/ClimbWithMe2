@@ -33,7 +33,7 @@ public class Main2Activity extends AppCompatActivity {
                 if (getSharedPreferences(PREFS_NAME, 0).getString(SESSION_ID_PREF_NAME, null) == null) {
                     richiediSessionId();
                     Intent intent = new Intent(getApplicationContext(), InserimentoDati.class);
-                    intent.putExtra("modifica",false);
+                    //intent.putExtra("modifica",false);
                     startActivity(intent);
 
 

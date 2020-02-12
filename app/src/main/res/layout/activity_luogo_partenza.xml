@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/textView9"
         android:layout_width="310dp"
-        android:layout_height="119dp"
+        android:layout_height="wrap_content"
         android:text="Da dove vuoi partire?"
         android:textColor="#3F51B5"
         android:textSize="25sp"
@@ -18,7 +18,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.073" />
 
     <ImageButton
         android:id="@+id/conferma"
@@ -31,5 +31,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.813"
         app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Indifferente"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
