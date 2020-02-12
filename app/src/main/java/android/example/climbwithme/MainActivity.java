@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.example.climbwithme.ui.cerca.LuogoPartenza;
 import android.example.climbwithme.ui.profile.NumberPickerDialog;
 import android.example.climbwithme.ui.profile.ProfileFragment;
+import android.example.climbwithme.ui.profile.VisualizzaUscite;
 import android.view.MenuItem;
 import android.content.pm.PackageManager;
 import android.example.climbwithme.ui.bacheca.AdapterUscita;
@@ -16,6 +17,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -186,6 +189,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onClickVisualizzaUscite(View v){
+       Fragment newFragment = new VisualizzaUscite();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment, newFragment);
+        transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+        transaction.commit();
+        Log.d("clicvisualizza", "hai cliccato");
+    }
 
     /*public void onClickDatePick(View v ){
         View view = inflater.inflate(R.layout.fragment_cerca, null);

@@ -88,7 +88,7 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
         switch(v.getId()) {
             case R.id.imageButton:
                 final TextView tv = (TextView) findViewById(R.id.tv);
-                NumberPicker np = (NumberPicker) findViewById(R.id.np);
+
                 NumberPickerDialog newFragment = new NumberPickerDialog();
                 newFragment.setValueChangeListener(new NumberPicker.OnValueChangeListener() {
                     @Override
@@ -132,7 +132,7 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
 
             break;
             case R.id.imageButton2:
-                final TextView tv2 = (TextView) findViewById(R.id.tv);
+                final TextView tv2 = (TextView) findViewById(R.id.tv2);
                 NumberPickerDialog newFragment2 = new NumberPickerDialog();
                 newFragment2.setValueChangeListener(new NumberPicker.OnValueChangeListener() {
                     @Override

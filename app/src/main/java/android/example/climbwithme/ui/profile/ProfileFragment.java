@@ -4,6 +4,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.example.climbwithme.Main2Activity;
+import android.example.climbwithme.MainActivity;
+import android.example.climbwithme.ui.cerca.LuogoPartenza;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -59,23 +62,26 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
                              ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_profile, container, false);
+
         selectImage = (ImageButton) view.findViewById(R.id.selectphoto);
         imageview =  (ImageView)view.findViewById(R.id.foto);
+        if (MyModel.utente.getFoto() == null){
+            imageview.setImageResource(R.drawable.ic_profile_black_24dp);
+        }
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+                public void onClick(View v) {
                 showPictureDialog();
             }
         });
 
        ImageButton button = (ImageButton) view.findViewById(R.id.imageButton3);
-        button.setOnClickListener(new View.OnClickListener() {
+       button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NumberPickerDialog newFragment = new NumberPickerDialog();
                 newFragment.setValueChangeListener(ProfileFragment.this);
                 newFragment.show(getFragmentManager(), "time picker");
-
             }
         });
         return view;
@@ -95,7 +101,6 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
         super.onViewCreated(view, savedInstanceState);
         //TextView textView = view.findViewById(R.id.text_profile);
         //textView.setText("Siamo nel profile fragment");
-
         String nomecognome = MyModel.utente.getNome().trim()+" "+ MyModel.utente.getCognome().trim();
         String dataDiNascita = MyModel.utente.getDataDiNascita();
         TextView textView1 = view.findViewById(R.id.addnome);
