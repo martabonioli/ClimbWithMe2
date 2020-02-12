@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 
 import android.example.climbwithme.R;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -48,16 +49,10 @@ public class VisualizzaUscite extends Fragment {
     public void onViewCreated( View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if ( MyModel.getInstance().getUscite().isEmpty()){
-            Toast.makeText(getActivity(), "Non hai pubblicato uscite", Toast.LENGTH_SHORT).show();
-
-        }else {
             RecyclerView recyclerView = getActivity().findViewById(R.id.text_bacheca);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             adapter = new AdapterUscita(getActivity(), MyModel.getInstance().getUscite());
             recyclerView.setAdapter(adapter);
-        }
-
 
     }
 

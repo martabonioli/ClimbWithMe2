@@ -202,14 +202,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickVisualizzaUscite(View v){
-
-       Fragment newFragment = new VisualizzaUscite();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-       // transaction.remove(getSupportFragmentManager().findFragmentById(R.id.))
-        transaction.replace(R.id.nav_host_fragment, newFragment,"visualizzaUscite");
-        transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-        transaction.commit();
-        Log.d("clicvisualizza", "hai cliccato");
+        if ( MyModel.getInstance().getUscite().isEmpty()) {
+            Toast.makeText(this, "Non hai pubblicato uscite", Toast.LENGTH_SHORT).show();
+        }else{
+            Fragment newFragment = new VisualizzaUscite();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // transaction.remove(getSupportFragmentManager().findFragmentById(R.id.))
+            transaction.replace(R.id.nav_host_fragment, newFragment, "visualizzaUscite");
+            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+            transaction.commit();
+            Log.d("clicvisualizza", "hai cliccato");
+        }
     }
 
 
