@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo2"
@@ -15,7 +14,8 @@
         android:roundIcon="@mipmap/logo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.cerca.LuogoPartenza"></activity>
+        <activity android:name=".ui.proponi.LuogoPartenzaProponi"></activity>
+        <activity android:name=".ui.cerca.LuogoPartenza" />
         <activity android:name=".InserimentoDati2" />
         <activity android:name=".InserimentoDati" />
         <activity android:name=".Main2Activity">

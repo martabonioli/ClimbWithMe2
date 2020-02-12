@@ -4,6 +4,7 @@
     <string name="title_proponi">Proponi</string>
     <string name="title_cerca">Cerca</string>
     <string name="title_profile">Profile</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoibHVjYWdyYW5hIiwiYSI6ImNrMzczZG45ejA3bmgzY2xpd242cnBoZzQifQ.oCQted-XquoUm5EKhjrLTQ</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
