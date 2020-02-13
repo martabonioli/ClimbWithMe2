@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
 
     private FusedLocationProviderClient fusedLocationClient;
-    private double latultimapos;
-    private double lonultimapos;
+    public double latultimapos;
+    public double lonultimapos;
     RecyclerView list;
     private AdapterUscita adapterUscita;
     public NavController navController;
@@ -99,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
                         if (location != null) {
                             latultimapos = location.getLatitude();
                             lonultimapos = location.getLongitude();
-
+                            MyModel.setLatposition(latultimapos);
+                            MyModel.setLongposition(lonultimapos);
                             Log.d("Posizioo", String.valueOf(location.getLatitude()));
                             Log.d("Posizioo", "AAA2" + String.valueOf(latultimapos));
                         } else {
@@ -202,6 +203,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onClickAvantiCerca (View v){
+        Intent intent = new Intent(getApplicationContext(), LuogoPartenza.class);
+        startActivity(intent);
+    }
     public void onClickVisualizzaUscite(View v){
         if ( MyModel.getInstance().getUscite().isEmpty()) {
             Toast.makeText(this, "Non hai pubblicato uscite", Toast.LENGTH_SHORT).show();

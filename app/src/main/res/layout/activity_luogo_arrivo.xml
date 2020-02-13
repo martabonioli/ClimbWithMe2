@@ -5,13 +5,14 @@
     xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.cerca.LuogoPartenza">
+    tools:context=".ui.cerca.LuogoArrivo">
+
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:text="Da dove vuoi partire?"
+        android:text="Dove vuoi arrampicare?"
         android:textColor="#3F51B5"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,7 +47,7 @@
     </com.mapbox.mapboxsdk.maps.MapView>
 
     <ImageButton
-        android:id="@+id/conferma"
+        android:id="@+id/conferma2"
         android:layout_width="69dp"
         android:layout_height="68dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/logo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.proponi.LuogoPartenzaProponi"></activity>
+        <activity android:name=".ui.cerca.LuogoArrivo"></activity>
+        <activity android:name=".ui.proponi.LuogoPartenzaProponi" />
         <activity android:name=".ui.cerca.LuogoPartenza" />
         <activity android:name=".InserimentoDati2" />
         <activity android:name=".InserimentoDati" />

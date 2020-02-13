@@ -66,7 +66,6 @@ public class CercaFragment extends Fragment implements DatePickerDialog.OnDateSe
                 DialogFragment datePicker = new DatePickerFragment(CercaFragment.this);
                 datePicker.show(getFragmentManager() , "date picker");
                 Log.d("frag1", "Fatta la transaction");
-
                 break;
         }
     }

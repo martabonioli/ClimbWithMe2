@@ -35,6 +35,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.0'
-
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places-v8:0.9.0'
     compileOnly 'com.google.android.wearable:wearable:2.4.0'
 }

@@ -15,7 +15,27 @@ public class MyModel {
     private static MyModel instance = null;
     public static Utente utente;
     public static Uscita cercaUscita;
+
+    public static double getLatposition() {
+        return latposition;
+    }
+
+    public static void setLatposition(double latposition) {
+        MyModel.latposition = latposition;
+    }
+
+    public static double getLongposition() {
+        return longposition;
+    }
+
+    public static void setLongposition(double longposition) {
+        MyModel.longposition = longposition;
+    }
+
+    public static double latposition;
+    public static double longposition;
     private static int i = 0;
+
 
 
     //Creo arrayList per le uscite
@@ -34,9 +54,11 @@ public class MyModel {
     public ArrayList<Uscita> getUscite(){
         return uscite;
     }
+
     public Uscita get(int index) {
         return uscite.get(index);
     }
+
     public static int getSize() {
         return uscite.size();
     }

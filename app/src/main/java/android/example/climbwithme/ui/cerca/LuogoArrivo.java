@@ -4,9 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.example.climbwithme.InserimentoDati2;
 import android.example.climbwithme.MyModel;
 import android.example.climbwithme.R;
 import android.graphics.BitmapFactory;
@@ -14,7 +12,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -31,19 +28,15 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
-import com.mapbox.geojson.Feature.*;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
 
-
-public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
+public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
     private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -51,31 +44,29 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
     private CarmenFeature work;
     private String geojsonSourceLayerId = "geojsonSourceLayerId";
     private String symbolIconId = "symbolIconId";
-    public double latitudine=0;
-    public double longitudine=0;
-    private MyModel Model = MyModel.getInstance();
+    public double latitudine;
+    public double longitudine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, "pk.eyJ1IjoibHVjYWdyYW5hIiwiYSI6ImNrMzczZG45ejA3bmgzY2xpd242cnBoZzQifQ.oCQted-XquoUm5EKhjrLTQ");
-        setContentView(R.layout.activity_luogo_partenza);
+        setContentView(R.layout.activity_luogo_arrivo);
 
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
-        ImageButton conferma = findViewById(R.id.conferma);
+        ImageButton conferma = findViewById(R.id.conferma2);
         conferma.setOnClickListener(this);
 
     }
     @Override
     public void onClick(View v) {
         if (latitudine != 0) {
-            Log.d ("latitudine", String.valueOf(latitudine));
+            MyModel.cercaUscita.setLatLuogoArrivo(latitudine);
+            MyModel.cercaUscita.setLonLuogoArrivo(longitudine);
             Intent intent = new Intent(getApplicationContext(), LuogoArrivo.class);
-            intent.putExtra("latitudinepartenza", latitudine);
-            intent.putExtra("longitudinepartenza", longitudine);
             startActivity(intent);
         }else{
             Toast.makeText(getApplicationContext(),"Inserisci una posizione!",Toast.LENGTH_SHORT).show();
@@ -94,7 +85,7 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
 
 // Add the symbol layer icon to map for future use
                 style.addImage(symbolIconId, BitmapFactory.decodeResource(
-                        LuogoPartenza.this.getResources(), R.mipmap.blue_marker_view));
+                        LuogoArrivo.this.getResources(), R.mipmap.blue_marker_view));
 
 // Create an empty GeoJSON source using the empty feature collection
                 setUpSource(style);
@@ -117,7 +108,7 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
                                 .addInjectedFeature(home)
                                 //.addInjectedFeature(work)
                                 .build(PlaceOptions.MODE_CARDS))
-                        .build(LuogoPartenza.this);
+                        .build(LuogoArrivo.this);
                 startActivityForResult(intent, REQUEST_CODE_AUTOCOMPLETE);
             }
         });
@@ -162,18 +153,18 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
                                 new Feature[] {Feature.fromJson(selectedCarmenFeature.toJson())}));
                     }
 // Move map camera to the selected location
-                    latitudine=((Point) selectedCarmenFeature.geometry()).latitude();
-                    longitudine = ((Point) selectedCarmenFeature.geometry()).longitude();
-                    Log.d("lat", String.valueOf(latitudine));
                     mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                             new CameraPosition.Builder()
                                     .target(new LatLng(((Point) selectedCarmenFeature.geometry()).latitude(),
                                             ((Point) selectedCarmenFeature.geometry()).longitude()))
                                     .zoom(14)
                                     .build()), 4000);
+                    latitudine=((Point) selectedCarmenFeature.geometry()).latitude();
+                    longitudine = ((Point) selectedCarmenFeature.geometry()).longitude();
+                    Log.d("lat", String.valueOf(latitudine));
                 }
             }
-           // MyModel.cercaUscita.setLatLuogoArrivo(((Point) selectedCarmenFeature.geometry()).latitude());
+            // MyModel.cercaUscita.setLatLuogoArrivo(((Point) selectedCarmenFeature.geometry()).latitude());
             //MyModel.cercaUscita.setLonLuogoArrivo(((Point) selectedCarmenFeature.geometry()).longitude());
         }
 
@@ -223,4 +214,3 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
 
 
 }
-
