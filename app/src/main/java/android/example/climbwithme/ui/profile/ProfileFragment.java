@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -83,7 +84,7 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), InserimentoDati.class);
-                i.putExtra("modifica",true);
+                //i.putExtra("modifica",true);
                 startActivity(i);
             }
         });

@@ -46,12 +46,12 @@ public class Utente {
             if (utenteJSON.has("livellomaxlead")) {
                 livelloMaxLead = utenteJSON.getInt("livellomaxlead");
             }else{
-                livelloMaxLead= 0;
+                livelloMaxLead= null;
             }
             if (utenteJSON.has("foto")) {
                 foto = utenteJSON.getString("foto");
             }else{
-                foto= "";
+                foto= null;
             }
         } catch (JSONException e) {
             e.printStackTrace();

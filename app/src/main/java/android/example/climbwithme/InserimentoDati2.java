@@ -53,14 +53,12 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
         ImageButton modify2 = findViewById(R.id.imageButton2);
         modify2.setOnClickListener(this);
 
-        /*Bundle datipassati = getIntent().getExtras();
-        verifica = datipassati.getBoolean("modifica");
 
-        if (verifica==true){
-            TextView newTitle= findViewById(R.id.textView3);
+        if (MyModel.utente.getMinLiv() != 0){
+            TextView newTitle = (TextView) findViewById(R.id.textView3);
             newTitle.setText("MODIFICA IL TUO LIVELLO ");
             addConfirm.setText("APPLICA MODIFICHE");
-        }*/
+        }
 
     }
 
@@ -110,36 +108,7 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
 
                 });
                 newFragment.show(getSupportFragmentManager(), "time picker");
-               /* np.setVisibility(View.VISIBLE);
 
-                //Set TextView text color
-                tv.setTextColor(Color.parseColor("#3F51B5"));
-
-                //Initializing a new string array with elements
-                final String[] values= {"4a","4a+","4b","4b+","4c","4c+","5a","5a+","5b","5b+","5c","5c+","6a","6a+","6b","6b+","6c","6c+","7a","7a+","7b","7b+","7c","7c+","8a","8a+","8b","8b+","8c","8c+","9a","9a+","9b","9b+","9c","9c+"};
-
-                //Populate NumberPicker values from String array values
-                //Set the minimum value of NumberPicker
-                np.setMinValue(0);
-                //Specify the maximum value/number of NumberPicker
-                np.setMaxValue(values.length-1);
-
-                //Specify the NumberPicker data source as array elements
-                np.setDisplayedValues(values);
-
-                //Gets whether the selector wheel wraps when reaching the min/max value.
-                np.setWrapSelectorWheel(true);
-
-                //Set a value change listener for NumberPicker
-                np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-                    @Override
-                    public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                        NumberPicker np = (NumberPicker) findViewById(R.id.np);
-                        //Display the newly selected value from picker
-                        tv.setText("" + values[newVal]);
-                    }
-
-                });*/
 
             break;
             case R.id.imageButton2:
@@ -154,45 +123,7 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
 
                 });
                 newFragment2.show(getSupportFragmentManager(), "time picker");
-               /* final TextView tv2 = (TextView) findViewById(R.id.tv2);
-                NumberPicker np2 = (NumberPicker) findViewById(R.id.np2);
-                np2.setVisibility(View.VISIBLE);
 
-                tv2.setTextColor(Color.parseColor("#3F51B5"));
-                //Initializing a new string array with elements
-                final String[] values2= {"4a","4a+","4b","4b+","4c","4c+","5a","5a+","5b","5b+","5c","5c+","6a","6a+","6b","6b+","6c","6c+","7a","7a+","7b","7b+","7c","7c+","8a","8a+","8b","8b+","8c","8c+","9a","9a+","9b","9b+","9c","9c+"};
-
-                //Populate NumberPicker values from String array values
-                //Set the minimum value of NumberPicker
-                 np2.setMinValue(0);
-                //Specify the maximum value/number of NumberPicker
-                  np2.setMaxValue(values2.length-1);//to array last value
-
-                //Specify the NumberPicker data source as array elements
-               np2.setDisplayedValues(values2);
-
-                //Gets whether the selector wheel wraps when reaching the min/max value.
-                np2.setWrapSelectorWheel(true);
-                //Populate NumberPicker values from String array values
-                //Set the minimum value of NumberPicker
-                np2.setMinValue(0);
-                //Specify the maximum value/number of NumberPicker
-               np2.setMaxValue(values2.length-1);//to array last value
-
-                //Specify the NumberPicker data source as array elements
-                np2.setDisplayedValues(values2);
-
-                //Gets whether the selector wheel wraps when reaching the min/max value.
-                np2.setWrapSelectorWheel(true);
-
-                np2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-                    @Override
-                    public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                        //Display the newly selected value from picker
-                        tv2.setText("" + values2[newVal]);
-
-                    }
-                });*/
             break;
             case R.id.entra:
                 //prendi i dati inseriti e salvali sul model

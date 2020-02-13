@@ -36,12 +36,11 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
         ImageButton addConfirm = findViewById(R.id.conferma);
         addConfirm.setOnClickListener(this);
 
-        /*Bundle datipassati = getIntent().getExtras();
-        if (datipassati != null){
-            verifica = datipassati.getBoolean("modifica");
-        }
-        Log.d("modificato?", verifica.toString());*/
+        if (MyModel.utente.getMinLiv() != 0){
+            TextView newTitle = (TextView) findViewById(R.id.textView2);
+            newTitle.setText("MODIFICA I TUOI DATI PERSONALI ");
 
+        }
 
         mDisplayDate = (TextView) findViewById(R.id.tvDate);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +74,6 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
     }
         @Override
         public void onClick(View v){
-
             EditText addNome = findViewById(R.id.addnome);
             EditText addCognome = findViewById(R.id.addcognome);
             TextView addDataNascita = (TextView) findViewById(R.id.tvDate);
@@ -84,7 +82,6 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
             String cognome = addCognome.getText().toString();
             String dataNascita = addDataNascita.getText().toString();
             String telefono = addTelefono.getText().toString();
-
             //inserisco nel Model dati utente
             MyModel.utente.setNome(nome);
             MyModel.utente.setCognome(cognome);
