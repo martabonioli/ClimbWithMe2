@@ -113,6 +113,7 @@ public class Main2Activity extends AppCompatActivity {
                         Log.d("VolleyBacheca", "Correct: " + response.toString());
                        //prendi i dati e mettili nel model
                         MyModel.getInstance().insertUtente(response);
+                        Log.d("InsertGetIstance", MyModel.getInstance().getUtente().toString());
 
 
                     }

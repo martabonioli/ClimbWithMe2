@@ -46,8 +46,8 @@ public class CercaFragment extends Fragment implements DatePickerDialog.OnDateSe
 
                 //inserisci data nel modell
                 if (!data.equals("")){
-                    MyModel.cercaUscita.setDataUscita(data);
-                    Log.d("dataCercaUscita", MyModel.cercaUscita.getDataUscita());
+                    MyModel.getInstance().cercaUscita.setDataUscita(data);
+                    Log.d("dataCercaUscita", MyModel.getInstance().cercaUscita.getDataUscita());
                 }
 
 

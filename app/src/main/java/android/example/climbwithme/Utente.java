@@ -43,16 +43,14 @@ public class Utente {
             this.numeroTelefono = utenteJSON.getString("numerotelefono");
             this.minLiv = utenteJSON.getInt("minliv");
             this.maxLiv = utenteJSON.getInt("maxliv");
-            if (utenteJSON.has("livellomaxlead")) {
-                livelloMaxLead = utenteJSON.getInt("livellomaxlead");
-            }else{
-                livelloMaxLead= null;
-            }
-            if (utenteJSON.has("foto")) {
-                foto = utenteJSON.getString("foto");
-            }else{
-                foto= null;
-            }
+
+            this.livelloMaxLead = utenteJSON.getInt("livellomaxlead");
+
+                //modifica per crash
+
+
+            this.foto = utenteJSON.getString("foto");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

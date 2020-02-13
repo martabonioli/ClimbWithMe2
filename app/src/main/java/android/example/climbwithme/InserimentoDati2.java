@@ -133,10 +133,10 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
                 int livmax = matchLivello(addLivmax.getText().toString());
                 Log.d("livmin", String.valueOf(livmin));
                 //inserisco nel Model dati utente
-                MyModel.utente.setMinLiv(livmin);
-                MyModel.utente.setMaxLiv(livmax);
-                MyModel.utente.setLivelloMaxLead(livmax);
-                Log.d("modelLivMin", String.valueOf(MyModel.utente.getMinLiv()));
+                MyModel.getInstance().utente.setMinLiv(livmin);
+                MyModel.getInstance().utente.setMaxLiv(livmax);
+                MyModel.getInstance().utente.setLivelloMaxLead(livmax);
+                Log.d("modelLivMin", String.valueOf(MyModel.getInstance().utente.getMinLiv()));
 
 
                 //chiamata volley per inserire l'utente nel DB
@@ -144,15 +144,17 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
                 String url = "https://climbwithme.herokuapp.com/iserisciutente.php";
                 JSONObject datiDaPassare = new JSONObject();
                 try {
-                    datiDaPassare.put("datadinascita", MyModel.utente.getDataDiNascita());
-                    datiDaPassare.put("codiceSessione", MyModel.utente.getCodiceSessione());
+                    datiDaPassare.put("datadinascita", MyModel.getInstance().utente.getDataDiNascita());
+                    datiDaPassare.put("codiceSessione", MyModel.getInstance().utente.getCodiceSessione());
                     Log.d("codicesess", MyModel.utente.getCodiceSessione());
-                    datiDaPassare.put("nome", MyModel.utente.getNome());
-                    Log.d("nome", MyModel.utente.getNome());
-                    datiDaPassare.put("cognome", MyModel.utente.getCognome());
-                    datiDaPassare.put("numerotelefono", MyModel.utente.getNumeroTelefono());
-                    datiDaPassare.put("minliv", MyModel.utente.getMinLiv());
-                    datiDaPassare.put("maxliv", MyModel.utente.getMaxLiv());
+                    datiDaPassare.put("nome", MyModel.getInstance().utente.getNome());
+                    Log.d("nome", MyModel.getInstance().utente.getNome());
+                    datiDaPassare.put("cognome", MyModel.getInstance().utente.getCognome());
+                    datiDaPassare.put("numerotelefono", MyModel.getInstance().utente.getNumeroTelefono());
+                    datiDaPassare.put("minliv", MyModel.getInstance().utente.getMinLiv());
+                    datiDaPassare.put("maxliv", MyModel.getInstance().utente.getMaxLiv());
+                    datiDaPassare.put("livellomaxlead", MyModel.getInstance().utente.getMaxLiv());
+                    datiDaPassare.put("foto", "");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

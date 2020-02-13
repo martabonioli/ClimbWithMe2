@@ -58,6 +58,7 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
     Uri myPicture = null;
     ImageButton selectImage;
     View view;
+    private MyModel MyModel1 = MyModel.getInstance();
 
 
 
@@ -69,7 +70,7 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
 
         selectImage = (ImageButton) view.findViewById(R.id.selectphoto);
         imageview =  (ImageView)view.findViewById(R.id.foto);
-        if (MyModel.utente.getFoto() == null){
+        if (MyModel1.utente.getFoto() == null){
             imageview.setImageResource(R.drawable.ic_profile_black_24dp);
         }
         selectImage.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +106,7 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
         TextView maxlead = (TextView) view.findViewById(R.id.addpb);
         maxlead.setText(matchLivello(numberPicker.getValue()+1));
-        MyModel.utente.setLivelloMaxLead(numberPicker.getValue());
+        MyModel1.utente.setLivelloMaxLead(numberPicker.getValue());
 
     }
 
@@ -115,20 +116,20 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
         super.onViewCreated(view, savedInstanceState);
         //TextView textView = view.findViewById(R.id.text_profile);
         //textView.setText("Siamo nel profile fragment");
-        String nomecognome = MyModel.utente.getNome().trim()+" "+ MyModel.utente.getCognome().trim();
-        String dataDiNascita = MyModel.utente.getDataDiNascita();
+        String nomecognome = MyModel1.utente.getNome().trim()+" "+ MyModel.utente.getCognome().trim();
+        String dataDiNascita = MyModel1.utente.getDataDiNascita();
         TextView textView1 = view.findViewById(R.id.addnome);
         textView1.setText(nomecognome);
         TextView textView2 = view.findViewById(R.id.adddataNascita);
         textView2.setText(dataDiNascita);
         TextView textView3 = view.findViewById(R.id.addtelefono);
-        textView3.setText("+39 "+ MyModel.utente.getNumeroTelefono());
+        textView3.setText("+39 "+ MyModel1.utente.getNumeroTelefono());
         TextView textView4 = view.findViewById(R.id.addminliv);
-        textView4.setText(""+ matchLivello(MyModel.utente.getMinLiv())+"   /   "+ matchLivello(MyModel.utente.getMaxLiv()));
+        textView4.setText(""+ matchLivello(MyModel1.utente.getMinLiv())+"   /   "+ matchLivello(MyModel.utente.getMaxLiv()));
         TextView textView5 = view.findViewById(R.id.addpb);
-        textView5.setText( matchLivello(MyModel.utente.getMaxLiv()));
+        textView5.setText( matchLivello(MyModel1.utente.getMaxLiv()));
 
-        if (MyModel.utente.getFoto() != null){
+        if (MyModel1.utente.getFoto() != null){
             ImageView addfoto= view.findViewById(R.id.foto);
             String b64img =MyModel.utente.getFoto();
             byte[] decodedString = Base64.decode(b64img, Base64.DEFAULT); //la converto in bytestream
@@ -150,7 +151,7 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
 
         JSONObject datiDaPassare = new JSONObject();
         try {
-            datiDaPassare.put("codiceSessione",MyModel.getSessionId());
+            datiDaPassare.put("codiceSessione",MyModel1.getSessionId());
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -163,12 +164,12 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("VolleyTueUscite", "Correct: " + response.toString());
-                        final List<Uscita> uscite = MyModel.deserialize(response);
+                        final List<Uscita> uscite = MyModel1.deserialize(response);
                         new Thread() {
                             @Override
                             public void run() {
                                 super.run();
-                                MyModel.popola(uscite);
+                                MyModel1.popola(uscite);
                                 Log.d("usciteNelModel", String.valueOf((MyModel.getSize())));
                                 /* Devo aggiornare l'adapter, non posso farlo in questo Thread secondario, uso Handler per eseguire nel Main thread da uno secondario
                                 new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -317,16 +318,16 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
         // converto la bitmap in un byteArray
         String encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
         //codifico il bytearray in una stringa in formato base64, per essere caricato sul server
-        MyModel.utente.setFoto(encodedImage);
+        MyModel1.utente.setFoto(encodedImage);
         Log.d("encoded",encodedImage.toString());
-        Log.d("fotonelmodel", MyModel.utente.getFoto());
+        Log.d("fotonelmodel", MyModel1.utente.getFoto());
 
         //chiamata volley per inserire la foto nel DB
         RequestQueue mRequestQueue = Volley.newRequestQueue(context);
         String url = "https://climbwithme.herokuapp.com/iserisciutente.php";
         JSONObject datiDaPassare = new JSONObject();
         try {
-            datiDaPassare.put("codiceSessione",  MyModel.getSessionId());
+            datiDaPassare.put("codiceSessione",  MyModel1.getSessionId());
             datiDaPassare.put("foto", encodedImage);
         } catch (JSONException e) {
             e.printStackTrace();

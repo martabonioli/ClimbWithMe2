@@ -44,9 +44,10 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
     private CarmenFeature work;
     private String geojsonSourceLayerId = "geojsonSourceLayerId";
     private String symbolIconId = "symbolIconId";
-    public double latitudine;
-    public double longitudine;
-
+    private double latitudine;
+    private double longitudine;
+    Double latPartenza;
+    Double lonPartenza;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,13 +61,19 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
         ImageButton conferma = findViewById(R.id.conferma2);
         conferma.setOnClickListener(this);
 
+        latPartenza = getIntent().getExtras().getDouble("latitudinepartenza");
+        lonPartenza = getIntent().getExtras().getDouble("longitudinepartenza");
+
     }
     @Override
     public void onClick(View v) {
         if (latitudine != 0) {
-            MyModel.cercaUscita.setLatLuogoArrivo(latitudine);
-            MyModel.cercaUscita.setLonLuogoArrivo(longitudine);
-            Intent intent = new Intent(getApplicationContext(), LuogoArrivo.class);
+
+            Intent intent = new Intent(getApplicationContext(), CercaFinal.class);
+            intent.putExtra("latitudinepartenza", latPartenza);
+            intent.putExtra("longitudinepartenza", latPartenza);
+            intent.putExtra("latitudinearrivo", latitudine);
+            intent.putExtra("longitudinearrivo",longitudine);
             startActivity(intent);
         }else{
             Toast.makeText(getApplicationContext(),"Inserisci una posizione!",Toast.LENGTH_SHORT).show();

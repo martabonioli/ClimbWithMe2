@@ -36,7 +36,7 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
         ImageButton addConfirm = findViewById(R.id.conferma);
         addConfirm.setOnClickListener(this);
 
-        if (MyModel.utente.getMinLiv() != 0){
+        if (MyModel.getInstance().utente.getMinLiv() != 0){
             TextView newTitle = (TextView) findViewById(R.id.textView2);
             newTitle.setText("MODIFICA I TUOI DATI PERSONALI ");
 
@@ -83,10 +83,10 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
             String dataNascita = addDataNascita.getText().toString();
             String telefono = addTelefono.getText().toString();
             //inserisco nel Model dati utente
-            MyModel.utente.setNome(nome);
-            MyModel.utente.setCognome(cognome);
-            MyModel.utente.setDataDiNascita(dataNascita);
-            MyModel.utente.setNumeroTelefono(telefono);
+            MyModel.getInstance().utente.setNome(nome);
+            MyModel.getInstance().utente.setCognome(cognome);
+            MyModel.getInstance().utente.setDataDiNascita(dataNascita);
+            MyModel.getInstance().utente.setNumeroTelefono(telefono);
 
             Intent intent = new Intent(getApplicationContext(), InserimentoDati2.class);
             /*if (verifica == true){

@@ -13,6 +13,9 @@ import java.util.List;
 public class MyModel {
     private static final MyModel ourInstance = new MyModel();
     private static MyModel instance = null;
+
+
+
     public static Utente utente;
     public static Uscita cercaUscita;
 
@@ -30,6 +33,13 @@ public class MyModel {
 
     public static void setLongposition(double longposition) {
         MyModel.longposition = longposition;
+    }
+    public static Utente getUtente() {
+        return utente;
+    }
+
+    public static void setUtente(Utente utente) {
+        MyModel.utente = utente;
     }
 
     public static double latposition;
