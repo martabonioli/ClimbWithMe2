@@ -70,7 +70,7 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
 
         selectImage = (ImageButton) view.findViewById(R.id.selectphoto);
         imageview =  (ImageView)view.findViewById(R.id.foto);
-        if (MyModel1.utente.getFoto() == null){
+        if (MyModel1.utente.getFoto() == ""){
             imageview.setImageResource(R.drawable.ic_profile_black_24dp);
         }
         selectImage.setOnClickListener(new View.OnClickListener() {
