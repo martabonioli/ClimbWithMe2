@@ -39,6 +39,8 @@ public class Uscita {
         this.livelloMaxLead = livelloMaxLead;
     }
 
+
+
     public Uscita(JSONObject uscitaJSON) {
         try {
             this.nome = uscitaJSON.getString("nome");

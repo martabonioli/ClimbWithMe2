@@ -17,7 +17,7 @@ public class MyModel {
 
 
     public static Utente utente;
-    public static Uscita cercaUscita;
+    public static Uscita cercaUscita = new Uscita("",0.0,0.0,0.0,0.0,"","","","","","",0);
 
     public static double getLatposition() {
         return latposition;

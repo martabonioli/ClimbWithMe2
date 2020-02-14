@@ -53,6 +53,7 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
     private String symbolIconId = "symbolIconId";
     public double latitudine=0;
     public double longitudine=0;
+    public String posPartenza;
     private MyModel Model = MyModel.getInstance();
 
     @Override
@@ -76,6 +77,9 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
             Intent intent = new Intent(getApplicationContext(), LuogoArrivo.class);
             intent.putExtra("latitudinepartenza", latitudine);
             intent.putExtra("longitudinepartenza", longitudine);
+            intent.putExtra("luogopartenza",posPartenza);
+            //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(latitudine);
+            //MyModel.getInstance().cercaUscita.setLonLuogoArrivo(longitudine);
             startActivity(intent);
         }else{
             Toast.makeText(getApplicationContext(),"Inserisci una posizione!",Toast.LENGTH_SHORT).show();
@@ -151,6 +155,8 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
 // Retrieve selected location's CarmenFeature
             CarmenFeature selectedCarmenFeature = PlaceAutocomplete.getPlace(data);
             Log.d("nonso", String.valueOf(PlaceAutocomplete.getPlace(data)));
+            posPartenza = (String) selectedCarmenFeature.placeName();
+            Log.d("posPartenza", posPartenza);
 // Create a new FeatureCollection and add a new Feature to it using selectedCarmenFeature above.
 // Then retrieve and update the source designated for showing a selected location's symbol layer icon
             if (mapboxMap != null) {

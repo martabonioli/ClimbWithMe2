@@ -46,8 +46,11 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
     private String symbolIconId = "symbolIconId";
     private double latitudine;
     private double longitudine;
+    private String posArrivo;
     Double latPartenza;
     Double lonPartenza;
+    String luogoPartenza;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +66,7 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
 
         latPartenza = getIntent().getExtras().getDouble("latitudinepartenza");
         lonPartenza = getIntent().getExtras().getDouble("longitudinepartenza");
+        luogoPartenza = getIntent().getExtras().getString("luogopartenza");
 
     }
     @Override
@@ -72,8 +76,12 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
             Intent intent = new Intent(getApplicationContext(), CercaFinal.class);
             intent.putExtra("latitudinepartenza", latPartenza);
             intent.putExtra("longitudinepartenza", latPartenza);
+            intent.putExtra("luogopartenza", luogoPartenza);
             intent.putExtra("latitudinearrivo", latitudine);
             intent.putExtra("longitudinearrivo",longitudine);
+            intent.putExtra("luogoarrivo", posArrivo);
+            //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(latitudine);
+            //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(longitudine);
             startActivity(intent);
         }else{
             Toast.makeText(getApplicationContext(),"Inserisci una posizione!",Toast.LENGTH_SHORT).show();
@@ -148,6 +156,7 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_AUTOCOMPLETE) {
 // Retrieve selected location's CarmenFeature
             CarmenFeature selectedCarmenFeature = PlaceAutocomplete.getPlace(data);
+            posArrivo = (String) selectedCarmenFeature.placeName();
             Log.d("nonso", String.valueOf(PlaceAutocomplete.getPlace(data)));
 // Create a new FeatureCollection and add a new Feature to it using selectedCarmenFeature above.
 // Then retrieve and update the source designated for showing a selected location's symbol layer icon

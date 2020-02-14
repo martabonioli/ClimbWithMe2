@@ -43,7 +43,7 @@ public class CercaFragment extends Fragment implements DatePickerDialog.OnDateSe
             public void onClick(View v) {
                 DialogFragment datePicker = new DatePickerFragment(CercaFragment.this);
                 datePicker.show(getFragmentManager(), "date picker");
-
+                Log.d("data",data);
                 //inserisci data nel modell
                 if (!data.equals("")){
                     MyModel.getInstance().cercaUscita.setDataUscita(data);
@@ -66,6 +66,10 @@ public class CercaFragment extends Fragment implements DatePickerDialog.OnDateSe
                 DialogFragment datePicker = new DatePickerFragment(CercaFragment.this);
                 datePicker.show(getFragmentManager() , "date picker");
                 Log.d("frag1", "Fatta la transaction");
+                if (!data.equals("")){
+                    MyModel.getInstance().cercaUscita.setDataUscita(data);
+                    Log.d("dataCercaUscita", MyModel.getInstance().cercaUscita.getDataUscita());
+                }
                 break;
         }
     }
@@ -76,16 +80,23 @@ public class CercaFragment extends Fragment implements DatePickerDialog.OnDateSe
 
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
+        Log.d("mese", String.valueOf(Calendar.MONTH));
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
-    Log.d("calendar",c.getTime().toString());
         TextView textView = (TextView) root.findViewById(R.id.textView);
         textView.setText(currentDateString);
-
-        data= ""+ year +"-"+month+"-"+dayOfMonth;
+        data= ""+ year +"-"+correctdata((month+1))+"-"+correctdata(dayOfMonth);
+        MyModel.getInstance().cercaUscita.setDataUscita(data);
 
     }
 
+    public String correctdata(int num){
+        String d ="";
+        if (num<10){
+            return d="0"+num;
+        }
+        return ""+num;
+    }
 
 
 }
