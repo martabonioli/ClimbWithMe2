@@ -9,16 +9,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class InserimentoDati extends AppCompatActivity implements View.OnClickListener {
     //varInserimentoDataNascita
@@ -33,7 +29,7 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserimento_dati);
 
-        ImageButton addConfirm = findViewById(R.id.conferma);
+        ImageButton addConfirm = findViewById(R.id.confermap);
         addConfirm.setOnClickListener(this);
 
         if (MyModel.getInstance().utente.getMinLiv() != 0){

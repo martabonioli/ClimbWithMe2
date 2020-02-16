@@ -4,86 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InserimentoDati">
+    tools:context=".ui.proponi.Attributi">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="328dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="2dp"
-        android:text="INSERISCI I TUOI DATI "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.395"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.205"
-        tools:textAlignment="center"
-        android:textSize="30sp"
-        android:textColor="#3F51B5"/>
 
     <LinearLayout
-        android:layout_width="355dp"
-        android:layout_height="229dp"
+        android:layout_width="385dp"
+        android:layout_height="496dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545">
+        app:layout_constraintVertical_bias="0.182">
 
-        <EditText
-            android:id="@+id/addnome"
+        <TextView
+            android:id="@+id/textView16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Nome"
-            android:textSize="20sp" />
+            android:text="DETTAGLI "
+            android:textColor="#3F51B5"
 
-        <EditText
-            android:id="@+id/addcognome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Cognome"
-            android:textSize="20sp" />
-
+            android:textSize="30sp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="15dp" />
-
-        <TextView
-            android:id="@+id/tvDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Data di Nascita"
-            android:textSize="20sp" />
+            android:layout_height="41dp" />
 
         <EditText
-            android:id="@+id/addtelefono"
+            android:id="@+id/tipoArrampicata"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="phone"
-            android:text="Numero di telefono"
-            android:textSize="20sp" />
+            android:inputType="textPersonName"
+            android:text="Tipo di arrampicata "
+            android:textColor="#3F51B5" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="28dp" />
+
+        <EditText
+            android:id="@+id/mezzoTrasporto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Mezzo di trasporto"
+            android:textColor="#3F51B5" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="28dp" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Attrezzatura"
+            android:textColor="#3F51B5" />
+
+        <CheckBox
+            android:id="@+id/corda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="corda" />
+
 
     </LinearLayout>
-
     <ImageButton
-        android:id="@+id/confermap"
+        android:id="@+id/conferma2"
         android:layout_width="69dp"
         android:layout_height="68dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.928"
+        app:layout_constraintHorizontal_bias="0.923"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.813"
+        app:layout_constraintVertical_bias="0.975"
         app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

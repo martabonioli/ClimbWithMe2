@@ -46,7 +46,7 @@
     </com.mapbox.mapboxsdk.maps.MapView>
 
     <ImageButton
-        android:id="@+id/conferma"
+        android:id="@+id/confermap"
         android:layout_width="69dp"
         android:layout_height="68dp"
         app:layout_constraintBottom_toBottomOf="parent"

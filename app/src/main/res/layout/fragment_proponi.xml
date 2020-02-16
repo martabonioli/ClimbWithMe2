@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="310dp"
-        android:layout_height="36dp"
+        android:layout_height="44dp"
         android:layout_above="@id/button"
         android:layout_centerHorizontal="true"
         android:text="selezione una data"
@@ -18,7 +18,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.358"
+        app:layout_constraintVertical_bias="0.197"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
@@ -34,12 +34,12 @@
         app:layout_constraintHorizontal_bias="0.146"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438"
+        app:layout_constraintVertical_bias="0.279"
         app:srcCompat="@android:drawable/ic_menu_my_calendar"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
-        android:id="@+id/conferma"
+        android:id="@+id/confermap"
         android:layout_width="69dp"
         android:layout_height="68dp"
         android:onClick="onClickAvantiProponi1"
@@ -54,8 +54,8 @@
     <TextView
         android:id="@+id/textView9"
         android:layout_width="310dp"
-        android:layout_height="119dp"
-        android:text="Che giorno vorresti andare ad arrampicare?"
+        android:layout_height="wrap_content"
+        android:text="Che giorno hai deciso di arrampicare?"
         android:textColor="#3F51B5"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,6 +63,6 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.023" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

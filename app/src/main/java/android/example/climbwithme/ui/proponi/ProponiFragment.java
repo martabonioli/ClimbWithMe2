@@ -67,6 +67,10 @@ public class ProponiFragment extends Fragment implements DatePickerDialog.OnDate
                 DialogFragment datePicker = new DatePickerFragment(android.example.climbwithme.ui.proponi.ProponiFragment.this);
                 datePicker.show(getFragmentManager() , "date picker");
                 Log.d("frag1", "Fatta la transaction");
+                if (!data.equals("")){
+                    MyModel.getInstance().cercaUscita.setDataUscita(data);
+                    Log.d("dataCercaUscita", MyModel.getInstance().cercaUscita.getDataUscita());
+                }
 
                 break;
         }

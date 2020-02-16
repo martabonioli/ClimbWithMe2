@@ -14,7 +14,10 @@
         android:roundIcon="@mipmap/logo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.cerca.CercaFinal"></activity>
+        <activity android:name=".ui.proponi.Attributi"></activity>
+        <activity android:name=".ui.proponi.LuogoArrivoProponi" />
+        <activity android:name=".ui.proponi.ProponiFinal" />
+        <activity android:name=".ui.cerca.CercaFinal" />
         <activity android:name=".ui.cerca.LuogoArrivo" />
         <activity android:name=".ui.proponi.LuogoPartenzaProponi" />
         <activity android:name=".ui.cerca.LuogoPartenza" />
