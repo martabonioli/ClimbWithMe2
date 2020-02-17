@@ -83,12 +83,17 @@ public class CercaFinal extends AppCompatActivity implements View.OnClickListene
         JSONObject datiDaPassare = new JSONObject();
         try {
             datiDaPassare.put("datauscita",MyModel.getInstance().cercaUscita.getDataUscita());
-            Log.d("datauscita", MyModel.getInstance().cercaUscita.getDataUscita());
+            Log.d("CercaData", MyModel.getInstance().cercaUscita.getDataUscita());
             datiDaPassare.put("codiceSessione",MyModel.getInstance().getSessionId());
+            Log.d("CercaCodiceSessione", MyModel.getInstance().getSessionId());
             datiDaPassare.put("latluogopartenza", latPartenza);
+            Log.d("CercaLatPartenza", latPartenza.toString());
             datiDaPassare.put("lonluogopartenza", lonPartenza);
+            Log.d("CercaLonPartenza", lonPartenza.toString());
             datiDaPassare.put("latluogoarrivo", latArrivo);
+            Log.d("CercaLatArrivo", latArrivo.toString());
             datiDaPassare.put("lonluogoarrivo", lonArrivo);
+            Log.d("CercaLonArrivo", lonArrivo.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

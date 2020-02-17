@@ -67,6 +67,7 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
         latPartenza = getIntent().getExtras().getDouble("latitudinepartenza");
         lonPartenza = getIntent().getExtras().getDouble("longitudinepartenza");
         luogoPartenza = getIntent().getExtras().getString("luogopartenza");
+        Log.d("LongitudinePartenza2", lonPartenza.toString());
 
     }
     @Override
@@ -75,11 +76,13 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
 
             Intent intent = new Intent(getApplicationContext(), CercaFinal.class);
             intent.putExtra("latitudinepartenza", latPartenza);
-            intent.putExtra("longitudinepartenza", latPartenza);
+            intent.putExtra("longitudinepartenza", lonPartenza);
             intent.putExtra("luogopartenza", luogoPartenza);
             intent.putExtra("latitudinearrivo", latitudine);
             intent.putExtra("longitudinearrivo",longitudine);
             intent.putExtra("luogoarrivo", posArrivo);
+            Log.d ("latitudineArrivo", String.valueOf(latitudine));
+            Log.d ("longitudineArrivo", String.valueOf(longitudine));
             //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(latitudine);
             //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(longitudine);
             startActivity(intent);

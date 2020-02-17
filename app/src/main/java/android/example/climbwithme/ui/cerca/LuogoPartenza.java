@@ -67,7 +67,8 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
     @Override
     public void onClick(View v) {
         if (latitudine != 0) {
-            Log.d ("latitudine", String.valueOf(latitudine));
+            Log.d ("latitudinePartenza", String.valueOf(latitudine));
+            Log.d ("longitudinePartenza", String.valueOf(longitudine));
             Intent intent = new Intent(getApplicationContext(), LuogoArrivo.class);
             intent.putExtra("latitudinepartenza", latitudine);
             intent.putExtra("longitudinepartenza", longitudine);
@@ -164,7 +165,8 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
 // Move map camera to the selected location
                     latitudine=((Point) selectedCarmenFeature.geometry()).latitude();
                     longitudine = ((Point) selectedCarmenFeature.geometry()).longitude();
-                    Log.d("lat", String.valueOf(latitudine));
+                    Log.d("LuogoPartenzaLat", String.valueOf(latitudine));
+                    Log.d("LuogoPartenzaLog", String.valueOf(longitudine));
                     mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                             new CameraPosition.Builder()
                                     .target(new LatLng(((Point) selectedCarmenFeature.geometry()).latitude(),
