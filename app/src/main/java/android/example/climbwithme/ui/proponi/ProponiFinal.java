@@ -32,6 +32,7 @@ public class ProponiFinal extends AppCompatActivity implements View.OnClickListe
     Double lonPartenza;
     String partenza;
     String arrivo;
+    String attrezzatura, mezzo, tipoArr;
     Double latArrivo;
     Double lonArrivo;
 
@@ -45,6 +46,11 @@ public class ProponiFinal extends AppCompatActivity implements View.OnClickListe
         lonArrivo = getIntent().getExtras().getDouble("longitudinearrivo");
         partenza = getIntent().getExtras().getString("luogopartenza");
         arrivo = getIntent().getExtras().getString("luogoarrivo");
+        attrezzatura= getIntent().getExtras().getString("attrezz");
+        Log.d("attrezzaturaFinal",attrezzatura);
+        tipoArr= getIntent().getExtras().getString("tipoarr");
+        mezzo= getIntent().getExtras().getString("mezzo");
+
 
         TextView data = findViewById(R.id.data);
         TextView part = findViewById(R.id.part);
@@ -52,6 +58,12 @@ public class ProponiFinal extends AppCompatActivity implements View.OnClickListe
         data.setText(MyModel.getInstance().cercaUscita.getDataUscita());
         part.setText(partenza);
         arr.setText(arrivo);
+        TextView addmezzo = findViewById(R.id.mezzo);
+        addmezzo.setText(mezzo);
+        TextView addattrezzatura = findViewById(R.id.textattrezzatura);
+        addattrezzatura.setText(attrezzatura);
+        TextView addtipoArr = findViewById(R.id.tipoarrampicata);
+        addtipoArr.setText(tipoArr);
 
         Button conferma = findViewById(R.id.button3);
         conferma.setOnClickListener(this);
@@ -60,7 +72,14 @@ public class ProponiFinal extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         pubblica();
-            Toast.makeText(this, "Uscita Pubblicata", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Uscita Pubblicata", Toast.LENGTH_SHORT).show();
+        Fragment newFragment = new VisualizzaUscite();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        // transaction.remove(getSupportFragmentManager().findFragmentById(R.id.))
+        transaction.replace(R.id.nav_host_fragment, newFragment, "visualizzaUscite");
+        transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+        transaction.commit();
+        Log.d("clicvisualizza", "hai cliccato");
 
     }
     private void pubblica() {
@@ -75,6 +94,10 @@ public class ProponiFinal extends AppCompatActivity implements View.OnClickListe
             datiDaPassare.put("lonluogopartenza", lonPartenza);
             datiDaPassare.put("latluogoarrivo", latArrivo);
             datiDaPassare.put("lonluogoarrivo", lonArrivo);
+            datiDaPassare.put("tipoarrampicata", tipoArr);
+            datiDaPassare.put("mezzotrasporto", mezzo);
+            datiDaPassare.put("attrezzatura", attrezzatura);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
