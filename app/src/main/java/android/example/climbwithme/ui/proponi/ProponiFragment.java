@@ -48,7 +48,7 @@ public class ProponiFragment extends Fragment implements DatePickerDialog.OnDate
 
                 //inserisci data nel modell
                 if (!data.equals("")){
-                    MyModel.cercaUscita.setDataUscita(data);
+                    MyModel.getInstance().cercaUscita.setDataUscita(data);
                     Log.d("dataCercaUscita", MyModel.getInstance().cercaUscita.getDataUscita());
                 }
 
@@ -75,9 +75,19 @@ public class ProponiFragment extends Fragment implements DatePickerDialog.OnDate
         textView.setTextColor(Color.parseColor("#FF7514"));
         textView.setText(currentDateString);
 
-        data= ""+ year +"-"+month+"-"+dayOfMonth;
+        data= ""+ year +"-"+correctdata((month+1))+"-"+correctdata(dayOfMonth);
+        MyModel.getInstance().cercaUscita.setDataUscita(data);
 
     }
+
+    public String correctdata(int num){
+        String d ="";
+        if (num<10){
+            return d="0"+num;
+        }
+        return ""+num;
+    }
+
 
 
 

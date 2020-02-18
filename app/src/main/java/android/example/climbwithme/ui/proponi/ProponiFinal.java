@@ -119,16 +119,6 @@ public class ProponiFinal extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("VolleyPubblica", "Correct: " + response.toString());
-                        final List<Uscita> uscite = MyModel.deserialize(response);
-                        new Thread() {
-                            @Override
-                            public void run() {
-                                super.run();
-                                MyModel.getInstance().popola(uscite);
-                                Log.d("usciteNelModel", String.valueOf((MyModel.getSize())));
-
-                            }
-                        }.start();
 
                     }
                 }, new Response.ErrorListener() {
