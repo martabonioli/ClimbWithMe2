@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
@@ -53,6 +54,7 @@ public class LuogoArrivoProponi extends AppCompatActivity implements OnMapReadyC
     Double latPartenza;
     Double lonPartenza;
     String luogoPartenza;
+    public TextView luogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,7 @@ public class LuogoArrivoProponi extends AppCompatActivity implements OnMapReadyC
         latPartenza = getIntent().getExtras().getDouble("latitudinepartenza");
         lonPartenza = getIntent().getExtras().getDouble("longitudinepartenza");
         luogoPartenza = getIntent().getExtras().getString("luogopartenza");
+        luogo= findViewById(R.id.luogo);
 
     }
     @Override
@@ -169,6 +172,7 @@ public class LuogoArrivoProponi extends AppCompatActivity implements OnMapReadyC
 // Retrieve selected location's CarmenFeature
             CarmenFeature selectedCarmenFeature = PlaceAutocomplete.getPlace(data);
             posArrivo = (String) selectedCarmenFeature.placeName();
+            luogo.setText(posArrivo);
             Log.d("nonso", String.valueOf(PlaceAutocomplete.getPlace(data)));
 // Create a new FeatureCollection and add a new Feature to it using selectedCarmenFeature above.
 // Then retrieve and update the source designated for showing a selected location's symbol layer icon

@@ -99,6 +99,7 @@ public class MyModel {
         List<Uscita> list = new ArrayList<>();
         try {
             JSONArray usciteJSON = serverResponse.getJSONArray("uscite");
+            Log.d("usciteJSON", String.valueOf(usciteJSON));
             for (int i = 0; i < usciteJSON.length(); i++) {
                 JSONObject uscitaJSON = usciteJSON.getJSONObject(i);
                 Uscita uscita = new Uscita (uscitaJSON);

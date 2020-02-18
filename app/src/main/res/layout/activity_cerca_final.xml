@@ -17,7 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.975"
-        app:srcCompat="@drawable/ic_chevron_right_black_24dp"/>
+        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+        android:rotationY="180.0"/>
 
     <TextView
         android:id="@+id/textView14"

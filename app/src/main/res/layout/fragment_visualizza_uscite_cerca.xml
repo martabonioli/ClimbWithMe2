@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.cerca.VisualizzaUsciteCerca"
-
     >
 
     <ImageView
@@ -28,11 +27,11 @@
         android:textColor="#3F51B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageButton4"
-        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:textSize="30sp" />
+        app:layout_constraintVertical_bias="0.023"
+        android:textSize="30dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/text_bacheca"
@@ -52,13 +51,14 @@
         android:id="@+id/imageButton4"
         android:layout_width="38dp"
         android:layout_height="27dp"
-        tools:ignore="ContentDescription"
-        android:src="@android:drawable/btn_dialog"
+        android:background="#00FFFFFF"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.966"
+        app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.022"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

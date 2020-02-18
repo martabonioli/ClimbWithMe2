@@ -39,6 +39,7 @@ public class CercaFinal extends AppCompatActivity implements View.OnClickListene
     String arrivo;
     Double latArrivo;
     Double lonArrivo;
+    Button conferma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class CercaFinal extends AppCompatActivity implements View.OnClickListene
         part.setText(partenza);
         arr.setText(arrivo);
         downloadBacheca();
-        Button conferma = findViewById(R.id.button3);
+        conferma = findViewById(R.id.button3);
         conferma.setOnClickListener(this);
         ImageButton indietro = findViewById(R.id.returnc);
         indietro.setOnClickListener(this);
@@ -71,6 +72,7 @@ public class CercaFinal extends AppCompatActivity implements View.OnClickListene
                 if (MyModel.getInstance().getUscite().isEmpty()) {
                     Toast.makeText(this, "Non ci sono uscite nella data inserita", Toast.LENGTH_SHORT).show();
                 } else {
+                    conferma.setVisibility(View.INVISIBLE);
                     Fragment newFragment = new VisualizzaUsciteCerca();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     // transaction.remove(getSupportFragmentManager().findFragmentById(R.id.))
@@ -115,7 +117,7 @@ public class CercaFinal extends AppCompatActivity implements View.OnClickListene
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("VolleyBacheca", "Correct: " + response.toString());
-                        final List<Uscita> uscite = MyModel.deserialize(response);
+                        final List<Uscita> uscite = MyModel.getInstance().deserialize(response);
                         new Thread() {
                             @Override
                             public void run() {
