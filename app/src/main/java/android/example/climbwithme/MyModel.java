@@ -59,6 +59,7 @@ public class MyModel {
 
     public static void popola(List<Uscita> uscit){
         uscite = new ArrayList<>(uscit);
+        Log.d("Uscite nel metodo popola", uscite.size()+"");
     }
 
     public ArrayList<Uscita> getUscite(){
@@ -97,6 +98,7 @@ public class MyModel {
 
     public static List<Uscita> deserialize(JSONObject serverResponse) {
         List<Uscita> list = new ArrayList<>();
+        //uscite = new ArrayList<Uscita>();
         try {
             JSONArray usciteJSON = serverResponse.getJSONArray("uscite");
             Log.d("usciteJSON", String.valueOf(usciteJSON));
@@ -104,10 +106,13 @@ public class MyModel {
                 JSONObject uscitaJSON = usciteJSON.getJSONObject(i);
                 Uscita uscita = new Uscita (uscitaJSON);
                 list.add(uscita);
+                //uscite.add(uscita);
             }
+            Log.d("Uscite nel metodo deserialize", ""+uscite.size());
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        //return uscite;
         return list;
     }
 

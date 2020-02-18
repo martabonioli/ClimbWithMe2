@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class VisualizzaUsciteCerca extends Fragment {
+public class  VisualizzaUsciteCerca extends Fragment {
     SharedPreferences settings;
     RecyclerView list;
     private AdapterUscita adapter;
