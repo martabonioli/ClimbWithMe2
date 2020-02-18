@@ -71,7 +71,7 @@ public class CercaFinal extends AppCompatActivity implements View.OnClickListene
                 if (MyModel.getInstance().getUscite().isEmpty()) {
                     Toast.makeText(this, "Non ci sono uscite nella data inserita", Toast.LENGTH_SHORT).show();
                 } else {
-                    Fragment newFragment = new VisualizzaUscite();
+                    Fragment newFragment = new VisualizzaUsciteCerca();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     // transaction.remove(getSupportFragmentManager().findFragmentById(R.id.))
                     transaction.replace(R.id.cerca_final, newFragment, "visualizzaUsciteCerca");
