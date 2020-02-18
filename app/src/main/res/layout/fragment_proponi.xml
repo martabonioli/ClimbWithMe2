@@ -27,6 +27,7 @@
         android:layout_height="54dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:backgroundTint="#FF7514"
         android:onClick="onClickDatePick"
         android:text="open date picker"
         app:layout_constraintBottom_toBottomOf="parent"

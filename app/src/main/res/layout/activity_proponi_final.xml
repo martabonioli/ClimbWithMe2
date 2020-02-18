@@ -5,6 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.proponi.ProponiFinal">
+
+    <ImageButton
+        android:id="@+id/returnc"
+        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+        android:layout_width="69dp"
+        android:layout_height="68dp"
+        android:rotationY="180.0"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
@@ -30,10 +46,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintHorizontal_bias="0.159"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.194" />
+        app:layout_constraintVertical_bias="0.192" />
 
     <TextView
         android:id="@+id/part"
@@ -42,7 +58,7 @@
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.754"
+        app:layout_constraintHorizontal_bias="0.795"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.287" />
@@ -54,10 +70,10 @@
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.754"
+        app:layout_constraintHorizontal_bias="0.795"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintVertical_bias="0.404" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -69,23 +85,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.321"
-        app:srcCompat="@mipmap/luogo1" />
+        app:srcCompat="@mipmap/luogo" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="183dp"
+        android:layout_height="66dp"
         android:text="PUBBLICA USCITA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.614"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.947" />
+        app:layout_constraintVertical_bias="0.945" />
 
     <LinearLayout
-        android:layout_width="442dp"
-        android:layout_height="190dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="340dp"
+        android:layout_height="163dp"
         android:layout_marginStart="46dp"
         android:layout_marginEnd="75dp"
         android:orientation="vertical"
@@ -94,7 +111,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.639">
+        app:layout_constraintVertical_bias="0.707">
 
         <TextView
             android:id="@+id/textView15"
@@ -106,21 +123,28 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            android:layout_height="8dp" />
 
-        <TextView
-            android:id="@+id/textattrezzatura"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textattrezzatura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="36dp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="164dp"
+            android:layout_height="43dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -129,11 +153,24 @@
                 android:layout_height="36dp"
                 app:srcCompat="@mipmap/car" />
 
-            <TextView
-                android:id="@+id/mezzo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp" />
+
+                <TextView
+                    android:id="@+id/mezzo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:text="TextView"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

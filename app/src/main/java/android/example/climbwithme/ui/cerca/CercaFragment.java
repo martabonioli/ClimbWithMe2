@@ -6,6 +6,7 @@ import android.example.climbwithme.InserimentoDati;
 import android.example.climbwithme.InserimentoDati2;
 import android.example.climbwithme.MainActivity;
 import android.example.climbwithme.MyModel;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,6 +85,7 @@ public class CercaFragment extends Fragment implements DatePickerDialog.OnDateSe
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
         TextView textView = (TextView) root.findViewById(R.id.textView);
+        textView.setTextColor(Color.parseColor("#FF7514"));
         textView.setText(currentDateString);
         data= ""+ year +"-"+correctdata((month+1))+"-"+correctdata(dayOfMonth);
         MyModel.getInstance().cercaUscita.setDataUscita(data);

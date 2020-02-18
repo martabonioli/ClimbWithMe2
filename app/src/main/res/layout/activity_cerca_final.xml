@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.cerca.CercaFinal">
 
+    <ImageButton
+        android:id="@+id/returnc"
+        android:layout_width="69dp"
+        android:layout_height="68dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.975"
+        app:srcCompat="@drawable/ic_chevron_right_black_24dp"/>
+
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
@@ -47,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.754"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.287" />
+        app:layout_constraintVertical_bias="0.29" />
 
     <TextView
         android:id="@+id/arr"
@@ -59,7 +71,7 @@
         app:layout_constraintHorizontal_bias="0.754"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintVertical_bias="0.396" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -71,7 +83,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.321"
-        app:srcCompat="@mipmap/luogo1" />
+        app:srcCompat="@mipmap/luogo" />
 
     <Button
         android:id="@+id/button3"

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.example.climbwithme.R;
 import android.example.climbwithme.ui.cerca.CercaFinal;
+import android.example.climbwithme.ui.cerca.LuogoPartenza;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +44,8 @@ public class Attributi extends AppCompatActivity implements View.OnClickListener
         assicuratore = findViewById(R.id.assicuratore);
         ImageButton conferma = findViewById(R.id.conferma2);
         conferma.setOnClickListener(this);
+        ImageButton indietro = findViewById(R.id.returnc);
+        indietro.setOnClickListener(this);
 
     }
 
@@ -50,40 +53,49 @@ public class Attributi extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        EditText addtipoArrampicata=  findViewById(R.id.tipoArrampicata);
-        EditText addmezzoTrasporto =findViewById(R.id.mezzoTrasporto);
-        tipoArr = addtipoArrampicata.getText().toString();
-        mezzoTrasp = addmezzoTrasporto.getText().toString();
+        switch (v.getId()) {
+            case R.id.conferma2:
+                EditText addtipoArrampicata = findViewById(R.id.tipoArrampicata);
+                EditText addmezzoTrasporto = findViewById(R.id.mezzoTrasporto);
+                tipoArr = addtipoArrampicata.getText().toString();
+                mezzoTrasp = addmezzoTrasporto.getText().toString();
 
-        if (tipoArr.isEmpty()){
-            Toast.makeText(this, "Inserisci il tipo di arrampicata", Toast.LENGTH_SHORT).show();
-        }else {
-            if (mezzoTrasp.isEmpty()) {
-                Toast.makeText(this, "Inserisci il mezzo di Trasporto", Toast.LENGTH_SHORT).show();
-            }else {
+                if (tipoArr.isEmpty()) {
+                    Toast.makeText(this, "Inserisci il tipo di arrampicata", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (mezzoTrasp.isEmpty()) {
+                        Toast.makeText(this, "Inserisci il mezzo di Trasporto", Toast.LENGTH_SHORT).show();
+                    } else {
 
-                if (corda.isChecked())
-                    attrezzatura = attrezzatura + "corda ";
-                if (rinvii.isChecked())
-                    attrezzatura = attrezzatura + "rinvii ";
-                if (imbrago.isChecked())
-                    attrezzatura = attrezzatura + "imbrago ";
-                if (assicuratore.isChecked())
-                    attrezzatura = attrezzatura + "assicuratore ";
+                        if (corda.isChecked())
+                            attrezzatura = attrezzatura + "corda   ";
+                        if (rinvii.isChecked())
+                            attrezzatura = attrezzatura + "rinvii  ";
+                        if (imbrago.isChecked())
+                            attrezzatura = attrezzatura + "imbrago   ";
+                        if (assicuratore.isChecked())
+                            attrezzatura = attrezzatura + "assicuratore";
 
-                Intent intent = new Intent(getApplicationContext(), ProponiFinal.class);
-                intent.putExtra("latitudinepartenza", latPartenza);
-                intent.putExtra("longitudinepartenza", lonPartenza);
-                intent.putExtra("luogopartenza", partenza);
-                intent.putExtra("latitudinearrivo", latArrivo);
-                intent.putExtra("longitudinearrivo", lonArrivo);
-                intent.putExtra("luogoarrivo", arrivo);
-                intent.putExtra("tipoarr", tipoArr);
-                intent.putExtra("mezzo", mezzoTrasp);
-                intent.putExtra("attrezz", attrezzatura);
-                Log.d("attrezzatura",attrezzatura);
+                        Intent intent = new Intent(getApplicationContext(), ProponiFinal.class);
+                        intent.putExtra("latitudinepartenza", latPartenza);
+                        intent.putExtra("longitudinepartenza", lonPartenza);
+                        intent.putExtra("luogopartenza", partenza);
+                        intent.putExtra("latitudinearrivo", latArrivo);
+                        intent.putExtra("longitudinearrivo", lonArrivo);
+                        intent.putExtra("luogoarrivo", arrivo);
+                        intent.putExtra("tipoarr", tipoArr);
+                        intent.putExtra("mezzo", mezzoTrasp);
+                        intent.putExtra("attrezz", attrezzatura);
+                        Log.d("attrezzatura", attrezzatura);
+                        startActivity(intent);
+                    }
+
+                }
+                break;
+            case R.id.returnc:
+                Intent intent = new Intent(getApplicationContext(), LuogoArrivoProponi.class);
                 startActivity(intent);
-            }
+                break;
 
         }
 

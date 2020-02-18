@@ -60,20 +60,30 @@ public class CercaFinal extends AppCompatActivity implements View.OnClickListene
         downloadBacheca();
         Button conferma = findViewById(R.id.button3);
         conferma.setOnClickListener(this);
+        ImageButton indietro = findViewById(R.id.returnc);
+        indietro.setOnClickListener(this);
 
     }
     @Override
     public void onClick(View v) {
-        if ( MyModel.getInstance().getUscite().isEmpty()) {
-            Toast.makeText(this, "Non ci sono uscite nella data inserita", Toast.LENGTH_SHORT).show();
-        }else{
-            Fragment newFragment = new VisualizzaUscite();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            // transaction.remove(getSupportFragmentManager().findFragmentById(R.id.))
-            transaction.replace(R.id.cerca_final, newFragment, "visualizzaUscite");
-            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-            transaction.commit();
-            Log.d("clicvisualizza", "hai cliccato");
+        switch(v.getId()) {
+            case R.id.button3:
+                if (MyModel.getInstance().getUscite().isEmpty()) {
+                    Toast.makeText(this, "Non ci sono uscite nella data inserita", Toast.LENGTH_SHORT).show();
+                } else {
+                    Fragment newFragment = new VisualizzaUscite();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    // transaction.remove(getSupportFragmentManager().findFragmentById(R.id.))
+                    transaction.replace(R.id.cerca_final, newFragment, "visualizzaUsciteCerca");
+                    transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                    transaction.commit();
+                    Log.d("clicvisualizza", "hai cliccato");
+                }
+                break;
+            case R.id.returnc:
+                Intent intent = new Intent(getApplicationContext(), LuogoPartenza.class);
+                startActivity(intent);
+            break;
         }
 
     }

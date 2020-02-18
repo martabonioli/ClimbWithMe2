@@ -10,7 +10,7 @@
         android:id="@+id/textView3"
         android:layout_width="333dp"
         android:layout_height="197dp"
-        android:text="Dicci di più di te... ci aiuterà a trovare il tuo partner ideale"
+        android:text="Dicci di più di te... \n ci aiuterà a trovare il tuo partner ideale"
         android:textColor="#3F51B5"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -7,6 +7,19 @@
     tools:context=".ui.proponi.Attributi">
 
 
+    <ImageButton
+        android:id="@+id/returnc"
+        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+        android:layout_width="69dp"
+        android:layout_height="68dp"
+        android:rotationY="180.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.975" />
+
     <LinearLayout
         android:layout_width="351dp"
         android:layout_height="497dp"
@@ -37,8 +50,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Tipo di arrampicata "
-            android:textColor="#3F51B5" />
+            android:hint="Tipo di arrampicata "
+             />
 
         <Space
             android:layout_width="match_parent"
@@ -50,8 +63,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Mezzo di trasporto"
-            android:textColor="#3F51B5" />
+            android:hint="Mezzo di trasporto"
+            />
 
         <Space
             android:layout_width="match_parent"
@@ -61,8 +74,9 @@
             android:id="@+id/textView17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Attrezzatura"
-            android:textColor="#3F51B5" />
+            android:text=" Attrezzatura"
+            android:textColor="#3F51B5"
+            android:textSize="25sp" />
 
         <CheckBox
             android:id="@+id/corda"

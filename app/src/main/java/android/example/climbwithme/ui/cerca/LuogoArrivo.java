@@ -2,6 +2,8 @@ package android.example.climbwithme.ui.cerca;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -63,6 +65,8 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
 
         ImageButton conferma = findViewById(R.id.conferma2);
         conferma.setOnClickListener(this);
+        ImageButton indietro = findViewById(R.id.returnc);
+        indietro.setOnClickListener(this);
 
         latPartenza = getIntent().getExtras().getDouble("latitudinepartenza");
         lonPartenza = getIntent().getExtras().getDouble("longitudinepartenza");
@@ -72,23 +76,30 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
     }
     @Override
     public void onClick(View v) {
-        if (latitudine != 0) {
-
-            Intent intent = new Intent(getApplicationContext(), CercaFinal.class);
-            intent.putExtra("latitudinepartenza", latPartenza);
-            intent.putExtra("longitudinepartenza", lonPartenza);
-            intent.putExtra("luogopartenza", luogoPartenza);
-            intent.putExtra("latitudinearrivo", latitudine);
-            intent.putExtra("longitudinearrivo",longitudine);
-            intent.putExtra("luogoarrivo", posArrivo);
-            Log.d ("latitudineArrivo", String.valueOf(latitudine));
-            Log.d ("longitudineArrivo", String.valueOf(longitudine));
-            //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(latitudine);
-            //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(longitudine);
+        switch(v.getId()) {
+        case R.id.conferma2:
+            if (latitudine != 0) {
+                Intent intent = new Intent(getApplicationContext(), CercaFinal.class);
+                intent.putExtra("latitudinepartenza", latPartenza);
+                intent.putExtra("longitudinepartenza", lonPartenza);
+                intent.putExtra("luogopartenza", luogoPartenza);
+                intent.putExtra("latitudinearrivo", latitudine);
+                intent.putExtra("longitudinearrivo",longitudine);
+                intent.putExtra("luogoarrivo", posArrivo);
+                Log.d ("latitudineArrivo", String.valueOf(latitudine));
+                Log.d ("longitudineArrivo", String.valueOf(longitudine));
+                //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(latitudine);
+                //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(longitudine);
+                startActivity(intent);
+            }else{
+                Toast.makeText(getApplicationContext(),"Inserisci una posizione!",Toast.LENGTH_SHORT).show();
+            }
+        break;
+        case R.id.returnc:
+            Intent intent = new Intent(getApplicationContext(), LuogoPartenza.class);
             startActivity(intent);
-        }else{
-            Toast.makeText(getApplicationContext(),"Inserisci una posizione!",Toast.LENGTH_SHORT).show();
-        }
+        break;
+    }
 
     }
 

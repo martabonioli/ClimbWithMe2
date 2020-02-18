@@ -9,6 +9,7 @@ import android.example.climbwithme.MyModel;
 import android.example.climbwithme.R;
 import android.example.climbwithme.ui.cerca.CercaFinal;
 import android.example.climbwithme.ui.cerca.LuogoArrivo;
+import android.example.climbwithme.ui.cerca.LuogoPartenza;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -65,6 +66,8 @@ public class LuogoArrivoProponi extends AppCompatActivity implements OnMapReadyC
 
         ImageButton conferma = findViewById(R.id.conferma2);
         conferma.setOnClickListener(this);
+        ImageButton indietro = findViewById(R.id.returnc);
+        indietro.setOnClickListener(this);
 
         latPartenza = getIntent().getExtras().getDouble("latitudinepartenza");
         lonPartenza = getIntent().getExtras().getDouble("longitudinepartenza");
@@ -73,22 +76,29 @@ public class LuogoArrivoProponi extends AppCompatActivity implements OnMapReadyC
     }
     @Override
     public void onClick(View v) {
-        if (latitudine != 0) {
+        switch(v.getId()) {
+            case R.id.conferma2:
+                if (latitudine != 0) {
 
-            Intent intent = new Intent(getApplicationContext(), Attributi.class);
-            intent.putExtra("latitudinepartenza", latPartenza);
-            intent.putExtra("longitudinepartenza", latPartenza);
-            intent.putExtra("luogopartenza", luogoPartenza);
-            intent.putExtra("latitudinearrivo", latitudine);
-            intent.putExtra("longitudinearrivo",longitudine);
-            intent.putExtra("luogoarrivo", posArrivo);
-            //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(latitudine);
-            //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(longitudine);
-            startActivity(intent);
-        }else{
-            Toast.makeText(getApplicationContext(),"Inserisci una posizione!",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), Attributi.class);
+                    intent.putExtra("latitudinepartenza", latPartenza);
+                    intent.putExtra("longitudinepartenza", latPartenza);
+                    intent.putExtra("luogopartenza", luogoPartenza);
+                    intent.putExtra("latitudinearrivo", latitudine);
+                    intent.putExtra("longitudinearrivo", longitudine);
+                    intent.putExtra("luogoarrivo", posArrivo);
+                    //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(latitudine);
+                    //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(longitudine);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Inserisci una posizione!", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.returnc:
+                Intent intent = new Intent(getApplicationContext(), LuogoPartenzaProponi.class);
+                startActivity(intent);
+                break;
         }
-
     }
 
     @Override

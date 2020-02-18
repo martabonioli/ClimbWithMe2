@@ -6,6 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.proponi.LuogoArrivoProponi">
+
+    <ImageButton
+        android:id="@+id/returnc"
+        android:layout_width="69dp"
+        android:layout_height="68dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.975"
+        android:rotationY="180.0"
+        mapbox:srcCompat="@drawable/ic_chevron_right_black_24dp" />
+
     <TextView
         android:id="@+id/textView9"
         android:layout_width="310dp"

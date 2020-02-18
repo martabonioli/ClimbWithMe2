@@ -1,44 +1,23 @@
-package android.example.climbwithme.ui.profile;
+package android.example.climbwithme.ui.cerca;
 
 
 import android.content.SharedPreferences;
 import android.example.climbwithme.MyModel;
-import android.example.climbwithme.Uscita;
+import android.example.climbwithme.R;
 import android.example.climbwithme.ui.bacheca.AdapterUscita;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import android.example.climbwithme.R;
 import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
-import java.util.List;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
-public class VisualizzaUscite extends Fragment {
+public class VisualizzaUsciteCerca extends Fragment {
     SharedPreferences settings;
     RecyclerView list;
     private AdapterUscita adapter;
@@ -60,7 +39,7 @@ public class VisualizzaUscite extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_visualizza_uscite, container, false);
+        View view = inflater.inflate(R.layout.fragment_visualizza_uscite_cerca, container, false);
         ImageButton chiudi= (ImageButton) view.findViewById(R.id.imageButton4);
         chiudi.setOnClickListener(new View.OnClickListener()
         {

@@ -2,15 +2,21 @@ package android.example.climbwithme.ui.cerca;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.ui.NavigationUI;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.example.climbwithme.MyModel;
 import android.example.climbwithme.R;
+import android.example.climbwithme.ui.profile.VisualizzaUscite;
+import android.example.climbwithme.ui.proponi.ProponiFragment;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -63,22 +69,25 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
         ImageButton conferma = findViewById(R.id.confermap);
         conferma.setOnClickListener(this);
 
+
     }
     @Override
     public void onClick(View v) {
-        if (latitudine != 0) {
-            Log.d ("latitudinePartenza", String.valueOf(latitudine));
-            Log.d ("longitudinePartenza", String.valueOf(longitudine));
-            Intent intent = new Intent(getApplicationContext(), LuogoArrivo.class);
-            intent.putExtra("latitudinepartenza", latitudine);
-            intent.putExtra("longitudinepartenza", longitudine);
-            intent.putExtra("luogopartenza",posPartenza);
-            //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(latitudine);
-            //MyModel.getInstance().cercaUscita.setLonLuogoArrivo(longitudine);
-            startActivity(intent);
-        }else{
-            Toast.makeText(getApplicationContext(),"Inserisci una posizione!",Toast.LENGTH_SHORT).show();
-        }
+                if (latitudine != 0) {
+                    Log.d("latitudinePartenza", String.valueOf(latitudine));
+                    Log.d("longitudinePartenza", String.valueOf(longitudine));
+                    Intent intent = new Intent(getApplicationContext(), LuogoArrivo.class);
+                    intent.putExtra("latitudinepartenza", latitudine);
+                    intent.putExtra("longitudinepartenza", longitudine);
+                    intent.putExtra("luogopartenza", posPartenza);
+                    //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(latitudine);
+                    //MyModel.getInstance().cercaUscita.setLonLuogoArrivo(longitudine);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Inserisci una posizione!", Toast.LENGTH_SHORT).show();
+                }
+
+
 
     }
 

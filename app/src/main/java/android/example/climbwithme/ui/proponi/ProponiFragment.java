@@ -7,6 +7,7 @@ import android.example.climbwithme.InserimentoDati2;
 import android.example.climbwithme.MainActivity;
 import android.example.climbwithme.MyModel;
 import android.example.climbwithme.ui.cerca.DatePickerFragment;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +30,7 @@ import android.example.climbwithme.R;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class ProponiFragment extends Fragment implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
+public class ProponiFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
     public String data="";
     public View root;
 
@@ -46,10 +47,10 @@ public class ProponiFragment extends Fragment implements DatePickerDialog.OnDate
                 datePicker.show(getFragmentManager(), "date picker");
 
                 //inserisci data nel modell
-                /*if (!data.equals("")){
+                if (!data.equals("")){
                     MyModel.cercaUscita.setDataUscita(data);
-                    Log.d("dataCercaUscita", MyModel.cercaUscita.getDataUscita());
-                }*/
+                    Log.d("dataCercaUscita", MyModel.getInstance().cercaUscita.getDataUscita());
+                }
 
 
             }
@@ -59,22 +60,7 @@ public class ProponiFragment extends Fragment implements DatePickerDialog.OnDate
     }
 
 
-    @Override
-    public void onClick(View v) {
-        Log.d("frag1", "Sono nell onclick");
-        switch (v.getId()) {
-            case R.id.button :
-                DialogFragment datePicker = new DatePickerFragment(android.example.climbwithme.ui.proponi.ProponiFragment.this);
-                datePicker.show(getFragmentManager() , "date picker");
-                Log.d("frag1", "Fatta la transaction");
-                if (!data.equals("")){
-                    MyModel.getInstance().cercaUscita.setDataUscita(data);
-                    Log.d("dataCercaUscita", MyModel.getInstance().cercaUscita.getDataUscita());
-                }
 
-                break;
-        }
-    }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -86,6 +72,7 @@ public class ProponiFragment extends Fragment implements DatePickerDialog.OnDate
         String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
         Log.d("calendar",c.getTime().toString());
         TextView textView = (TextView) root.findViewById(R.id.textView);
+        textView.setTextColor(Color.parseColor("#FF7514"));
         textView.setText(currentDateString);
 
         data= ""+ year +"-"+month+"-"+dayOfMonth;

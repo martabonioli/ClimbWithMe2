@@ -53,7 +53,7 @@
     <TextView
         android:id="@+id/addtelefono"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_marginStart="188dp"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="187dp"
@@ -150,13 +150,18 @@
         android:id="@+id/selectphoto"
         android:layout_width="36dp"
         android:layout_height="33dp"
+        android:layout_marginStart="117dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#FF7514"
+        android:clickable="true"
+        android:contextClickable="true"
         android:onClick="onClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/foto"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.147"
+        app:layout_constraintVertical_bias="0.035"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <TextView
@@ -166,7 +171,7 @@
         android:clickable="true"
         android:onClick="onClickVisualizzaUscite"
         android:text="Visualizza le uscite che hai proposto"
-        android:textColor="#007FFF"
+        android:textColor="#FF7514"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.215"
@@ -180,13 +185,16 @@
         android:layout_height="38dp"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_weight="1"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FF7514"
+        android:backgroundTintMode="src_over"
         android:onClick="showNumberPicker"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.796"
+        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.365"
+        app:layout_constraintVertical_bias="0.34"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
 

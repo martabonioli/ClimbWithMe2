@@ -4,14 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
+import android.example.climbwithme.MainActivity;
 import android.example.climbwithme.MyModel;
 import android.example.climbwithme.R;
 import android.example.climbwithme.Uscita;
+import android.example.climbwithme.ui.cerca.LuogoPartenza;
 import android.example.climbwithme.ui.profile.VisualizzaUscite;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class ProponiFinal extends AppCompatActivity implements View.OnClickListener {
 
@@ -67,24 +72,29 @@ public class ProponiFinal extends AppCompatActivity implements View.OnClickListe
 
         Button conferma = findViewById(R.id.button3);
         conferma.setOnClickListener(this);
+        ImageButton indietro = findViewById(R.id.returnc);
+        indietro.setOnClickListener(this);
 
     }
     @Override
     public void onClick(View v) {
-        pubblica();
-        Toast.makeText(this, "Uscita Pubblicata", Toast.LENGTH_SHORT).show();
-        Fragment newFragment = new VisualizzaUscite();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        // transaction.remove(getSupportFragmentManager().findFragmentById(R.id.))
-        transaction.replace(R.id.nav_host_fragment, newFragment, "visualizzaUscite");
-        transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-        transaction.commit();
-        Log.d("clicvisualizza", "hai cliccato");
+        switch(v.getId()) {
+            case R.id.button3:
+                pubblica();
+                Toast.makeText(this, "Uscita Pubblicata", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            break;
+            case R.id.returnc:
+                Intent i = new Intent(getApplicationContext(), Attributi.class);
+                startActivity(i);
+                break;
+        }
 
     }
     private void pubblica() {
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
-        String url = "https://climbwithme.herokuapp.com/iserisciUscita.php";
+        String url = "https://climbwithme.herokuapp.com/iserisciuscita.php";
         JSONObject datiDaPassare = new JSONObject();
         try {
             datiDaPassare.put("datauscita",MyModel.getInstance().cercaUscita.getDataUscita());
@@ -108,7 +118,7 @@ public class ProponiFinal extends AppCompatActivity implements View.OnClickListe
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("VolleyBacheca", "Correct: " + response.toString());
+                        Log.d("VolleyPubblica", "Correct: " + response.toString());
                         final List<Uscita> uscite = MyModel.deserialize(response);
                         new Thread() {
                             @Override
