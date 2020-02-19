@@ -10,7 +10,6 @@
         android:id="@+id/returnc"
         android:layout_width="69dp"
         android:layout_height="68dp"
-        android:layout_marginStart="46dp"
         android:layout_marginTop="62dp"
         android:layout_marginEnd="19dp"
         android:layout_marginBottom="36dp"
@@ -18,8 +17,10 @@
         android:rotationY="180.0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@mipmap/avanti" />
 
     <TextView
@@ -95,10 +96,10 @@
         android:text="PUBBLICA USCITA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.614"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.945" />
+        app:layout_constraintVertical_bias="0.891" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -112,14 +113,14 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707">
+        app:layout_constraintVertical_bias="0.626">
 
         <TextView
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ATTREZZATURA:"
-            android:textColor="#3F51B5"
+            android:textColor="#FF7514"
             android:textSize="20sp" />
 
         <Space
@@ -150,8 +151,8 @@
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="48dp"
-                android:layout_height="36dp"
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
                 app:srcCompat="@mipmap/car" />
 
             <LinearLayout
@@ -161,7 +162,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="16dp" />
+                    android:layout_height="10dp" />
 
                 <TextView
                     android:id="@+id/mezzo"
