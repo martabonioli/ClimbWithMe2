@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
+import android.example.climbwithme.MainActivity;
 import android.example.climbwithme.MyModel;
 import android.example.climbwithme.R;
 import android.example.climbwithme.Uscita;
@@ -71,6 +72,13 @@ public class CercaFinal extends AppCompatActivity implements View.OnClickListene
             case R.id.button3:
                 if (MyModel.getInstance().getUscite().isEmpty()) {
                     Toast.makeText(this, "Non ci sono uscite nella data inserita", Toast.LENGTH_SHORT).show();
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }, 3000);
                 } else {
                     conferma.setVisibility(View.INVISIBLE);
                     Fragment newFragment = new VisualizzaUsciteCerca();

@@ -6,7 +6,10 @@ import android.example.climbwithme.R;
 import android.example.climbwithme.Uscita;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Locale;
 
 public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -43,8 +48,9 @@ public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnCli
         fotoUtente.setImageBitmap(convert(uscita.getFoto()));
         nomeUtente.setText (uscita.getNome());
         dataUscita.setText(uscita.getDataUscita());
-        partenza.setText(uscita.getLatLuogoPartenza().toString());
-        arrivo.setText(uscita.getLatLuogoArrivo().toString());
+        partenza.setText(getCompleteAddressString(uscita.getLatLuogoPartenza(),uscita.getLonLuogoPartenza()));
+        arrivo.setText(getCompleteAddressString(uscita.getLatLuogoArrivo(),uscita.getLonLuogoArrivo()));
+
     }
 
     private Bitmap convert(String foto) {
@@ -59,5 +65,28 @@ public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnCli
         Intent openDetail = new Intent(parentActivity, DettagliUscita.class);
         openDetail.putExtra(DettagliUscita.USCITA_EXTRA,uscita);
         parentActivity.startActivity(openDetail);
+    }
+    private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
+        String strAdd = "";
+        Geocoder geocoder = new Geocoder(parentActivity, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+            if (addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                StringBuilder strReturnedAddress = new StringBuilder("");
+
+                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
+                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+                }
+                strAdd = strReturnedAddress.toString();
+                Log.w("My Current loction address", strReturnedAddress.toString());
+            } else {
+                Log.w("My Current loction address", "No Address returned!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.w("My Current loction address", "Canont get Address!");
+        }
+        return strAdd;
     }
 }

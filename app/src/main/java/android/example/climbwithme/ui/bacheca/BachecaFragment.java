@@ -52,9 +52,6 @@ import java.util.List;
 import static androidx.navigation.ui.NavigationUI.onNavDestinationSelected;
 
 public class BachecaFragment extends Fragment /*implements View.OnClickListener*/ {
-
-
-
     public ImageButton res1, res2;
     public NavController navController;
     public AppBarConfiguration appBarConfiguration;

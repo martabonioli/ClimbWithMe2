@@ -1,16 +1,31 @@
 package android.example.climbwithme.ui.bacheca;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
+import android.example.climbwithme.MainActivity;
 import android.example.climbwithme.MyModel;
 import android.example.climbwithme.R;
 import android.example.climbwithme.Uscita;
 import android.example.climbwithme.Utente;
+import android.example.climbwithme.ui.cerca.LuogoPartenza;
+import android.example.climbwithme.ui.cerca.VisualizzaUsciteCerca;
+import android.example.climbwithme.ui.profile.VisualizzaUscite;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,23 +34,32 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DettagliUscita extends AppCompatActivity {
+import java.util.List;
+import java.util.Locale;
+
+public class DettagliUscita extends AppCompatActivity implements View.OnClickListener {
 
     public static final String USCITA_EXTRA="uscita";
     String data, codicesessione;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dettagli_uscita);
 
+        ImageButton indietro = findViewById(R.id.returnc);
+        indietro.setOnClickListener(this);
+
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -141,6 +165,11 @@ public class DettagliUscita extends AppCompatActivity {
             Log.d("usciteJSON", String.valueOf(usciteJSON));
             JSONObject uscitaJSON = usciteJSON.getJSONObject(0);
             Uscita thisUscita = new Uscita(uscitaJSON);
+
+            TextView partenza= findViewById(R.id.part);
+            partenza.setText(getCompleteAddressString(thisUscita.getLatLuogoPartenza(),thisUscita.getLonLuogoPartenza()));
+            TextView arrivo = findViewById(R.id.arr);
+            arrivo.setText(getCompleteAddressString(thisUscita.getLatLuogoArrivo(),thisUscita.getLonLuogoArrivo()));
             TextView attrezzatura= findViewById(R.id.textattrezzatura);
             attrezzatura.setText(thisUscita.getAttrezzatura()+" ");
             TextView mezzo=findViewById(R.id.mezzo);
@@ -202,6 +231,37 @@ public class DettagliUscita extends AppCompatActivity {
         if (s==36){ livello="9c+"; }
         return livello;
     }
+    private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
+        String strAdd = "";
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+            if (addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                StringBuilder strReturnedAddress = new StringBuilder("");
+
+                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
+                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+                }
+                strAdd = strReturnedAddress.toString();
+                Log.w("My Current loction address", strReturnedAddress.toString());
+            } else {
+                Log.w("My Current loction address", "No Address returned!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.w("My Current loction address", "Canont get Address!");
+        }
+        return strAdd;
+    }
 
 
+    @Override
+    public void onClick(View v) {
+        Fragment newFragment = new VisualizzaUsciteCerca();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.dettagliuscita, newFragment, "visualizzaUsciteCerca");
+        transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+        transaction.commit();
+    }
 }

@@ -47,7 +47,6 @@ import static androidx.navigation.ui.NavigationUI.navigateUp;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
-
     private FusedLocationProviderClient fusedLocationClient;
     public double latultimapos;
     public double lonultimapos;
@@ -222,16 +221,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-    /*public void onClickDatePick(View v ){
-        View view = inflater.inflate(R.layout.fragment_cerca, null);
-        FragmentManager fm = getSupportFragmentManager();
-
-//if you added fragment via layout xml
-        CercaFragment fragment = (CercaFragment) fm.findFragmentById(R.id.navigation_cerca);
-        fragment.onClickDP();
-    }*/
 
 }
 
