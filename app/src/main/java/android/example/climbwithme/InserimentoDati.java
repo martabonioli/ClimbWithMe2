@@ -35,6 +35,13 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
         if (MyModel.getInstance().utente.getMinLiv() != 0){
             TextView newTitle = (TextView) findViewById(R.id.textView2);
             newTitle.setText("MODIFICA I TUOI DATI PERSONALI ");
+            EditText addNome = findViewById(R.id.addnome);
+            addNome.setText(MyModel.utente.getNome());
+            EditText addCognome = findViewById(R.id.addcognome);
+            addCognome.setText(MyModel.utente.getCognome());
+            EditText addTelefono = findViewById(R.id.addtelefono);
+            addTelefono.setText(MyModel.utente.getNumeroTelefono());
+
 
         }
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,49 @@ public class Attributi extends AppCompatActivity implements View.OnClickListener
         ImageButton indietro = findViewById(R.id.returnc);
         indietro.setOnClickListener(this);
 
+        RadioButton checkfalesia = (RadioButton) findViewById(R.id.falesia);
+        checkfalesia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((RadioButton) v).isChecked();
+                // Check which radiobutton was pressed
+                if (checked){
+                    tipoArr="Falesia";
+                }
+                else{
+                    // Do your coding
+                }
+            }
+        });
+        RadioButton checkboulder = (RadioButton) findViewById(R.id.boulder);
+        checkboulder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((RadioButton) v).isChecked();
+                // Check which radiobutton was pressed
+                if (checked){
+                    tipoArr="Boulder";
+                }
+                else{
+                    // Do your coding
+                }
+            }
+        });
+        RadioButton checkvielunghe = (RadioButton) findViewById(R.id.vielunghe);
+        checkvielunghe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((RadioButton) v).isChecked();
+                // Check which radiobutton was pressed
+                if (checked){
+                    tipoArr="Vie lunghe";
+                }
+                else{
+                    // Do your coding
+                }
+            }
+        });
+
     }
 
 
@@ -55,13 +99,11 @@ public class Attributi extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.conferma2:
-                EditText addtipoArrampicata = findViewById(R.id.tipoArrampicata);
                 EditText addmezzoTrasporto = findViewById(R.id.mezzoTrasporto);
-                tipoArr = addtipoArrampicata.getText().toString();
                 mezzoTrasp = addmezzoTrasporto.getText().toString();
 
                 if (tipoArr.isEmpty()) {
-                    Toast.makeText(this, "Inserisci il tipo di arrampicata", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "scegli il tipo di arrampicata", Toast.LENGTH_SHORT).show();
                 } else {
                     if (mezzoTrasp.isEmpty()) {
                         Toast.makeText(this, "Inserisci il mezzo di Trasporto", Toast.LENGTH_SHORT).show();

@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,8 +65,9 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+        mapView.setVisibility(View.INVISIBLE);
 
-        ImageButton conferma = findViewById(R.id.conferma2);
+        ImageButton conferma = findViewById(R.id.confermap);
         conferma.setOnClickListener(this);
         ImageButton indietro = findViewById(R.id.returnc);
         indietro.setOnClickListener(this);
@@ -74,16 +76,47 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
         lonPartenza = getIntent().getExtras().getDouble("longitudinepartenza");
         luogoPartenza = getIntent().getExtras().getString("luogopartenza");
         Log.d("LongitudinePartenza2", lonPartenza.toString());
-
         luogo=findViewById(R.id.luogo);
 
+        RadioButton indifferente = (RadioButton) findViewById(R.id.indifferente);
+        indifferente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((RadioButton) v).isChecked();
+                // Check which radiobutton was pressed
+                if (checked){
+                    // Do your coding
+                    mapView.setVisibility(View.INVISIBLE);
+                    luogo.setVisibility(View.INVISIBLE);
+                    latitudine=0;
+                    longitudine=0;
+                    posArrivo="";
+                }
+                else{
+                    // Do your coding
+                }
+            }
+        });
+        RadioButton cerca = (RadioButton) findViewById(R.id.cerca);
+        cerca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((RadioButton) v).isChecked();
+                // Check which radiobutton was pressed
+                if (checked){
+                    mapView.setVisibility(View.VISIBLE);
+                }
+                else{
+                    // Do your coding
+                }
+            }
+        });
 
     }
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
-        case R.id.conferma2:
-            if (latitudine != 0) {
+        case R.id.confermap:
                 Intent intent = new Intent(getApplicationContext(), CercaFinal.class);
                 intent.putExtra("latitudinepartenza", latPartenza);
                 intent.putExtra("longitudinepartenza", lonPartenza);
@@ -96,13 +129,10 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
                 //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(latitudine);
                 //MyModel.getInstance().cercaUscita.setLatLuogoArrivo(longitudine);
                 startActivity(intent);
-            }else{
-                Toast.makeText(getApplicationContext(),"Inserisci una posizione!",Toast.LENGTH_SHORT).show();
-            }
         break;
         case R.id.returnc:
-            Intent intent = new Intent(getApplicationContext(), LuogoPartenza.class);
-            startActivity(intent);
+            Intent i = new Intent(getApplicationContext(), LuogoPartenza.class);
+            startActivity(i);
         break;
     }
 

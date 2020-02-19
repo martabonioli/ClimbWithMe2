@@ -198,13 +198,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickAvantiProponi1 (View v){
-        Intent intent = new Intent(getApplicationContext(), LuogoPartenzaProponi.class);
-        startActivity(intent);
+       if (!MyModel.getInstance().cercaUscita.getDataUscita().equals("")) {
+           Intent intent = new Intent(getApplicationContext(), LuogoPartenzaProponi.class);
+           startActivity(intent);
+       }else{
+           Toast.makeText(getApplicationContext(),"Inserisci la data",Toast.LENGTH_SHORT).show();
+       }
     }
 
     public void onClickAvantiCerca (View v){
-        Intent intent = new Intent(getApplicationContext(), LuogoPartenza.class);
-        startActivity(intent);
+        if (!MyModel.getInstance().cercaUscita.getDataUscita().equals("")) {
+            Intent intent = new Intent(getApplicationContext(), LuogoPartenza.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(getApplicationContext(),"Inserisci la data",Toast.LENGTH_SHORT).show();
+        }
     }
     public void onClickVisualizzaUscite(View v){
         if ( MyModel.getInstance().getUscite().isEmpty()) {

@@ -86,7 +86,7 @@ public class ProponiFinal extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             break;
             case R.id.returnc:
-                Intent i = new Intent(getApplicationContext(), Attributi.class);
+                Intent i = new Intent(getApplicationContext(), LuogoPartenzaProponi.class);
                 startActivity(i);
                 break;
         }

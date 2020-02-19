@@ -57,8 +57,16 @@ public class CercaFinal extends AppCompatActivity implements View.OnClickListene
         TextView part = findViewById(R.id.part);
         TextView arr = findViewById(R.id.arr);
         data.setText(MyModel.getInstance().cercaUscita.getDataUscita());
-        part.setText(partenza);
-        arr.setText(arrivo);
+        if (partenza.equals("")){
+            part.setText("indifferente");
+        }else{
+            part.setText(partenza);
+        }
+        if (arrivo.equals("")){
+            arr.setText("indifferente");
+        }else{
+            arr.setText(arrivo);
+        }
         downloadBacheca();
         conferma = findViewById(R.id.button3);
         conferma.setOnClickListener(this);
@@ -106,14 +114,19 @@ public class CercaFinal extends AppCompatActivity implements View.OnClickListene
             Log.d("CercaData", MyModel.getInstance().cercaUscita.getDataUscita());
             datiDaPassare.put("codiceSessione",MyModel.getInstance().getSessionId());
             Log.d("CercaCodiceSessione", MyModel.getInstance().getSessionId());
-            datiDaPassare.put("latluogopartenza", latPartenza);
-            Log.d("CercaLatPartenza", latPartenza.toString());
-            datiDaPassare.put("lonluogopartenza", lonPartenza);
-            Log.d("CercaLonPartenza", lonPartenza.toString());
-            datiDaPassare.put("latluogoarrivo", latArrivo);
-            Log.d("CercaLatArrivo", latArrivo.toString());
-            datiDaPassare.put("lonluogoarrivo", lonArrivo);
-            Log.d("CercaLonArrivo", lonArrivo.toString());
+            if (!partenza.equals("")) {
+                datiDaPassare.put("latluogopartenza", latPartenza);
+                Log.d("CercaLatPartenza", latPartenza.toString());
+                datiDaPassare.put("lonluogopartenza", lonPartenza);
+                Log.d("CercaLonPartenza", lonPartenza.toString());
+            }
+            if (!arrivo.equals("")){
+                datiDaPassare.put("latluogoarrivo", latArrivo);
+                Log.d("CercaLatArrivo", latArrivo.toString());
+                datiDaPassare.put("lonluogoarrivo", lonArrivo);
+                Log.d("CercaLonArrivo", lonArrivo.toString());
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -28,6 +28,7 @@ import android.example.climbwithme.R;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class CercaFragment extends Fragment implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
     public String data="";
@@ -42,6 +43,7 @@ public class CercaFragment extends Fragment implements DatePickerDialog.OnDateSe
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Locale.setDefault(Locale.ITALIAN);
                 DialogFragment datePicker = new DatePickerFragment(CercaFragment.this);
                 datePicker.show(getFragmentManager(), "date picker");
                 Log.d("data",data);

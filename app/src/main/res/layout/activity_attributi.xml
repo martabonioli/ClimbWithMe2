@@ -45,27 +45,36 @@
             android:layout_width="match_parent"
             android:layout_height="41dp" />
 
-        <EditText
-            android:id="@+id/tipoArrampicata"
+        <TextView
+            android:id="@+id/textView13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Tipo di arrampicata "
-             />
+            android:text=" Tipo di Arrampicata"
+            android:textColor="#3F51B5"
+            android:textSize="25sp" />
 
-        <Space
+        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="28dp" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/mezzoTrasporto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Mezzo di trasporto"
-            />
+            <RadioButton
+                android:id="@+id/falesia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Falesia" />
+
+            <RadioButton
+                android:id="@+id/boulder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Boulder" />
+
+            <RadioButton
+                android:id="@+id/vielunghe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vie lunghe" />
+        </RadioGroup>
 
         <Space
             android:layout_width="match_parent"
@@ -102,6 +111,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="assicuratore" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="28dp" />
+
+        <EditText
+            android:id="@+id/mezzoTrasporto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Mezzo di trasporto"
+            android:inputType="textPersonName" />
 
 
     </LinearLayout>

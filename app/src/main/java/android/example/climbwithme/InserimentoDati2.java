@@ -58,38 +58,14 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
             TextView newTitle = (TextView) findViewById(R.id.textView3);
             newTitle.setText("MODIFICA IL TUO LIVELLO ");
             addConfirm.setText("APPLICA MODIFICHE");
+            TextView addLivmin = (TextView) findViewById(R.id.tv);
+            addLivmin.setText(matchLivello1(MyModel.getInstance().utente.getMinLiv()));
+            TextView addLivmax = (TextView) findViewById(R.id.tv2);
+            addLivmax.setText(matchLivello1(MyModel.getInstance().utente.getMaxLiv()));
         }
 
     }
 
-
-    /*public void showNumberPicker(View view){
-        final TextView tv = (TextView) findViewById(R.id.tv);
-        NumberPickerDialog newFragment = new NumberPickerDialog();
-        newFragment.setValueChangeListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                //Display the newly selected value from picker
-                tv.setText(matchLivello1(picker.getValue()+1));
-            }
-
-        });
-        newFragment.show(getSupportFragmentManager(), "time picker");
-    }
-
-    public void showNumberPicker2(View view){
-        final TextView tv2 = (TextView) findViewById(R.id.tv);
-        NumberPickerDialog newFragment = new NumberPickerDialog();
-        newFragment.setValueChangeListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker numberPicker, int i, int i1){
-                //Display the newly selected value from picker
-                tv2.setText(matchLivello1(numberPicker.getValue()+1));
-            }
-
-        });
-        newFragment.show(getSupportFragmentManager(), "time picker");
-    }*/
 
 
     @Override
