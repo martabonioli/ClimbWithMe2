@@ -50,11 +50,16 @@ public class Uscita {
             this.lonLuogoArrivo = uscitaJSON.getDouble("lonluogoarrivo");
             this.lonLuogoPartenza = uscitaJSON.getDouble("lonluogopartenza");
             this.latLuogoPartenza = uscitaJSON.getDouble("latluogopartenza");
+            this.codiceSessione = uscitaJSON.getString("codicesessione");
+            this.attrezzatura = uscitaJSON.getString("attrezzatura");
+            this.mezzoTrasporto = uscitaJSON.getString("mezzotrasporto");
+            this.tipoArrampicata=uscitaJSON.getString("tipoarrampicata");
 
     } catch (JSONException e) {
             e.printStackTrace();
         }
     }
+
 
 
     public String getCodiceSessione() {
@@ -122,7 +127,7 @@ public class Uscita {
     }
 
     public  String getId() {
-        return "" + getDataUscita() + "" + getCodiceSessione();
+        return "" + getDataUscita() + " " + getCodiceSessione();
     }
 
 

@@ -51,7 +51,7 @@ public class VisualizzaUscite extends Fragment {
 
             RecyclerView recyclerView = getActivity().findViewById(R.id.text_bacheca);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            adapter = new AdapterUscita(getActivity(), MyModel.getInstance().getUscite());
+            adapter = new AdapterUscita(getActivity(), getActivity(), MyModel.getInstance().getUscite());
             recyclerView.setAdapter(adapter);
 
     }

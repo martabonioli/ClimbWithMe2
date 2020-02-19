@@ -18,12 +18,13 @@ public class AdapterUscita  extends RecyclerView.Adapter<SingolaUscita> {
 
     private LayoutInflater inflater;
     private ArrayList<Uscita> uscite;
+    private Activity parentActivity;
 
 
-    public AdapterUscita (Context context, ArrayList<Uscita> uscite) {
+    public AdapterUscita (Context context, Activity parentActivity,ArrayList<Uscita> uscite) {
         this.inflater = LayoutInflater.from(context);
         this.uscite = uscite;
-
+        this.parentActivity = parentActivity;
 
     }
 
@@ -31,7 +32,7 @@ public class AdapterUscita  extends RecyclerView.Adapter<SingolaUscita> {
     public SingolaUscita onCreateViewHolder(ViewGroup parent, int viewType) {
 
             View view = inflater.inflate(R.layout.singola_uscita, parent, false);
-            return new SingolaUscita(view);
+            return new SingolaUscita(view, parentActivity);
 
     }
 

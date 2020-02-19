@@ -1,6 +1,7 @@
 package android.example.climbwithme.ui.bacheca;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.example.climbwithme.R;
 import android.example.climbwithme.Uscita;
 import android.graphics.Bitmap;
@@ -22,12 +23,13 @@ public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnCli
     private TextView dataUscita;
     private TextView partenza;
     private TextView arrivo;
-
+    private Activity parentActivity;
     private String uscita;
 
 
-    public SingolaUscita(@NonNull View itemView) {
+    public SingolaUscita(@NonNull View itemView,  Activity parentActivity) {
         super(itemView);
+        this.parentActivity = parentActivity;
         fotoUtente = itemView.findViewById(R.id.fotoUtente);
         nomeUtente = itemView.findViewById(R.id.nomeUtente);
         dataUscita = itemView.findViewById(R.id.dataUscita);
@@ -54,6 +56,8 @@ public class SingolaUscita extends RecyclerView.ViewHolder implements View.OnCli
 
 
     public void onClick(View v) {
-
+        Intent openDetail = new Intent(parentActivity, DettagliUscita.class);
+        openDetail.putExtra(DettagliUscita.USCITA_EXTRA,uscita);
+        parentActivity.startActivity(openDetail);
     }
 }
