@@ -114,6 +114,9 @@ public class Main2Activity extends AppCompatActivity {
                        //prendi i dati e mettili nel model
                         MyModel.getInstance().insertUtente(response);
                         Log.d("InsertGetIstance", MyModel.getInstance().getUtente().toString());
+                        Log.d("InsertGetIstance", MyModel.getInstance().utente.getDataDiNascita());
+                        Log.d("InsertGetIstance", response.toString());
+
 
 
                     }

@@ -121,6 +121,7 @@ public class InserimentoDati2 extends AppCompatActivity implements View.OnClickL
                 JSONObject datiDaPassare = new JSONObject();
                 try {
                     datiDaPassare.put("datadinascita", MyModel.getInstance().utente.getDataDiNascita());
+                    Log.d("datadinascita", MyModel.getInstance().utente.getDataDiNascita());
                     datiDaPassare.put("codiceSessione", MyModel.getInstance().utente.getCodiceSessione());
                     Log.d("codicesess", MyModel.utente.getCodiceSessione());
                     datiDaPassare.put("nome", MyModel.getInstance().utente.getNome());

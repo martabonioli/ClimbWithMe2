@@ -66,11 +66,16 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
-
-                String date = day + "-" + month + "-" + year;
-                dataDB = year + "-" + month + "-" + day;
-                mDisplayDate.setText(date);
+                Log.d(TAG, "onDateSet: mm/dd/yyyy: " + month + "/" + day + "/" + year);
+                if (month<10) {
+                    String date = day + "-0" + month + "-" + year;
+                    dataDB = year + "-0" + month + "-" + day;
+                    mDisplayDate.setText(date);
+                } else {
+                    String date = day + "-" + month + "-" + year;
+                    dataDB = year + "-" + month + "-" + day;
+                    mDisplayDate.setText(date);
+                }
             }
         };
 
@@ -88,7 +93,7 @@ public class InserimentoDati extends AppCompatActivity implements View.OnClickLi
             //inserisco nel Model dati utente
             MyModel.getInstance().utente.setNome(nome);
             MyModel.getInstance().utente.setCognome(cognome);
-            MyModel.getInstance().utente.setDataDiNascita(dataNascita);
+            MyModel.getInstance().utente.setDataDiNascita(dataDB);
             MyModel.getInstance().utente.setNumeroTelefono(telefono);
 
             Intent intent = new Intent(getApplicationContext(), InserimentoDati2.class);

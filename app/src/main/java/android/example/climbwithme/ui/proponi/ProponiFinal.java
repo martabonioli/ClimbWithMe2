@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -30,6 +31,8 @@ import org.json.JSONObject;
 
 import java.util.List;
 import java.util.regex.Pattern;
+
+import okhttp3.ResponseBody;
 
 public class ProponiFinal extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,6 +49,7 @@ public class ProponiFinal extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_proponi_final);
         latPartenza = getIntent().getExtras().getDouble("latitudinepartenza");
+
         lonPartenza = getIntent().getExtras().getDouble("longitudinepartenza");
         latArrivo = getIntent().getExtras().getDouble("latitudinearrivo");
         lonArrivo = getIntent().getExtras().getDouble("longitudinearrivo");
@@ -98,33 +102,43 @@ public class ProponiFinal extends AppCompatActivity implements View.OnClickListe
         JSONObject datiDaPassare = new JSONObject();
         try {
             datiDaPassare.put("datauscita",MyModel.getInstance().cercaUscita.getDataUscita());
-            Log.d("datauscita", MyModel.getInstance().cercaUscita.getDataUscita());
+            Log.d("Pubblica data", MyModel.getInstance().cercaUscita.getDataUscita());
             datiDaPassare.put("codiceSessione",MyModel.getInstance().getSessionId());
+            Log.d("Pubblica codice sess ", MyModel.getInstance().getSessionId());
             datiDaPassare.put("latluogopartenza", latPartenza);
+            Log.d("Pubblica latPart", latPartenza.toString());
             datiDaPassare.put("lonluogopartenza", lonPartenza);
+            Log.d("Pubblica lonPart", lonPartenza.toString());
             datiDaPassare.put("latluogoarrivo", latArrivo);
+            Log.d("Pubblica latArr", latArrivo.toString());
             datiDaPassare.put("lonluogoarrivo", lonArrivo);
+            Log.d("Pubblica lonArr", lonArrivo.toString());
             datiDaPassare.put("tipoarrampicata", tipoArr);
+            Log.d("Pubblica tipo arra", tipoArr);
             datiDaPassare.put("mezzotrasporto", mezzo);
+            Log.d("Pubblica mezzo", mezzo);
             datiDaPassare.put("attrezzatura", attrezzatura);
+            Log.d("Pubblica attrezzaTURA", attrezzatura);
+            Log.d("Pubblica json", datiDaPassare.toString());
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        JsonObjectRequest request = new JsonObjectRequest(
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
                 url,
                 datiDaPassare,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("VolleyPubblica", "Correct: " + response.toString());
+                        Log.d("Pubblica Volley", "Correct: " + response.toString());
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Volley", "Error: " + error.toString());
+                Log.d("Pubblica Volley", "Error: " + error.toString());
+
             }
         });
         Log.d("Volley", "Sending request");
