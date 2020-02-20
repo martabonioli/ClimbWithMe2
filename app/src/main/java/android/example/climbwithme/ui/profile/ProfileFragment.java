@@ -130,7 +130,7 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
         TextView textView5 = view.findViewById(R.id.addpb);
         textView5.setText( matchLivello(MyModel1.utente.getMaxLiv()));
 
-        if (MyModel1.utente.getFoto() != null){
+        if (MyModel1.utente.getFoto() != ""){
             ImageView addfoto= view.findViewById(R.id.foto);
             String b64img =MyModel.utente.getFoto();
             byte[] decodedString = Base64.decode(b64img, Base64.DEFAULT); //la converto in bytestream
