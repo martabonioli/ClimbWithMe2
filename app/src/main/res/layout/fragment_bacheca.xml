@@ -23,17 +23,18 @@
         android:layout_width="149dp"
         android:layout_height="70dp"
         android:layout_marginStart="131dp"
-        android:layout_marginTop="226dp"
+        android:layout_marginTop="260dp"
         android:layout_marginEnd="131dp"
-        android:layout_marginBottom="101dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/button"
         android:onClick="onClickSearch"
         android:text="CERCA"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/proponiButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/button"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/proponiButton"
