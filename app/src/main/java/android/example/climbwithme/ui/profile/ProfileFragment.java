@@ -107,6 +107,7 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
         TextView maxlead = (TextView) view.findViewById(R.id.addpb);
         maxlead.setText(matchLivello(numberPicker.getValue()+1));
         MyModel1.utente.setLivelloMaxLead(numberPicker.getValue());
+        Toast.makeText(getContext(),"Complimenti!",Toast.LENGTH_SHORT).show();
 
     }
 

@@ -51,6 +51,8 @@ public class CercaFragment extends Fragment implements DatePickerDialog.OnDateSe
                 if (!data.equals("")){
                     MyModel.getInstance().cercaUscita.setDataUscita(data);
                     Log.d("dataCercaUscita", MyModel.getInstance().cercaUscita.getDataUscita());
+                }else{
+                    MyModel.getInstance().cercaUscita.setDataUscita("");
                 }
 
 
@@ -80,7 +82,7 @@ public class CercaFragment extends Fragment implements DatePickerDialog.OnDateSe
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar c = Calendar.getInstance();
-
+        view.setMinDate(System.currentTimeMillis() - 1000);
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         Log.d("mese", String.valueOf(Calendar.MONTH));

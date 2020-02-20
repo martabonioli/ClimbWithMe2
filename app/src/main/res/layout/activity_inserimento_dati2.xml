@@ -129,12 +129,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
         android:layout_marginBottom="106dp"
+        android:background="@drawable/button1"
         android:text="ENTRA in ClimbWithMe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:shadowRadius="@integer/google_play_services_version"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
