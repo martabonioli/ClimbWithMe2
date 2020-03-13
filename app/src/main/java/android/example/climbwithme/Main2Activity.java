@@ -134,3 +134,6 @@ public class Main2Activity extends AppCompatActivity {
 
 
 }
+
+
+//DA RIGUARDARE: bloccare la data rima di oggi, posizione iniziale della mappa, datadinascita
