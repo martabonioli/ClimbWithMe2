@@ -212,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }else{
             Toast.makeText(getApplicationContext(),"Inserisci la data",Toast.LENGTH_SHORT).show();
+
         }
     }
     public void onClickVisualizzaUscite(View v){

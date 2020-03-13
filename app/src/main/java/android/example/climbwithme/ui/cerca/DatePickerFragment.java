@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 
@@ -20,13 +21,17 @@ public class DatePickerFragment extends DialogFragment {
 
     public DatePickerFragment(DatePickerDialog.OnDateSetListener dataSetListener) {
         this.dataSetListener = dataSetListener;
+
+
+
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         Locale.setDefault(Locale.ITALIAN);
-        
+
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);

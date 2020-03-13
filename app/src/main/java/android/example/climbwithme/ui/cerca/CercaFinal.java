@@ -46,11 +46,16 @@ public class CercaFinal extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cerca_final);
-        latPartenza = getIntent().getExtras().getDouble("latitudinepartenza");
-        lonPartenza = getIntent().getExtras().getDouble("longitudinepartenza");
-        latArrivo = getIntent().getExtras().getDouble("latitudinearrivo");
-        lonArrivo = getIntent().getExtras().getDouble("longitudinearrivo");
+        if(getIntent().getExtras().getDouble("latitudinepartenza")!=0) {
+            latPartenza = getIntent().getExtras().getDouble("latitudinepartenza");
+            lonPartenza = getIntent().getExtras().getDouble("longitudinepartenza");
+        }
+        if(getIntent().getExtras().getDouble("latitudinearrivo")!=0) {
+            latArrivo = getIntent().getExtras().getDouble("latitudinearrivo");
+            lonArrivo = getIntent().getExtras().getDouble("longitudinearrivo");
+        }
         partenza = getIntent().getExtras().getString("luogopartenza");
+
         arrivo = getIntent().getExtras().getString("luogoarrivo");
 
         TextView data = findViewById(R.id.data);
@@ -126,6 +131,7 @@ public class CercaFinal extends AppCompatActivity implements View.OnClickListene
                 datiDaPassare.put("lonluogoarrivo", lonArrivo);
                 Log.d("CercaLonArrivo", lonArrivo.toString());
             }
+            Log.d("datiPassati", datiDaPassare.toString());
 
         } catch (JSONException e) {
             e.printStackTrace();
