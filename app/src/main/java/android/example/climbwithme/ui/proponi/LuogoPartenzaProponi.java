@@ -123,6 +123,7 @@ public class LuogoPartenzaProponi extends AppCompatActivity implements OnMapRead
                     }
                 });
     }
+
     @SuppressWarnings( {"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
 // Check if permissions are enabled and if not request
