@@ -49,7 +49,6 @@ public class ProponiFinal extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_proponi_final);
         latPartenza = getIntent().getExtras().getDouble("latitudinepartenza");
-
         lonPartenza = getIntent().getExtras().getDouble("longitudinepartenza");
         latArrivo = getIntent().getExtras().getDouble("latitudinearrivo");
         lonArrivo = getIntent().getExtras().getDouble("longitudinearrivo");

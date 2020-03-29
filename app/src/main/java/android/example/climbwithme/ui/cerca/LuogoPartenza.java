@@ -24,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
+import com.mapbox.android.core.permissions.PermissionsListener;
+import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.geocoding.v5.models.CarmenFeature;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
@@ -32,6 +34,10 @@ import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.location.LocationComponent;
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
+import com.mapbox.mapboxsdk.location.modes.CameraMode;
+import com.mapbox.mapboxsdk.location.modes.RenderMode;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
@@ -41,11 +47,13 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
 
+import java.util.List;
+
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
 
 
-public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
+public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener, PermissionsListener {
     private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -58,6 +66,7 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
     public String posPartenza;
     private MyModel Model = MyModel.getInstance();
     public TextView luogo;
+    private PermissionsManager permissionsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,23 +134,89 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
         this.mapboxMap = mapboxMap;
-        mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
-            @Override
-            public void onStyleLoaded(@NonNull Style style) {
-                initSearchFab();
-                addUserLocations();
+        CameraPosition position = new CameraPosition.Builder()
+                .target(new LatLng(MyModel.getLatposition(), MyModel.getLongposition()))
+                .zoom(10)
+                .tilt(20)
+                .build();
+        mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(position));
 
-// Add the symbol layer icon to map for future use
-                style.addImage(symbolIconId, BitmapFactory.decodeResource(
-                        LuogoPartenza.this.getResources(), R.mipmap.blue_marker_view));
+        mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjerxnqt3cgvp2rmyuxbeqme7"),
+                new Style.OnStyleLoaded() {
+                    @Override
+                    public void onStyleLoaded(@NonNull Style style) {
+                        enableLocationComponent(style);
+                        initSearchFab();
+                        addUserLocations();
+                        style.addImage(symbolIconId, BitmapFactory.decodeResource(
+                                LuogoPartenza.this.getResources(), R.mipmap.blue_marker_view));
 
 // Create an empty GeoJSON source using the empty feature collection
-                setUpSource(style);
+                        setUpSource(style);
 
 // Set up a new symbol layer for displaying the searched location's feature coordinates
-                setupLayer(style);
-            }
-        });
+                        setupLayer(style);
+                    }
+                });
+    }
+    @SuppressWarnings( {"MissingPermission"})
+    private void enableLocationComponent(@NonNull Style loadedMapStyle) {
+// Check if permissions are enabled and if not request
+        if (PermissionsManager.areLocationPermissionsGranted(this)) {
+
+// Get an instance of the component
+            LocationComponent locationComponent = mapboxMap.getLocationComponent();
+
+// Activate with options
+            locationComponent.activateLocationComponent(
+                    LocationComponentActivationOptions.builder(this, loadedMapStyle).build());
+
+// Enable to make component visible
+            locationComponent.setLocationComponentEnabled(true);
+
+// Set the component's camera mode
+            locationComponent.setCameraMode(CameraMode.TRACKING);
+
+// Set the component's render mode
+            locationComponent.setRenderMode(RenderMode.COMPASS);
+            locationComponent.zoomWhileTracking(14);
+
+        } else {
+            permissionsManager = new PermissionsManager(this);
+            permissionsManager.requestLocationPermissions(this);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void onExplanationNeeded(List<String> permissionsToExplain) {
+        Toast.makeText(this, "Permessi non garantiti", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onPermissionResult(boolean granted) {
+        if (granted) {
+            mapboxMap.getStyle(new Style.OnStyleLoaded() {
+                @Override
+                public void onStyleLoaded(@NonNull Style style) {
+                    enableLocationComponent(style);
+                }
+            });
+        } else {
+            Toast.makeText(this, "Permessi non garantiti", Toast.LENGTH_LONG).show();
+            finish();
+        }
+    }
+
+    @Override
+    @SuppressWarnings( {"MissingPermission"})
+    protected void onStart() {
+        super.onStart();
+        mapView.onStart();
     }
 
     private void initSearchFab() {
@@ -228,11 +303,6 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
         mapView.onResume();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mapView.onStart();
-    }
 
     @Override
     protected void onStop() {

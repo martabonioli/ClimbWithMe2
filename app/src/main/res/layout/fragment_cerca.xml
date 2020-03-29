@@ -44,6 +44,7 @@
         android:id="@+id/confermap"
         android:layout_width="69dp"
         android:layout_height="68dp"
+        android:backgroundTint="#00FFFFFF"
         android:onClick="onClickAvantiCerca"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

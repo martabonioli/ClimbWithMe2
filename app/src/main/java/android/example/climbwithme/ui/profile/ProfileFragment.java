@@ -293,9 +293,20 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
                 Uri contentURI = data.getData();
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), contentURI);
-                    Toast.makeText(context, "Immagine salvata!", Toast.LENGTH_SHORT).show();
-                    imageview.setImageBitmap(bitmap);
-                    saveImage(bitmap);
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                    byte[] byteArray = byteArrayOutputStream .toByteArray();
+                    // converto la bitmap in un byteArray
+                    String encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                    if (encodedImage.length()> 10485760) {
+                        Toast.makeText(getContext(),"Immagine troppo pesante, scegli un'altra immagine",Toast.LENGTH_LONG).show();
+                    }
+                    else {
+
+                        Toast.makeText(context, "Immagine salvata!", Toast.LENGTH_SHORT).show();
+                        imageview.setImageBitmap(bitmap);
+                        saveImage(bitmap);
+                    }
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -321,7 +332,12 @@ public class ProfileFragment extends Fragment implements NumberPicker.OnValueCha
         //codifico il bytearray in una stringa in formato base64, per essere caricato sul server
         MyModel1.utente.setFoto(encodedImage);
         Log.d("encoded",encodedImage.toString());
+        Log.d("encodedLung", "" + encodedImage.length());
         Log.d("fotonelmodel", MyModel1.utente.getFoto());
+        if (encodedImage.length()> 18161873) {
+            Toast.makeText(getContext(),"Immagine troppo pesante, scegli un'altra immagine",Toast.LENGTH_LONG).show();
+            return;
+        }
 
         //chiamata volley per inserire la foto nel DB
         RequestQueue mRequestQueue = Volley.newRequestQueue(context);

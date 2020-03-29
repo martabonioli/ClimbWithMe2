@@ -24,14 +24,16 @@
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
-        android:layout_width="0dp"
-        android:layout_height="285dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="347dp"
+        android:layout_height="404dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/confermap"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.627"
+        app:layout_constraintTop_toBottomOf="@+id/luogo"
         mapbox:mapbox_cameraTargetLng="-43.334931"
         mapbox:mapbox_cameraZoom="0.346515">
 
@@ -39,11 +41,12 @@
             android:id="@+id/fab_location_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
+            android:layout_gravity="top|start"
             android:layout_margin="16dp"
             android:tint="@android:color/white"
             app:backgroundTint="@color/colorPrimary"
             app:srcCompat="@android:drawable/ic_search_category_default" />
+
     </com.mapbox.mapboxsdk.maps.MapView>
 
     <ImageButton
@@ -60,19 +63,8 @@
         app:layout_constraintVertical_bias="0.975"
         app:srcCompat="@mipmap/avanti" />
 
-    <TextView
-        android:id="@+id/luogo"
-        android:layout_width="315dp"
-        android:layout_height="83dp"
-        android:textColor="#FF7514"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.302"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.256" />
-
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,7 +72,7 @@
         app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.120000005" >
+        app:layout_constraintVertical_bias="0.120000005">
 
         <RadioButton
             android:id="@+id/indifferente"
@@ -94,6 +86,7 @@
             android:layout_height="wrap_content"
             android:text="Cerca sulla mappa" />
     </RadioGroup>
+
     <ImageButton
         android:id="@+id/returnc"
         android:layout_width="69dp"
@@ -106,10 +99,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.975"
-        app:srcCompat="@mipmap/avanti"
-        />
+        app:srcCompat="@mipmap/avanti" />
 
-
+    <TextView
+        android:id="@+id/luogo"
+        android:layout_width="369dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="#FF7514"
+        app:layout_constraintBottom_toTopOf="@+id/mapView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
