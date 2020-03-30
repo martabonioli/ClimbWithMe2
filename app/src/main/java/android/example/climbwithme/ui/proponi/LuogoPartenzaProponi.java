@@ -98,12 +98,7 @@ public class LuogoPartenzaProponi extends AppCompatActivity implements OnMapRead
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
         this.mapboxMap = mapboxMap;
-        CameraPosition position = new CameraPosition.Builder()
-                .target(new LatLng(MyModel.getLatposition(), MyModel.getLongposition()))
-                .zoom(10)
-                .tilt(20)
-                .build();
-        mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(position));
+
 
         mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjerxnqt3cgvp2rmyuxbeqme7"),
                 new Style.OnStyleLoaded() {
@@ -204,8 +199,8 @@ public class LuogoPartenzaProponi extends AppCompatActivity implements OnMapRead
 
     private void addUserLocations() {
         home = CarmenFeature.builder().text("La tua posizione")
-                .geometry(Point.fromLngLat(MyModel.getLongposition(), MyModel.getLatposition()))
-                //.placeName("50 Beale St, San Francisco, CA")
+                .geometry(Point.fromLngLat(9.292659,45.494527 ))
+                .placeName("Segrate, Milano, Italy")
                 .id("ultima-pos")
                 .properties(new JsonObject())
                 .build();

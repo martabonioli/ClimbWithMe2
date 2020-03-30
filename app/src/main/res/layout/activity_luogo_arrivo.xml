@@ -27,11 +27,12 @@
         android:layout_width="347dp"
         android:layout_height="404dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="34dp"
         android:layout_marginBottom="26dp"
         app:layout_constraintBottom_toTopOf="@+id/confermap"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/luogo"
         mapbox:mapbox_cameraTargetLng="-43.334931"
@@ -84,7 +85,7 @@
             android:id="@+id/cerca"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cerca sulla mappa" />
+            android:text="Inserisci il luogo" />
     </RadioGroup>
 
     <ImageButton
@@ -105,10 +106,10 @@
         android:id="@+id/luogo"
         android:layout_width="369dp"
         android:layout_height="42dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="15dp"
         android:textColor="#FF7514"
         app:layout_constraintBottom_toTopOf="@+id/mapView"
         app:layout_constraintEnd_toEndOf="parent"

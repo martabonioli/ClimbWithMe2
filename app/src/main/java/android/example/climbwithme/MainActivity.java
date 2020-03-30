@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -77,37 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            //I permessi non sono stati (ancora) concessi
 
-        } else {
-            //I permessi sono stati concessi
-
-        }
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            latultimapos = location.getLatitude();
-                            lonultimapos = location.getLongitude();
-                            MyModel.setLatposition(latultimapos);
-                            MyModel.setLongposition(lonultimapos);
-                            Log.d("Posizioo", String.valueOf(location.getLatitude()));
-                            Log.d("Posizioo", "AAA2" + String.valueOf(latultimapos));
-                        } else {
-
-                            Log.d("Location", "Last Known location NOT available");
-                        }
-                    }
-                });
 
 
     }
