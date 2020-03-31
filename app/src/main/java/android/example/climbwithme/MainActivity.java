@@ -1,6 +1,7 @@
 package android.example.climbwithme;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.example.climbwithme.ui.cerca.LuogoPartenza;
 import android.example.climbwithme.ui.profile.NumberPickerDialog;
@@ -41,6 +42,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.List;
 
 import static androidx.navigation.ui.NavigationUI.navigateUp;
@@ -197,8 +199,56 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        deleteCache(this);
+       super.onStart();
 
+    }
 
+    @Override
+    protected void onRestart() {
+        deleteCache(this);
+       super.onRestart();
+
+    }
+
+    @Override
+    protected void onResume() {
+        deleteCache(this);
+       super.onResume();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        deleteCache(this);
+       super.onDestroy();
+
+    }
+    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        } catch (Exception e) { e.printStackTrace();}
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        } else if(dir!= null && dir.isFile()) {
+            return dir.delete();
+        } else {
+            return false;
+        }
+    }
 }
 
 //TODO LIST -->     RISOLVERE ROBE DATA- SISTEMARE DB (AGGIUNGERE FOTO) E SISTEMARE CHIAMATE PHP - FARE PROTOTIPO DI UI - COME PRENDERE I DATI

@@ -152,29 +152,13 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
         this.mapboxMap = mapboxMap;
 
 
-        mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjerxnqt3cgvp2rmyuxbeqme7"),
-                new Style.OnStyleLoaded() {
-                    @Override
-                    public void onStyleLoaded(@NonNull Style style) {
-                        enableLocationComponent(style);
-                        initSearchFab();
-                        addUserLocations();
-                        style.addImage(symbolIconId, BitmapFactory.decodeResource(
-                                LuogoArrivo.this.getResources(), R.mipmap.blue_marker_view));
 
-// Create an empty GeoJSON source using the empty feature collection
-                        setUpSource(style);
-
-// Set up a new symbol layer for displaying the searched location's feature coordinates
-                        setupLayer(style);
-                    }
-                });
-    }
-        /*mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
+        mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjerxnqt3cgvp2rmyuxbeqme7"), new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
                 initSearchFab();
                 addUserLocations();
+                enableLocationComponent(style);
 
 // Add the symbol layer icon to map for future use
                 style.addImage(symbolIconId, BitmapFactory.decodeResource(
@@ -186,9 +170,9 @@ public class LuogoArrivo extends AppCompatActivity implements OnMapReadyCallback
 // Set up a new symbol layer for displaying the searched location's feature coordinates
                 setupLayer(style);
 
-
             }
-        });*/
+        });
+    }
 
 
 

@@ -23,6 +23,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.gson.JsonObject;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
@@ -66,6 +67,8 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
     public String posPartenza;
     private MyModel Model = MyModel.getInstance();
     public TextView luogo;
+    private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
+    private FusedLocationProviderClient fusedLocationClient;
     private PermissionsManager permissionsManager;
 
     @Override
@@ -136,24 +139,31 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
         this.mapboxMap = mapboxMap;
 
 
-        mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjerxnqt3cgvp2rmyuxbeqme7"),
-                new Style.OnStyleLoaded() {
-                    @Override
-                    public void onStyleLoaded(@NonNull Style style) {
-                        enableLocationComponent(style);
-                        initSearchFab();
-                        addUserLocations();
-                        style.addImage(symbolIconId, BitmapFactory.decodeResource(
-                                LuogoPartenza.this.getResources(), R.mipmap.blue_marker_view));
+
+
+        mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjerxnqt3cgvp2rmyuxbeqme7"), new Style.OnStyleLoaded() {
+            @Override
+            public void onStyleLoaded(@NonNull Style style) {
+                initSearchFab();
+                addUserLocations();
+                enableLocationComponent(style);
+
+// Add the symbol layer icon to map for future use
+                style.addImage(symbolIconId, BitmapFactory.decodeResource(
+                        LuogoPartenza.this.getResources(), R.mipmap.blue_marker_view));
 
 // Create an empty GeoJSON source using the empty feature collection
-                        setUpSource(style);
+                setUpSource(style);
 
 // Set up a new symbol layer for displaying the searched location's feature coordinates
-                        setupLayer(style);
-                    }
-                });
+                setupLayer(style);
+
+            }
+        });
     }
+
+
+
     @SuppressWarnings( {"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
 // Check if permissions are enabled and if not request
@@ -213,7 +223,6 @@ public class LuogoPartenza extends AppCompatActivity implements OnMapReadyCallba
         super.onStart();
         mapView.onStart();
     }
-
     private void initSearchFab() {
         findViewById(R.id.fab_location_search).setOnClickListener(new View.OnClickListener() {
             @Override

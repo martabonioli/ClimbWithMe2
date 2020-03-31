@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.example.climbwithme.MyModel;
 import android.example.climbwithme.R;
@@ -18,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.gson.JsonObject;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
@@ -62,13 +64,16 @@ public class LuogoPartenzaProponi extends AppCompatActivity implements OnMapRead
     private MyModel Model = MyModel.getInstance();
     public TextView luogo;
     private PermissionsManager permissionsManager;
+    private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
+    private FusedLocationProviderClient fusedLocationClient;
+    private Context c1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, "pk.eyJ1IjoibHVjYWdyYW5hIiwiYSI6ImNrMzczZG45ejA3bmgzY2xpd242cnBoZzQifQ.oCQted-XquoUm5EKhjrLTQ");
         setContentView(R.layout.activity_luogo_partenza_proponi);
-
+        c1 = this;
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
@@ -76,6 +81,7 @@ public class LuogoPartenzaProponi extends AppCompatActivity implements OnMapRead
         ImageButton conferma = findViewById(R.id.confermap);
         conferma.setOnClickListener(this);
         luogo= findViewById(R.id.luogo);
+
 
     }
     @Override
@@ -99,8 +105,29 @@ public class LuogoPartenzaProponi extends AppCompatActivity implements OnMapRead
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
         this.mapboxMap = mapboxMap;
 
+        mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjerxnqt3cgvp2rmyuxbeqme7"), new Style.OnStyleLoaded() {
+            @Override
+            public void onStyleLoaded(@NonNull Style style) {
+                initSearchFab();
+                addUserLocations();
+                enableLocationComponent(style);
 
-        mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjerxnqt3cgvp2rmyuxbeqme7"),
+// Add the symbol layer icon to map for future use
+                style.addImage(symbolIconId, BitmapFactory.decodeResource(
+                        LuogoPartenzaProponi.this.getResources(), R.mipmap.blue_marker_view));
+
+// Create an empty GeoJSON source using the empty feature collection
+                setUpSource(style);
+
+// Set up a new symbol layer for displaying the searched location's feature coordinates
+                setupLayer(style);
+
+
+            }
+        });
+    }
+
+        /*mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjerxnqt3cgvp2rmyuxbeqme7"),
                 new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
@@ -117,7 +144,7 @@ public class LuogoPartenzaProponi extends AppCompatActivity implements OnMapRead
                         setupLayer(style);
                     }
                 });
-    }
+    }*/
 
     @SuppressWarnings( {"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {

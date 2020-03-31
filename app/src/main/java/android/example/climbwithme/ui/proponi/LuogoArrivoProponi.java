@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.example.climbwithme.MyModel;
 import android.example.climbwithme.R;
@@ -64,6 +65,7 @@ public class LuogoArrivoProponi extends AppCompatActivity implements OnMapReadyC
     String luogoPartenza;
     public TextView luogo;
     private PermissionsManager permissionsManager;
+    private Context c1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public class LuogoArrivoProponi extends AppCompatActivity implements OnMapReadyC
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+        c1 = this;
 
         ImageButton conferma = findViewById(R.id.conferma2);
         conferma.setOnClickListener(this);
@@ -117,8 +120,30 @@ public class LuogoArrivoProponi extends AppCompatActivity implements OnMapReadyC
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
         this.mapboxMap = mapboxMap;
 
+        mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjerxnqt3cgvp2rmyuxbeqme7"), new Style.OnStyleLoaded() {
+            @Override
+            public void onStyleLoaded(@NonNull Style style) {
+                initSearchFab();
+                addUserLocations();
 
-        mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjerxnqt3cgvp2rmyuxbeqme7"),
+                enableLocationComponent(style);
+
+
+// Add the symbol layer icon to map for future use
+                style.addImage(symbolIconId, BitmapFactory.decodeResource(
+                        LuogoArrivoProponi.this.getResources(), R.mipmap.blue_marker_view));
+
+// Create an empty GeoJSON source using the empty feature collection
+                setUpSource(style);
+
+// Set up a new symbol layer for displaying the searched location's feature coordinates
+                setupLayer(style);
+
+
+            }
+        });
+    }
+        /*mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjerxnqt3cgvp2rmyuxbeqme7"),
                 new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
@@ -135,7 +160,7 @@ public class LuogoArrivoProponi extends AppCompatActivity implements OnMapReadyC
                         setupLayer(style);
                     }
                 });
-    }
+    }*/
     @SuppressWarnings( {"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
 // Check if permissions are enabled and if not request
